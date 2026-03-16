@@ -5,12 +5,13 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
-    provider = "postgresql"
+  provider  = "postgresql"
 }
+
+// ─── Enums ────────────────────────────────────────────────────────────────────
 
 enum Role {
     BUYER
@@ -24,6 +25,8 @@ enum BookingStatus {
     REJECTED
     CANCELLED
 }
+
+// ─── Models ────────────────────────────────────────────────────────────────────
 
 model User {
     id           String    @id @default(uuid())
@@ -59,9 +62,11 @@ model Property {
   images   PropertyImage[]
   bookings Booking[]
 
+// Indexes on the most commonly filtered fields
   @@index([location])
   @@index([price])
   @@index([bedrooms])
+  @@index([ownerId])
   @@map("properties")
 }
 
@@ -70,9 +75,10 @@ model PropertyImage {
   id         String   @id @default(uuid())
   propertyId String   @map("property_id")
   url        String
+  publicId   String   @map("public_id")
   createdAt  DateTime @default(now()) @map("created_at")
 
-  property Property @relation(fields: [propertyId], references: [id])
+  property Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
 
   @@map("property_images")
 }
@@ -90,5 +96,7 @@ model Booking {
   property Property @relation(fields: [propertyId], references: [id])
   user     User     @relation(fields: [userId], references: [id])
 
+  @@index([userId])
+  @@index([propertyId])
   @@map("bookings")
 }

@@ -1,6 +1,51 @@
+# Monorepo dependencies
 node_modules/
+**/node_modules/
+
+# Environment files
 .env
+.env.*
+**/.env
+**/.env.*
+
+# Build output
 dist/
+build/
+**/dist/
+**/build/
 .next/
+**/.next/
+
+# Test and coverage output
+coverage/
+**/coverage/
+.nyc_output/
+
+# Logs and runtime data
+logs/
 *.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pids/
+*.pid
+*.seed
+*.pid.lock
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Temp files
+.temp/
+.tmp/
+
+# OS and IDE
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.sublime-workspace
 

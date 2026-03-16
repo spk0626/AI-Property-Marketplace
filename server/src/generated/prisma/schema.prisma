@@ -1,0 +1,101 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Enums ────────────────────────────────────────────────────────────────────
+
+enum Role {
+  BUYER
+  OWNER
+  ADMIN
+}
+
+enum BookingStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+
+// ─── Models ────────────────────────────────────────────────────────────────────
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  name         String
+  role         Role     @default(BUYER)
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  properties Property[]
+  Bookings   Booking[]
+
+  @@map("users")
+}
+
+model Property {
+  id          String   @id @default(uuid())
+  ownerId     String   @map("owner_id")
+  title       String
+  description String
+  price       Float
+  location    String
+  bedrooms    Int
+  bathrooms   Int
+  parking     Boolean  @default(false)
+  area        Float?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  owner    User            @relation(fields: [ownerId], references: [id])
+  images   PropertyImage[]
+  bookings Booking[]
+
+  // Indexes on the most commonly filtered fields
+  @@index([location])
+  @@index([price])
+  @@index([bedrooms])
+  @@index([ownerId])
+  @@map("properties")
+}
+
+model PropertyImage {
+  id         String   @id @default(uuid())
+  propertyId String   @map("property_id")
+  url        String
+  publicId   String   @map("public_id")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  property Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@map("property_images")
+}
+
+model Booking {
+  id         String        @id @default(uuid())
+  propertyId String        @map("property_id")
+  userId     String        @map("user_id")
+  visitDate  DateTime      @map("visit_date")
+  status     BookingStatus @default(PENDING)
+  message    String?
+  createdAt  DateTime      @default(now()) @map("created_at")
+  updatedAt  DateTime      @updatedAt @map("updated_at")
+
+  property Property @relation(fields: [propertyId], references: [id])
+  user     User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([propertyId])
+  @@map("bookings")
+}
