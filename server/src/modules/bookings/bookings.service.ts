@@ -122,7 +122,7 @@ export class BookingsService {
         return this.prisma.booking.update({
             where: { id},
             data: { status: 'CANCELLED' },
-        });
+        });   // updated as 'CANCELLED', not deleted
 
     }
     // inputs: booking id and userId
