@@ -9,7 +9,7 @@ import {
 import { Request, Response } from 'express';
 import { time } from 'node:console';
 import path from 'node:path';
-import { Prisma } from 'src/generated/prisma';
+import { Prisma } from '@prisma/client';
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {

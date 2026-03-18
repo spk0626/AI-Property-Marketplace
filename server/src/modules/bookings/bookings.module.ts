@@ -3,7 +3,7 @@ import { BullModule } from '@nestjs/bull';
 import { BookingsController } from './bookings.controller';
 import { BookingsService } from './bookings.service';
 import { AuthModule } from '../auth/auth.module';
-import { BOOKING_QUEUE } from '../../jobs/jobs.module';
+import { BOOKING_QUEUE } from '../../jobs/jobs.constants';
 
 @Module({
     imports: [

@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
 import { BullModule } from '@nestjs/bull';
 import { EmailProcessor } from './email.processor';
-
-export const BOOKING_QUEUE = 'booking';  // this will be used to identify the queue when adding jobs and processing them
+import { BOOKING_QUEUE } from './jobs.constants';
 
 @Module({
     imports: [

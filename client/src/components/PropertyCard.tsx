@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Property } from "@/types";
+import { CldImage } from 'next-cloudinary';
 
 export default function PropertyCard({ property }: { property: Property }) {
     const image = property.images?.[0]?.url;
@@ -9,11 +10,14 @@ export default function PropertyCard({ property }: { property: Property }) {
             <div className="bg-white rounded-x1 shadow-sm border hover: shaddow-md transition-shadow overflow-hidden cursor-pointer">
                 <div className="h-48 bg-gray-100 relative">
                     {image? (
-                        <img
-                            src={image}
-                            alt={property.title}
-                            className="w-full h-full object-cover"
-                        />
+                        <CldImage
+  src={property.images[0].publicId}  
+  width={400}
+  height={300}
+  alt={property.title}
+  className="w-full h-full object-cover"
+  crop={{ type: 'fill', source: true }}
+/>
                     ) : (
                         <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
                             No Image

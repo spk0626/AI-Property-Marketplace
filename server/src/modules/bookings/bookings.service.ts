@@ -10,8 +10,8 @@ import type { Queue } from "bull";
 import { PrismaService } from "src/prisma/prisma.service";
 import { CreateBookingDto } from "./dto/create-booking.dto";
 import { BookingStatusUpdate } from "./dto/update-status.dto";
-import { BOOKING_QUEUE } from "src/jobs/jobs.module";
-import { EMAIL_JOBS, BookingConfirmationJob } from "src/jobs/email.processor";
+import { BOOKING_QUEUE, EMAIL_JOBS } from "src/jobs/jobs.constants";
+import type { BookingConfirmationJob } from "src/jobs/email.processor";
 
 @Injectable()
 export class BookingsService {

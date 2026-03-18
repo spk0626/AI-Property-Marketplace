@@ -2,11 +2,7 @@ import { Process, Processor } from '@nestjs/bull';
 import { Logger } from '@nestjs/common';
 import type { Job } from 'bull';
 import * as nodemailer from 'nodemailer';
-import { BOOKING_QUEUE } from './jobs.module';
-
-export const EMAIL_JOBS = {
-    BOOKING_CONFIRMATION: 'booking-confirmation',
-} as const;
+import { BOOKING_QUEUE, EMAIL_JOBS } from './jobs.constants';
 // EMAIL_JOBS that contains the property BOOKING_CONFIRMATION with the value 'booking-confirmation'.
 
 export interface BookingConfirmationJob {

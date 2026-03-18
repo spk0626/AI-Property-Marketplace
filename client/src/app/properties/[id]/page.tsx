@@ -64,7 +64,7 @@ export default function PropertyDetailsPage() {
 
     return (
          <div className="max-w-5xl mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">    {/* For responsive UI: 1 column on mobile, 2 on tablet, 3 on desktop */}
         {/* Images */}
         <div>
           <div className="h-72 bg-gray-100 rounded-2xl overflow-hidden">
@@ -208,4 +208,10 @@ export default function PropertyDetailsPage() {
 // - A booking form that includes a datetime picker for selecting a visit date, a textarea for an optional message, and a button to submit the booking request. The form also displays error messages if the booking fails and a success message when the request is sent successfully.
 // - texts and labels to show property information and guide the user through the booking process.
 // - buttons for Booking and image selection
+
+// Responsive UI:
+// - sm: 1 column layout for small phones or smaller tablets
+// - md: 2 column layout for tablets
+// - lg: 3 column layout for laptops
+// - xl: 4 column layout for desktops and larger screens
 

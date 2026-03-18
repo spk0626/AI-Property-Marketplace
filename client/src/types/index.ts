@@ -13,6 +13,7 @@ export interface PropertyImage {
     id: string;
     url: string;
     propertyId: string;
+    publicId: string;
 }
 
 export interface Property {

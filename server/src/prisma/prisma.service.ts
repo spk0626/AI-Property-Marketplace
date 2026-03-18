@@ -4,6 +4,7 @@ import {
     OnModuleInit,
     Logger 
 } from "@nestjs/common";
+import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from "@prisma/client";
 
 @Injectable()
@@ -13,6 +14,18 @@ export class PrismaService
 {
     private readonly logger = new Logger(PrismaService.name);  // logger: used to log important events related to the PrismaService, such as successful connection or disconnection from the database.
   
+    constructor() {
+      const connectionString = process.env.DATABASE_URL;
+
+      if (!connectionString) {
+        throw new Error('DATABASE_URL is not set');
+      }
+
+      super({
+        adapter: new PrismaPg({ connectionString }),
+      });
+    }
+
     async onModuleInit(): Promise<void> {
     await this.$connect();
     this.logger.log('Database connected');
