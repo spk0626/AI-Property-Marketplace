@@ -1,6 +1,6 @@
-import { Global, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { APP_GUARD, APP_FILTER } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { BullModule } from '@nestjs/bull';
 import { LoggerModule } from 'nestjs-pino';
@@ -17,14 +17,14 @@ import { JobsModule } from './jobs/jobs.module';
 
 @Module({
   imports: [
-   // Config — validates all .env vars at startup
-    ConfigModule.forRoot({ 
+    // Config — validates all .env vars at startup
+    ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: envValidationSchema,
-      validationOptions: {abortEarly: true},
-  }),
+      validationOptions: { abortEarly: true },
+    }),
 
-    // Rate limiting 
+    // Rate limiting
     ThrottlerModule.forRoot([
       {
         name: 'global',
@@ -32,12 +32,12 @@ import { JobsModule } from './jobs/jobs.module';
         limit: 100,
       },
       {
-        name: 'auth',       // Stricter — prevents brute force on login
+        name: 'auth', // Stricter — prevents brute force on login
         ttl: 60_000,
         limit: 10,
       },
       {
-        name: 'ai',         // Gemini limit: 15 RPM
+        name: 'ai', // Gemini limit: 15 RPM
         ttl: 60_000,
         limit: 15,
       },
@@ -58,41 +58,39 @@ import { JobsModule } from './jobs/jobs.module';
 
     LoggerModule.forRoot({
       pinoHttp: {
-        transport: 
+        transport:
           process.env.NODE_ENV === 'production'
-          ? {target: 'pino-pretty', options: { colorize: true }}
-          : undefined,
+            ? { target: 'pino-pretty', options: { colorize: true } }
+            : undefined,
         level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
-      autoLogging: {
-        ignore: (req) => ['/health', '/metrics'].includes(req.url ?? ''),
+        autoLogging: {
+          ignore: (req) => ['/health', '/metrics'].includes(req.url ?? ''),
+        },
       },
+    }),
+
+    PrismaModule,
+    HealthModule,
+    AuthModule,
+    PropertiesModule,
+    BookingsModule,
+    AiModule,
+    JobsModule,
+  ],
+  providers: [
+    // Global exception filter — handles all errors including Prisma errors
+    {
+      provide: APP_FILTER,
+      useClass: GlobalExceptionFilter,
     },
-}),
-
-PrismaModule,
-HealthModule,
-AuthModule,
-PropertiesModule,
-BookingsModule,
-AiModule,
-JobsModule,
-],
-providers: [
-// Global exception filter — handles all errors including Prisma errors
-  {
-    provide: APP_GUARD,
-    useClass: GlobalExceptionFilter,
-  },
-  // Rate limiter (Throttler) as APP_GUARD to apply globally
-  // Without APP_GUARD registration, ThrottlerModule does nothing
-  {
-    provide: APP_GUARD,
-    useClass: ThrottlerGuard,
-  },
-],
+    // Rate limiter (Throttler) as APP_GUARD to apply globally
+    // Without APP_GUARD registration, ThrottlerModule does nothing
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
+  ],
 })
-
-
 export class AppModule {}
 
 // summary:

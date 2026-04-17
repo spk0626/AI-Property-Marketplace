@@ -4,10 +4,10 @@ import { EmailProcessor } from './email.processor';
 import { BOOKING_QUEUE } from './jobs.constants';
 
 @Module({
-    imports: [
-        BullModule.registerQueue({ name: BOOKING_QUEUE }),  // registers a Bull queue with the name 'booking'
-    ],
-    providers: [EmailProcessor],  // registers the EmailProcessor as a provider, which will handle processing jobs from the 'booking' queue
+  imports: [
+    BullModule.registerQueue({ name: BOOKING_QUEUE }), // registers a Bull queue with the name 'booking'
+  ],
+  providers: [EmailProcessor], // registers the EmailProcessor as a provider, which will handle processing jobs from the 'booking' queue
 })
 export class JobsModule {}
 

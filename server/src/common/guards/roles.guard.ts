@@ -1,26 +1,24 @@
-import { Injectable, CanActivate, ExecutionContext } from "@nestjs/common";
-import { Reflector } from "@nestjs/core";
-import { ROLES_KEY } from "../decorators/roles.decorator";
-import { JwtUser } from "../interfaces/jwt-user.interface";
+import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { ROLES_KEY } from '../decorators/roles.decorator';
+import { JwtUser } from '../interfaces/jwt-user.interface';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
-    constructor(private reflector: Reflector) {}
+  constructor(private reflector: Reflector) {}
 
-    canActivate(context: ExecutionContext): boolean {
-        const requiredRoles = this.reflector.getAllAndOverride<string[]>(
-            ROLES_KEY, 
-            [context.getHandler(), context.getClass()],
-        );
+  canActivate(context: ExecutionContext): boolean {
+    const requiredRoles = this.reflector.getAllAndOverride<string[]>(
+      ROLES_KEY,
+      [context.getHandler(), context.getClass()],
+    );
 
-        if (!requiredRoles || requiredRoles.length === 0) return true; // No roles required, allow access
+    if (!requiredRoles || requiredRoles.length === 0) return true; // No roles required, allow access
 
-        const { user }: { user: JwtUser } = context
-        .switchToHttp()
-        .getRequest();
+    const { user }: { user: JwtUser } = context.switchToHttp().getRequest();
 
-        return requiredRoles.includes(user?.role); // Check if user's role is in the required roles
-    }
+    return requiredRoles.includes(user?.role); // Check if user's role is in the required roles
+  }
 }
 
 // @Injectable() makes this class available for dependency injection in other parts of the application

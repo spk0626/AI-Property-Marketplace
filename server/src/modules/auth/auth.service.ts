@@ -1,82 +1,179 @@
 import {
-    Injectable,
-    ConflictException,
-    UnauthorizedException,
-} from "@nestjs/common";
-import { JwtService } from "@nestjs/jwt";
-import * as bcrypt from "bcryptjs";
-import { PrismaService } from "src/prisma/prisma.service";
-import { RegisterDto } from "./dto/register.dto";
-import { LoginDto } from "./dto/login.dto";
+  Injectable,
+  ConflictException,
+  UnauthorizedException,
+  NotFoundException,
+} from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcryptjs';
+import { PrismaService } from '../../prisma/prisma.service';
+import { RegisterDto } from './dto/register.dto';
+import { LoginDto } from './dto/login.dto';
+import { UpdateProfileDto } from './dto/update-profile.dto';
 
 @Injectable()
 export class AuthService {
-    constructor(
-        private readonly prisma: PrismaService,
-        private readonly jwt: JwtService,
-    ) {}
-    // Inputs - PrismaService for database access and JwtService for handling JWT operations
-    // Process - Initializes the AuthService
-    // Output - An instance of AuthService with access to database and JWT functionalities
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly jwt: JwtService,
+  ) {}
+  // Inputs - PrismaService for database access and JwtService for handling JWT operations
+  // Process - Initializes the AuthService
+  // Output - An instance of AuthService with access to database and JWT functionalities
 
+  async register(dto: RegisterDto) {
+    const existingUser = await this.prisma.user.findUnique({
+      where: { email: dto.email },
+    });
+    if (existingUser) throw new ConflictException('Email already in use');
 
-    async register(dto: RegisterDto) {
-        const existingUser = await this.prisma.user.findUnique({
-            where: { email: dto.email },
-        });
-        if (existingUser) throw new ConflictException('Email already in use');
+    const passwordHash = await bcrypt.hash(dto.password, 12);
+    const user = await this.prisma.user.create({
+      data: {
+        name: dto.name,
+        email: dto.email,
+        passwordHash,
+        role: dto.role ?? 'BUYER',
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        createdAt: true,
+      },
+    });
+    return { user, token: this.signToken(user.id, user.email, user.role) };
+  }
+  // Inputs - RegisterDto containing name, email, password, and optional role
+  // Process - Checks if a user with the provided email already exists. If so, it throws a ConflictException. If not, it hashes the password, creates a new user in the database, and generates a JWT token for the newly registered user.
+  // Output - Returns an object containing the newly created user's information (excluding password) and a JWT token for authentication.
 
-        const passwordHash = await bcrypt.hash(dto.password, 12);
-        const user = await this.prisma.user.create({
-            data: {
-                name: dto.name,
-                email: dto.email,
-                passwordHash,
-                role: dto.role ?? 'BUYER',
-            },
-            select: { id: true, name: true, email: true, role: true, createdAt: true },
-        });
-        return { user, token: this.signToken(user.id, user.email, user.role) };
+  async login(dto: LoginDto) {
+    const user = await this.prisma.user.findUnique({
+      where: { email: dto.email },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        createdAt: true,
+        passwordHash: true,
+      },
+    });
+    if (!user) throw new UnauthorizedException('Invalid credentials');
+
+    const passwordValid = await bcrypt.compare(dto.password, user.passwordHash);
+    if (!passwordValid) throw new UnauthorizedException('Invalid credentials');
+
+    const safeUser = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      createdAt: user.createdAt,
+    };
+    return {
+      user: safeUser,
+      token: this.signToken(user.id, user.email, user.role),
+    };
+  }
+  // Inputs - LoginDto containing email and password
+  // Process - Looks up the user by email. If the user does not exist, it throws an UnauthorizedException. If the user exists, it compares the provided password with the stored password hash. If the password is invalid, it throws an UnauthorizedException. If valid, it returns the user's information (excluding password) and a JWT token for authentication.
+  // Output - Returns an object containing the authenticated user's information (excluding password) and a JWT token for authentication.
+
+  async getUserById(userId: string) {
+    return this.prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        createdAt: true,
+      },
+    });
+  }
+  // Inputs - userId (string)
+  // Process - Retrieves a user's information from the database based on their unique ID. It selects only specific fields to return, excluding sensitive information like the password hash.
+  // Output - Returns an object containing the user's id, name, email, role, and createdAt timestamp. If the user does not exist, it returns null.
+
+  private signToken(id: string, email: string, role: string): string {
+    return this.jwt.sign({ id, email, role });
+  }
+
+  async deleteUserById(userId: string) {
+    const ownedProperties = await this.prisma.property.findMany({
+      where: { ownerId: userId },
+      select: { id: true },
+    });
+
+    const propertyIds = ownedProperties.map((property) => property.id);
+
+    const existingUser = await this.prisma.user.findUnique({
+      where: { id: userId },
+      select: { id: true },
+    });
+
+    if (!existingUser) throw new NotFoundException('User not found');
+
+    await this.prisma.$transaction([
+      this.prisma.booking.deleteMany({
+        where: { userId },
+      }),
+      this.prisma.booking.deleteMany({
+        where: { propertyId: { in: propertyIds } },
+      }),
+      this.prisma.propertyImage.deleteMany({
+        where: { propertyId: { in: propertyIds } },
+      }),
+      this.prisma.property.deleteMany({
+        where: { ownerId: userId },
+      }),
+      this.prisma.user.delete({
+        where: { id: userId },
+      }),
+    ]);
+
+    return { message: 'Profile deleted successfully' };
+  }
+
+  async updateUserById(userId: string, dto: UpdateProfileDto) {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+      select: { id: true, email: true },
+    });
+
+    if (!user) throw new NotFoundException('User not found');
+
+    if (dto.email && dto.email !== user.email) {
+      const existingUser = await this.prisma.user.findUnique({
+        where: { email: dto.email },
+        select: { id: true },
+      });
+
+      if (existingUser) throw new ConflictException('Email already in use');
     }
-    // Inputs - RegisterDto containing name, email, password, and optional role
-    // Process - Checks if a user with the provided email already exists. If so, it throws a ConflictException. If not, it hashes the password, creates a new user in the database, and generates a JWT token for the newly registered user.
-    // Output - Returns an object containing the newly created user's information (excluding password) and a JWT token for authentication.
 
-
-    async login(dto: LoginDto) {
-        const user = await this.prisma.user.findUnique({
-            where: { email: dto.email },
-        });
-        if (!user) throw new UnauthorizedException('Invalid credentials');
-
-        const passwordValid = await bcrypt.compare(dto.password, user.passwordHash);
-        if (!passwordValid) throw new UnauthorizedException('Invalid credentials');
-
-        const { passwordHash: _omit, ...safeUser} = user;
-        return { user: safeUser, token: this.signToken(user.id, user.email, user.role) };
-    }
-    // Inputs - LoginDto containing email and password
-    // Process - Looks up the user by email. If the user does not exist, it throws an UnauthorizedException. If the user exists, it compares the provided password with the stored password hash. If the password is invalid, it throws an UnauthorizedException. If valid, it returns the user's information (excluding password) and a JWT token for authentication.
-    // Output - Returns an object containing the authenticated user's information (excluding password) and a JWT token for authentication.
-
-
-    async getUserById(userId: string) {
-        return this.prisma.user.findUnique({
-            where: { id: userId },
-            select: { id: true, name: true, email: true, role: true, createdAt: true },
-        });
-    }
-    // Inputs - userId (string)
-    // Process - Retrieves a user's information from the database based on their unique ID. It selects only specific fields to return, excluding sensitive information like the password hash.
-    // Output - Returns an object containing the user's id, name, email, role, and createdAt timestamp. If the user does not exist, it returns null.
-
-
-    private signToken(id: string, email: string, role: string): string {
-        return this.jwt.sign({ id, email, role });
-    }
-    // Inputs - id, email, and role of the user
-    // Process - Uses the JwtService to create a signed JWT token containing the user's id, email, and role as the payload.
-    // Output - Returns a JWT token as a string that can be used for authenticating subsequent requests.
+    return this.prisma.user.update({
+      where: { id: userId },
+      data: {
+        ...(dto.name !== undefined && { name: dto.name }),
+        ...(dto.email !== undefined && { email: dto.email }),
+        ...(dto.role !== undefined && { role: dto.role }),
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        createdAt: true,
+      },
+    });
+  }
+  // Inputs - id, email, and role of the user
+  // Process - Uses the JwtService to create a signed JWT token containing the user's id, email, and role as the payload.
+  // Output - Returns a JWT token as a string that can be used for authenticating subsequent requests.
 }
 
 /* AuthService: 
@@ -88,4 +185,3 @@ Methods:
 - getUserById: Retrieves user information based on their unique ID, excluding sensitive data.
 - signToken: Generates a JWT token containing the user's id, email, and role for authentication purposes.
 */
-

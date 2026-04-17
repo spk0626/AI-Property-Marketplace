@@ -1,70 +1,68 @@
-
 /**
  * Client
-**/
+ **/
 
 import * as runtime from './runtime/client.js';
-import $Types = runtime.Types // general types
-import $Public = runtime.Types.Public
-import $Utils = runtime.Types.Utils
-import $Extensions = runtime.Types.Extensions
-import $Result = runtime.Types.Result
+import $Types = runtime.Types; // general types
+import $Public = runtime.Types.Public;
+import $Utils = runtime.Types.Utils;
+import $Extensions = runtime.Types.Extensions;
+import $Result = runtime.Types.Result;
 
-export type PrismaPromise<T> = $Public.PrismaPromise<T>
-
+export type PrismaPromise<T> = $Public.PrismaPromise<T>;
 
 /**
  * Model User
- * 
+ *
  */
-export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+export type User = $Result.DefaultSelection<Prisma.$UserPayload>;
 /**
  * Model Property
- * 
+ *
  */
-export type Property = $Result.DefaultSelection<Prisma.$PropertyPayload>
+export type Property = $Result.DefaultSelection<Prisma.$PropertyPayload>;
 /**
  * Model PropertyImage
- * 
+ *
  */
-export type PropertyImage = $Result.DefaultSelection<Prisma.$PropertyImagePayload>
+export type PropertyImage =
+  $Result.DefaultSelection<Prisma.$PropertyImagePayload>;
 /**
  * Model Booking
- * 
+ *
  */
-export type Booking = $Result.DefaultSelection<Prisma.$BookingPayload>
+export type Booking = $Result.DefaultSelection<Prisma.$BookingPayload>;
 
 /**
  * Enums
  */
 export namespace $Enums {
   export const Role: {
-  BUYER: 'BUYER',
-  OWNER: 'OWNER',
-  ADMIN: 'ADMIN'
-};
+    BUYER: 'BUYER';
+    OWNER: 'OWNER';
+    ADMIN: 'ADMIN';
+  };
 
-export type Role = (typeof Role)[keyof typeof Role]
+  export type Role = (typeof Role)[keyof typeof Role];
 
+  export const BookingStatus: {
+    PENDING: 'PENDING';
+    APPROVED: 'APPROVED';
+    REJECTED: 'REJECTED';
+    CANCELLED: 'CANCELLED';
+  };
 
-export const BookingStatus: {
-  PENDING: 'PENDING',
-  APPROVED: 'APPROVED',
-  REJECTED: 'REJECTED',
-  CANCELLED: 'CANCELLED'
-};
-
-export type BookingStatus = (typeof BookingStatus)[keyof typeof BookingStatus]
-
+  export type BookingStatus =
+    (typeof BookingStatus)[keyof typeof BookingStatus];
 }
 
-export type Role = $Enums.Role
+export type Role = $Enums.Role;
 
-export const Role: typeof $Enums.Role
+export const Role: typeof $Enums.Role;
 
-export type BookingStatus = $Enums.BookingStatus
+export type BookingStatus = $Enums.BookingStatus;
 
-export const BookingStatus: typeof $Enums.BookingStatus
+export const BookingStatus: typeof $Enums.BookingStatus;
 
 /**
  * ##  Prisma Client ʲˢ
@@ -84,12 +82,16 @@ export const BookingStatus: typeof $Enums.BookingStatus
  */
 export class PrismaClient<
   ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  const U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
-  ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  const U = 'log' extends keyof ClientOptions
+    ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition>
+      ? Prisma.GetEvents<ClientOptions['log']>
+      : never
+    : never,
+  ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
 > {
-  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
+  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] };
 
-    /**
+  /**
    * ##  Prisma Client ʲˢ
    *
    * Type-safe database client for TypeScript & Node.js
@@ -106,8 +108,15 @@ export class PrismaClient<
    * Read more in our [docs](https://pris.ly/d/client).
    */
 
-  constructor(optionsArg ?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>);
-  $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): PrismaClient;
+  constructor(
+    optionsArg?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>,
+  );
+  $on<V extends U>(
+    eventType: V,
+    callback: (
+      event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent,
+    ) => void,
+  ): PrismaClient;
 
   /**
    * Connect with the database
@@ -119,7 +128,7 @@ export class PrismaClient<
    */
   $disconnect(): $Utils.JsPromise<void>;
 
-/**
+  /**
    * Executes a prepared raw query and returns the number of affected rows.
    * @example
    * ```
@@ -128,7 +137,10 @@ export class PrismaClient<
    *
    * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
-  $executeRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<number>;
+  $executeRaw<T = unknown>(
+    query: TemplateStringsArray | Prisma.Sql,
+    ...values: any[]
+  ): Prisma.PrismaPromise<number>;
 
   /**
    * Executes a raw query and returns the number of affected rows.
@@ -140,7 +152,10 @@ export class PrismaClient<
    *
    * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
-  $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
+  $executeRawUnsafe<T = unknown>(
+    query: string,
+    ...values: any[]
+  ): Prisma.PrismaPromise<number>;
 
   /**
    * Performs a prepared raw query and returns the `SELECT` data.
@@ -151,7 +166,10 @@ export class PrismaClient<
    *
    * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
-  $queryRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<T>;
+  $queryRaw<T = unknown>(
+    query: TemplateStringsArray | Prisma.Sql,
+    ...values: any[]
+  ): Prisma.PrismaPromise<T>;
 
   /**
    * Performs a raw query and returns the `SELECT` data.
@@ -163,8 +181,10 @@ export class PrismaClient<
    *
    * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
-  $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
-
+  $queryRawUnsafe<T = unknown>(
+    query: string,
+    ...values: any[]
+  ): Prisma.PrismaPromise<T>;
 
   /**
    * Allows the running of a sequence of read/write operations that are guaranteed to either succeed or fail as a whole.
@@ -176,128 +196,145 @@ export class PrismaClient<
    *   prisma.user.create({ data: { name: 'Alice' } }),
    * ])
    * ```
-   * 
+   *
    * Read more in our [docs](https://www.prisma.io/docs/orm/prisma-client/queries/transactions).
    */
-  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
+  $transaction<P extends Prisma.PrismaPromise<any>[]>(
+    arg: [...P],
+    options?: { isolationLevel?: Prisma.TransactionIsolationLevel },
+  ): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>;
 
-  $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
+  $transaction<R>(
+    fn: (
+      prisma: Omit<PrismaClient, runtime.ITXClientDenyList>,
+    ) => $Utils.JsPromise<R>,
+    options?: {
+      maxWait?: number;
+      timeout?: number;
+      isolationLevel?: Prisma.TransactionIsolationLevel;
+    },
+  ): $Utils.JsPromise<R>;
 
-  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb<ClientOptions>, ExtArgs, $Utils.Call<Prisma.TypeMapCb<ClientOptions>, {
-    extArgs: ExtArgs
-  }>>
+  $extends: $Extensions.ExtendsHook<
+    'extends',
+    Prisma.TypeMapCb<ClientOptions>,
+    ExtArgs,
+    $Utils.Call<
+      Prisma.TypeMapCb<ClientOptions>,
+      {
+        extArgs: ExtArgs;
+      }
+    >
+  >;
 
-      /**
+  /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Users
-    * const users = await prisma.user.findMany()
-    * ```
-    */
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more Users
+   * const users = await prisma.user.findMany()
+   * ```
+   */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.property`: Exposes CRUD operations for the **Property** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Properties
-    * const properties = await prisma.property.findMany()
-    * ```
-    */
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more Properties
+   * const properties = await prisma.property.findMany()
+   * ```
+   */
   get property(): Prisma.PropertyDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.propertyImage`: Exposes CRUD operations for the **PropertyImage** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more PropertyImages
-    * const propertyImages = await prisma.propertyImage.findMany()
-    * ```
-    */
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more PropertyImages
+   * const propertyImages = await prisma.propertyImage.findMany()
+   * ```
+   */
   get propertyImage(): Prisma.PropertyImageDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.booking`: Exposes CRUD operations for the **Booking** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Bookings
-    * const bookings = await prisma.booking.findMany()
-    * ```
-    */
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more Bookings
+   * const bookings = await prisma.booking.findMany()
+   * ```
+   */
   get booking(): Prisma.BookingDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
-  export import DMMF = runtime.DMMF
+  export import DMMF = runtime.DMMF;
 
-  export type PrismaPromise<T> = $Public.PrismaPromise<T>
+  export type PrismaPromise<T> = $Public.PrismaPromise<T>;
 
   /**
    * Validator
    */
-  export import validator = runtime.Public.validator
+  export import validator = runtime.Public.validator;
 
   /**
    * Prisma Errors
    */
-  export import PrismaClientKnownRequestError = runtime.PrismaClientKnownRequestError
-  export import PrismaClientUnknownRequestError = runtime.PrismaClientUnknownRequestError
-  export import PrismaClientRustPanicError = runtime.PrismaClientRustPanicError
-  export import PrismaClientInitializationError = runtime.PrismaClientInitializationError
-  export import PrismaClientValidationError = runtime.PrismaClientValidationError
+  export import PrismaClientKnownRequestError = runtime.PrismaClientKnownRequestError;
+  export import PrismaClientUnknownRequestError = runtime.PrismaClientUnknownRequestError;
+  export import PrismaClientRustPanicError = runtime.PrismaClientRustPanicError;
+  export import PrismaClientInitializationError = runtime.PrismaClientInitializationError;
+  export import PrismaClientValidationError = runtime.PrismaClientValidationError;
 
   /**
    * Re-export of sql-template-tag
    */
-  export import sql = runtime.sqltag
-  export import empty = runtime.empty
-  export import join = runtime.join
-  export import raw = runtime.raw
-  export import Sql = runtime.Sql
-
-
+  export import sql = runtime.sqltag;
+  export import empty = runtime.empty;
+  export import join = runtime.join;
+  export import raw = runtime.raw;
+  export import Sql = runtime.Sql;
 
   /**
    * Decimal.js
    */
-  export import Decimal = runtime.Decimal
+  export import Decimal = runtime.Decimal;
 
-  export type DecimalJsLike = runtime.DecimalJsLike
+  export type DecimalJsLike = runtime.DecimalJsLike;
 
   /**
-  * Extensions
-  */
-  export import Extension = $Extensions.UserArgs
-  export import getExtensionContext = runtime.Extensions.getExtensionContext
-  export import Args = $Public.Args
-  export import Payload = $Public.Payload
-  export import Result = $Public.Result
-  export import Exact = $Public.Exact
+   * Extensions
+   */
+  export import Extension = $Extensions.UserArgs;
+  export import getExtensionContext = runtime.Extensions.getExtensionContext;
+  export import Args = $Public.Args;
+  export import Payload = $Public.Payload;
+  export import Result = $Public.Result;
+  export import Exact = $Public.Exact;
 
   /**
    * Prisma Client JS version: 7.5.0
    * Query Engine version: 280c870be64f457428992c43c1f6d557fab6e29e
    */
   export type PrismaVersion = {
-    client: string
-    engine: string
-  }
+    client: string;
+    engine: string;
+  };
 
-  export const prismaVersion: PrismaVersion
+  export const prismaVersion: PrismaVersion;
 
   /**
    * Utility Types
    */
 
-
-  export import Bytes = runtime.Bytes
-  export import JsonObject = runtime.JsonObject
-  export import JsonArray = runtime.JsonArray
-  export import JsonValue = runtime.JsonValue
-  export import InputJsonObject = runtime.InputJsonObject
-  export import InputJsonArray = runtime.InputJsonArray
-  export import InputJsonValue = runtime.InputJsonValue
+  export import Bytes = runtime.Bytes;
+  export import JsonObject = runtime.JsonObject;
+  export import JsonArray = runtime.JsonArray;
+  export import JsonValue = runtime.JsonValue;
+  export import InputJsonObject = runtime.InputJsonObject;
+  export import InputJsonArray = runtime.InputJsonArray;
+  export import InputJsonValue = runtime.InputJsonValue;
 
   /**
    * Types of the values used to represent different kinds of `null` values when working with JSON fields.
@@ -306,39 +343,39 @@ export namespace Prisma {
    */
   namespace NullTypes {
     /**
-    * Type of `Prisma.DbNull`.
-    *
-    * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
-    *
-    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-    */
+     * Type of `Prisma.DbNull`.
+     *
+     * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
+     *
+     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+     */
     class DbNull {
-      private DbNull: never
-      private constructor()
+      private DbNull: never;
+      private constructor();
     }
 
     /**
-    * Type of `Prisma.JsonNull`.
-    *
-    * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
-    *
-    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-    */
+     * Type of `Prisma.JsonNull`.
+     *
+     * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
+     *
+     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+     */
     class JsonNull {
-      private JsonNull: never
-      private constructor()
+      private JsonNull: never;
+      private constructor();
     }
 
     /**
-    * Type of `Prisma.AnyNull`.
-    *
-    * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
-    *
-    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-    */
+     * Type of `Prisma.AnyNull`.
+     *
+     * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
+     *
+     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+     */
     class AnyNull {
-      private AnyNull: never
-      private constructor()
+      private AnyNull: never;
+      private constructor();
     }
   }
 
@@ -347,61 +384,63 @@ export namespace Prisma {
    *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
-  export const DbNull: NullTypes.DbNull
+  export const DbNull: NullTypes.DbNull;
 
   /**
    * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
    *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
-  export const JsonNull: NullTypes.JsonNull
+  export const JsonNull: NullTypes.JsonNull;
 
   /**
    * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
    *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
-  export const AnyNull: NullTypes.AnyNull
+  export const AnyNull: NullTypes.AnyNull;
 
   type SelectAndInclude = {
-    select: any
-    include: any
-  }
+    select: any;
+    include: any;
+  };
 
   type SelectAndOmit = {
-    select: any
-    omit: any
-  }
+    select: any;
+    omit: any;
+  };
 
   /**
    * Get the type of the value, that the Promise holds.
    */
-  export type PromiseType<T extends PromiseLike<any>> = T extends PromiseLike<infer U> ? U : T;
+  export type PromiseType<T extends PromiseLike<any>> =
+    T extends PromiseLike<infer U> ? U : T;
 
   /**
    * Get the return type of a function which returns a Promise.
    */
-  export type PromiseReturnType<T extends (...args: any) => $Utils.JsPromise<any>> = PromiseType<ReturnType<T>>
+  export type PromiseReturnType<
+    T extends (...args: any) => $Utils.JsPromise<any>,
+  > = PromiseType<ReturnType<T>>;
 
   /**
    * From T, pick a set of properties whose keys are in the union K
    */
   type Prisma__Pick<T, K extends keyof T> = {
-      [P in K]: T[P];
+    [P in K]: T[P];
   };
-
 
   export type Enumerable<T> = T | Array<T>;
 
   export type RequiredKeys<T> = {
-    [K in keyof T]-?: {} extends Prisma__Pick<T, K> ? never : K
-  }[keyof T]
+    [K in keyof T]-?: {} extends Prisma__Pick<T, K> ? never : K;
+  }[keyof T];
 
   export type TruthyKeys<T> = keyof {
-    [K in keyof T as T[K] extends false | undefined | null ? never : K]: K
-  }
+    [K in keyof T as T[K] extends false | undefined | null ? never : K]: K;
+  };
 
-  export type TrueKeys<T> = TruthyKeys<Prisma__Pick<T, RequiredKeys<T>>>
+  export type TrueKeys<T> = TruthyKeys<Prisma__Pick<T, RequiredKeys<T>>>;
 
   /**
    * Subset
@@ -417,22 +456,20 @@ export namespace Prisma {
    * Additionally, it validates, if both select and include are present. If the case, it errors.
    */
   export type SelectSubset<T, U> = {
-    [key in keyof T]: key extends keyof U ? T[key] : never
-  } &
-    (T extends SelectAndInclude
-      ? 'Please either choose `select` or `include`.'
-      : T extends SelectAndOmit
-        ? 'Please either choose `select` or `omit`.'
-        : {})
+    [key in keyof T]: key extends keyof U ? T[key] : never;
+  } & (T extends SelectAndInclude
+    ? 'Please either choose `select` or `include`.'
+    : T extends SelectAndOmit
+      ? 'Please either choose `select` or `omit`.'
+      : {});
 
   /**
    * Subset + Intersection
    * @desc From `T` pick properties that exist in `U` and intersect `K`
    */
   export type SubsetIntersection<T, U, K> = {
-    [key in keyof T]: key extends keyof U ? T[key] : never
-  } &
-    K
+    [key in keyof T]: key extends keyof U ? T[key] : never;
+  } & K;
 
   type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
 
@@ -440,33 +477,32 @@ export namespace Prisma {
    * XOR is needed to have a real mutually exclusive union type
    * https://stackoverflow.com/questions/42123407/does-typescript-support-mutually-exclusive-types
    */
-  type XOR<T, U> =
-    T extends object ?
-    U extends object ?
-      (Without<T, U> & U) | (Without<U, T> & T)
-    : U : T
-
+  type XOR<T, U> = T extends object
+    ? U extends object
+      ? (Without<T, U> & U) | (Without<U, T> & T)
+      : U
+    : T;
 
   /**
    * Is T a Record?
    */
-  type IsObject<T extends any> = T extends Array<any>
-  ? False
-  : T extends Date
-  ? False
-  : T extends Uint8Array
-  ? False
-  : T extends BigInt
-  ? False
-  : T extends object
-  ? True
-  : False
-
+  type IsObject<T extends any> =
+    T extends Array<any>
+      ? False
+      : T extends Date
+        ? False
+        : T extends Uint8Array
+          ? False
+          : T extends bigint
+            ? False
+            : T extends object
+              ? True
+              : False;
 
   /**
    * If it's T[], return T
    */
-  export type UnEnumerate<T extends unknown> = T extends Array<infer U> ? U : T
+  export type UnEnumerate<T extends unknown> = T extends Array<infer U> ? U : T;
 
   /**
    * From ts-toolbelt
@@ -475,61 +511,74 @@ export namespace Prisma {
   type __Either<O extends object, K extends Key> = Omit<O, K> &
     {
       // Merge all but K
-      [P in K]: Prisma__Pick<O, P & keyof O> // With K possibilities
-    }[K]
+      [P in K]: Prisma__Pick<O, P & keyof O>; // With K possibilities
+    }[K];
 
-  type EitherStrict<O extends object, K extends Key> = Strict<__Either<O, K>>
+  type EitherStrict<O extends object, K extends Key> = Strict<__Either<O, K>>;
 
-  type EitherLoose<O extends object, K extends Key> = ComputeRaw<__Either<O, K>>
+  type EitherLoose<O extends object, K extends Key> = ComputeRaw<
+    __Either<O, K>
+  >;
 
-  type _Either<
-    O extends object,
-    K extends Key,
-    strict extends Boolean
-  > = {
-    1: EitherStrict<O, K>
-    0: EitherLoose<O, K>
-  }[strict]
+  type _Either<O extends object, K extends Key, strict extends Boolean> = {
+    1: EitherStrict<O, K>;
+    0: EitherLoose<O, K>;
+  }[strict];
 
   type Either<
     O extends object,
     K extends Key,
-    strict extends Boolean = 1
-  > = O extends unknown ? _Either<O, K, strict> : never
+    strict extends Boolean = 1,
+  > = O extends unknown ? _Either<O, K, strict> : never;
 
-  export type Union = any
+  export type Union = any;
 
   type PatchUndefined<O extends object, O1 extends object> = {
-    [K in keyof O]: O[K] extends undefined ? At<O1, K> : O[K]
-  } & {}
+    [K in keyof O]: O[K] extends undefined ? At<O1, K> : O[K];
+  } & {};
 
   /** Helper Types for "Merge" **/
   export type IntersectOf<U extends Union> = (
     U extends unknown ? (k: U) => void : never
   ) extends (k: infer I) => void
     ? I
-    : never
+    : never;
 
   export type Overwrite<O extends object, O1 extends object> = {
-      [K in keyof O]: K extends keyof O1 ? O1[K] : O[K];
+    [K in keyof O]: K extends keyof O1 ? O1[K] : O[K];
   } & {};
 
-  type _Merge<U extends object> = IntersectOf<Overwrite<U, {
-      [K in keyof U]-?: At<U, K>;
-  }>>;
+  type _Merge<U extends object> = IntersectOf<
+    Overwrite<
+      U,
+      {
+        [K in keyof U]-?: At<U, K>;
+      }
+    >
+  >;
 
   type Key = string | number | symbol;
-  type AtBasic<O extends object, K extends Key> = K extends keyof O ? O[K] : never;
+  type AtBasic<O extends object, K extends Key> = K extends keyof O
+    ? O[K]
+    : never;
   type AtStrict<O extends object, K extends Key> = O[K & keyof O];
-  type AtLoose<O extends object, K extends Key> = O extends unknown ? AtStrict<O, K> : never;
-  export type At<O extends object, K extends Key, strict extends Boolean = 1> = {
-      1: AtStrict<O, K>;
-      0: AtLoose<O, K>;
+  type AtLoose<O extends object, K extends Key> = O extends unknown
+    ? AtStrict<O, K>
+    : never;
+  export type At<
+    O extends object,
+    K extends Key,
+    strict extends Boolean = 1,
+  > = {
+    1: AtStrict<O, K>;
+    0: AtLoose<O, K>;
   }[strict];
 
-  export type ComputeRaw<A extends any> = A extends Function ? A : {
-    [K in keyof A]: A[K];
-  } & {};
+  export type ComputeRaw<A extends any> = A extends Function
+    ? A
+    : {
+        [K in keyof A]: A[K];
+      } & {};
 
   export type OptionalFlat<O> = {
     [K in keyof O]?: O[K];
@@ -545,11 +594,15 @@ export namespace Prisma {
   // this type assumes the passed object is entirely optional
   type AtLeast<O extends object, K extends string> = NoExpand<
     O extends unknown
-    ? | (K extends keyof O ? { [P in K]: O[P] } & O : O)
-      | {[P in keyof O as P extends K ? P : never]-?: O[P]} & O
-    : never>;
+      ?
+          | (K extends keyof O ? { [P in K]: O[P] } & O : O)
+          | ({ [P in keyof O as P extends K ? P : never]-?: O[P] } & O)
+      : never
+  >;
 
-  type _Strict<U, _U = U> = U extends unknown ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>> : never;
+  type _Strict<U, _U = U> = U extends unknown
+    ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>>
+    : never;
 
   export type Strict<U extends object> = ComputeRaw<_Strict<U>>;
   /** End Helper Types for "Merge" **/
@@ -559,66 +612,64 @@ export namespace Prisma {
   /**
   A [[Boolean]]
   */
-  export type Boolean = True | False
+  export type Boolean = True | False;
 
   // /**
   // 1
   // */
-  export type True = 1
+  export type True = 1;
 
   /**
   0
   */
-  export type False = 0
+  export type False = 0;
 
   export type Not<B extends Boolean> = {
-    0: 1
-    1: 0
-  }[B]
+    0: 1;
+    1: 0;
+  }[B];
 
   export type Extends<A1 extends any, A2 extends any> = [A1] extends [never]
     ? 0 // anything `never` is false
     : A1 extends A2
-    ? 1
-    : 0
+      ? 1
+      : 0;
 
   export type Has<U extends Union, U1 extends Union> = Not<
     Extends<Exclude<U1, U>, U1>
-  >
+  >;
 
   export type Or<B1 extends Boolean, B2 extends Boolean> = {
     0: {
-      0: 0
-      1: 1
-    }
+      0: 0;
+      1: 1;
+    };
     1: {
-      0: 1
-      1: 1
-    }
-  }[B1][B2]
+      0: 1;
+      1: 1;
+    };
+  }[B1][B2];
 
-  export type Keys<U extends Union> = U extends unknown ? keyof U : never
+  export type Keys<U extends Union> = U extends unknown ? keyof U : never;
 
   type Cast<A, B> = A extends B ? A : B;
 
   export const type: unique symbol;
 
-
-
   /**
    * Used by group by
    */
 
-  export type GetScalarType<T, O> = O extends object ? {
-    [P in keyof T]: P extends keyof O
-      ? O[P]
-      : never
-  } : never
+  export type GetScalarType<T, O> = O extends object
+    ? {
+        [P in keyof T]: P extends keyof O ? O[P] : never;
+      }
+    : never;
 
   type FieldPaths<
     T,
-    U = Omit<T, '_avg' | '_sum' | '_count' | '_min' | '_max'>
-  > = IsObject<T> extends True ? U : T
+    U = Omit<T, '_avg' | '_sum' | '_count' | '_min' | '_max'>,
+  > = IsObject<T> extends True ? U : T;
 
   type GetHavingFields<T> = {
     [K in keyof T]: Or<
@@ -629,394 +680,414 @@ export namespace Prisma {
         // based on the brilliant idea of Pierre-Antoine Mills
         // https://github.com/microsoft/TypeScript/issues/30188#issuecomment-478938437
         T[K] extends infer TK
-        ? GetHavingFields<UnEnumerate<TK> extends object ? Merge<UnEnumerate<TK>> : never>
+        ? GetHavingFields<
+            UnEnumerate<TK> extends object ? Merge<UnEnumerate<TK>> : never
+          >
         : never
       : {} extends FieldPaths<T[K]>
-      ? never
-      : K
-  }[keyof T]
+        ? never
+        : K;
+  }[keyof T];
 
   /**
    * Convert tuple to union
    */
-  type _TupleToUnion<T> = T extends (infer E)[] ? E : never
-  type TupleToUnion<K extends readonly any[]> = _TupleToUnion<K>
-  type MaybeTupleToUnion<T> = T extends any[] ? TupleToUnion<T> : T
+  type _TupleToUnion<T> = T extends (infer E)[] ? E : never;
+  type TupleToUnion<K extends readonly any[]> = _TupleToUnion<K>;
+  type MaybeTupleToUnion<T> = T extends any[] ? TupleToUnion<T> : T;
 
   /**
    * Like `Pick`, but additionally can also accept an array of keys
    */
-  type PickEnumerable<T, K extends Enumerable<keyof T> | keyof T> = Prisma__Pick<T, MaybeTupleToUnion<K>>
+  type PickEnumerable<
+    T,
+    K extends Enumerable<keyof T> | keyof T,
+  > = Prisma__Pick<T, MaybeTupleToUnion<K>>;
 
   /**
    * Exclude all keys with underscores
    */
-  type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? never : T
+  type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}`
+    ? never
+    : T;
 
+  export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>;
 
-  export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>
-
-  type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>
-
+  type FieldRefInputType<Model, FieldType> = Model extends never
+    ? never
+    : FieldRef<Model, FieldType>;
 
   export const ModelName: {
-    User: 'User',
-    Property: 'Property',
-    PropertyImage: 'PropertyImage',
-    Booking: 'Booking'
+    User: 'User';
+    Property: 'Property';
+    PropertyImage: 'PropertyImage';
+    Booking: 'Booking';
   };
 
-  export type ModelName = (typeof ModelName)[keyof typeof ModelName]
+  export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 
-
-
-  interface TypeMapCb<ClientOptions = {}> extends $Utils.Fn<{extArgs: $Extensions.InternalArgs }, $Utils.Record<string, any>> {
-    returns: Prisma.TypeMap<this['params']['extArgs'], ClientOptions extends { omit: infer OmitOptions } ? OmitOptions : {}>
+  interface TypeMapCb<ClientOptions = {}> extends $Utils.Fn<
+    { extArgs: $Extensions.InternalArgs },
+    $Utils.Record<string, any>
+  > {
+    returns: Prisma.TypeMap<
+      this['params']['extArgs'],
+      ClientOptions extends { omit: infer OmitOptions } ? OmitOptions : {}
+    >;
   }
 
-  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> = {
+  export type TypeMap<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > = {
     globalOmitOptions: {
-      omit: GlobalOmitOptions
-    }
+      omit: GlobalOmitOptions;
+    };
     meta: {
-      modelProps: "user" | "property" | "propertyImage" | "booking"
-      txIsolationLevel: Prisma.TransactionIsolationLevel
-    }
+      modelProps: 'user' | 'property' | 'propertyImage' | 'booking';
+      txIsolationLevel: Prisma.TransactionIsolationLevel;
+    };
     model: {
       User: {
-        payload: Prisma.$UserPayload<ExtArgs>
-        fields: Prisma.UserFieldRefs
+        payload: Prisma.$UserPayload<ExtArgs>;
+        fields: Prisma.UserFieldRefs;
         operations: {
           findUnique: {
-            args: Prisma.UserFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
-          }
+            args: Prisma.UserFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null;
+          };
           findUniqueOrThrow: {
-            args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
+            args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>;
+          };
           findFirst: {
-            args: Prisma.UserFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
-          }
+            args: Prisma.UserFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null;
+          };
           findFirstOrThrow: {
-            args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
+            args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>;
+          };
           findMany: {
-            args: Prisma.UserFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
-          }
+            args: Prisma.UserFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[];
+          };
           create: {
-            args: Prisma.UserCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
+            args: Prisma.UserCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>;
+          };
           createMany: {
-            args: Prisma.UserCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.UserCreateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           createManyAndReturn: {
-            args: Prisma.UserCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
-          }
+            args: Prisma.UserCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[];
+          };
           delete: {
-            args: Prisma.UserDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
+            args: Prisma.UserDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>;
+          };
           update: {
-            args: Prisma.UserUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
+            args: Prisma.UserUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>;
+          };
           deleteMany: {
-            args: Prisma.UserDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.UserDeleteManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateMany: {
-            args: Prisma.UserUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.UserUpdateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateManyAndReturn: {
-            args: Prisma.UserUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
-          }
+            args: Prisma.UserUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[];
+          };
           upsert: {
-            args: Prisma.UserUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
+            args: Prisma.UserUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>;
+          };
           aggregate: {
-            args: Prisma.UserAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateUser>
-          }
+            args: Prisma.UserAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregateUser>;
+          };
           groupBy: {
-            args: Prisma.UserGroupByArgs<ExtArgs>
-            result: $Utils.Optional<UserGroupByOutputType>[]
-          }
+            args: Prisma.UserGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<UserGroupByOutputType>[];
+          };
           count: {
-            args: Prisma.UserCountArgs<ExtArgs>
-            result: $Utils.Optional<UserCountAggregateOutputType> | number
-          }
-        }
-      }
+            args: Prisma.UserCountArgs<ExtArgs>;
+            result: $Utils.Optional<UserCountAggregateOutputType> | number;
+          };
+        };
+      };
       Property: {
-        payload: Prisma.$PropertyPayload<ExtArgs>
-        fields: Prisma.PropertyFieldRefs
+        payload: Prisma.$PropertyPayload<ExtArgs>;
+        fields: Prisma.PropertyFieldRefs;
         operations: {
           findUnique: {
-            args: Prisma.PropertyFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyPayload> | null
-          }
+            args: Prisma.PropertyFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyPayload> | null;
+          };
           findUniqueOrThrow: {
-            args: Prisma.PropertyFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyPayload>
-          }
+            args: Prisma.PropertyFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyPayload>;
+          };
           findFirst: {
-            args: Prisma.PropertyFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyPayload> | null
-          }
+            args: Prisma.PropertyFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyPayload> | null;
+          };
           findFirstOrThrow: {
-            args: Prisma.PropertyFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyPayload>
-          }
+            args: Prisma.PropertyFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyPayload>;
+          };
           findMany: {
-            args: Prisma.PropertyFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyPayload>[]
-          }
+            args: Prisma.PropertyFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyPayload>[];
+          };
           create: {
-            args: Prisma.PropertyCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyPayload>
-          }
+            args: Prisma.PropertyCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyPayload>;
+          };
           createMany: {
-            args: Prisma.PropertyCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.PropertyCreateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           createManyAndReturn: {
-            args: Prisma.PropertyCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyPayload>[]
-          }
+            args: Prisma.PropertyCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyPayload>[];
+          };
           delete: {
-            args: Prisma.PropertyDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyPayload>
-          }
+            args: Prisma.PropertyDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyPayload>;
+          };
           update: {
-            args: Prisma.PropertyUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyPayload>
-          }
+            args: Prisma.PropertyUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyPayload>;
+          };
           deleteMany: {
-            args: Prisma.PropertyDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.PropertyDeleteManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateMany: {
-            args: Prisma.PropertyUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.PropertyUpdateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateManyAndReturn: {
-            args: Prisma.PropertyUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyPayload>[]
-          }
+            args: Prisma.PropertyUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyPayload>[];
+          };
           upsert: {
-            args: Prisma.PropertyUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyPayload>
-          }
+            args: Prisma.PropertyUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyPayload>;
+          };
           aggregate: {
-            args: Prisma.PropertyAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateProperty>
-          }
+            args: Prisma.PropertyAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregateProperty>;
+          };
           groupBy: {
-            args: Prisma.PropertyGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PropertyGroupByOutputType>[]
-          }
+            args: Prisma.PropertyGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<PropertyGroupByOutputType>[];
+          };
           count: {
-            args: Prisma.PropertyCountArgs<ExtArgs>
-            result: $Utils.Optional<PropertyCountAggregateOutputType> | number
-          }
-        }
-      }
+            args: Prisma.PropertyCountArgs<ExtArgs>;
+            result: $Utils.Optional<PropertyCountAggregateOutputType> | number;
+          };
+        };
+      };
       PropertyImage: {
-        payload: Prisma.$PropertyImagePayload<ExtArgs>
-        fields: Prisma.PropertyImageFieldRefs
+        payload: Prisma.$PropertyImagePayload<ExtArgs>;
+        fields: Prisma.PropertyImageFieldRefs;
         operations: {
           findUnique: {
-            args: Prisma.PropertyImageFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload> | null
-          }
+            args: Prisma.PropertyImageFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload> | null;
+          };
           findUniqueOrThrow: {
-            args: Prisma.PropertyImageFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload>
-          }
+            args: Prisma.PropertyImageFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload>;
+          };
           findFirst: {
-            args: Prisma.PropertyImageFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload> | null
-          }
+            args: Prisma.PropertyImageFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload> | null;
+          };
           findFirstOrThrow: {
-            args: Prisma.PropertyImageFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload>
-          }
+            args: Prisma.PropertyImageFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload>;
+          };
           findMany: {
-            args: Prisma.PropertyImageFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload>[]
-          }
+            args: Prisma.PropertyImageFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload>[];
+          };
           create: {
-            args: Prisma.PropertyImageCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload>
-          }
+            args: Prisma.PropertyImageCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload>;
+          };
           createMany: {
-            args: Prisma.PropertyImageCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.PropertyImageCreateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           createManyAndReturn: {
-            args: Prisma.PropertyImageCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload>[]
-          }
+            args: Prisma.PropertyImageCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload>[];
+          };
           delete: {
-            args: Prisma.PropertyImageDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload>
-          }
+            args: Prisma.PropertyImageDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload>;
+          };
           update: {
-            args: Prisma.PropertyImageUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload>
-          }
+            args: Prisma.PropertyImageUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload>;
+          };
           deleteMany: {
-            args: Prisma.PropertyImageDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.PropertyImageDeleteManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateMany: {
-            args: Prisma.PropertyImageUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.PropertyImageUpdateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateManyAndReturn: {
-            args: Prisma.PropertyImageUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload>[]
-          }
+            args: Prisma.PropertyImageUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload>[];
+          };
           upsert: {
-            args: Prisma.PropertyImageUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload>
-          }
+            args: Prisma.PropertyImageUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PropertyImagePayload>;
+          };
           aggregate: {
-            args: Prisma.PropertyImageAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePropertyImage>
-          }
+            args: Prisma.PropertyImageAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregatePropertyImage>;
+          };
           groupBy: {
-            args: Prisma.PropertyImageGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PropertyImageGroupByOutputType>[]
-          }
+            args: Prisma.PropertyImageGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<PropertyImageGroupByOutputType>[];
+          };
           count: {
-            args: Prisma.PropertyImageCountArgs<ExtArgs>
-            result: $Utils.Optional<PropertyImageCountAggregateOutputType> | number
-          }
-        }
-      }
+            args: Prisma.PropertyImageCountArgs<ExtArgs>;
+            result:
+              | $Utils.Optional<PropertyImageCountAggregateOutputType>
+              | number;
+          };
+        };
+      };
       Booking: {
-        payload: Prisma.$BookingPayload<ExtArgs>
-        fields: Prisma.BookingFieldRefs
+        payload: Prisma.$BookingPayload<ExtArgs>;
+        fields: Prisma.BookingFieldRefs;
         operations: {
           findUnique: {
-            args: Prisma.BookingFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BookingPayload> | null
-          }
+            args: Prisma.BookingFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload> | null;
+          };
           findUniqueOrThrow: {
-            args: Prisma.BookingFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BookingPayload>
-          }
+            args: Prisma.BookingFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload>;
+          };
           findFirst: {
-            args: Prisma.BookingFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BookingPayload> | null
-          }
+            args: Prisma.BookingFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload> | null;
+          };
           findFirstOrThrow: {
-            args: Prisma.BookingFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BookingPayload>
-          }
+            args: Prisma.BookingFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload>;
+          };
           findMany: {
-            args: Prisma.BookingFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BookingPayload>[]
-          }
+            args: Prisma.BookingFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload>[];
+          };
           create: {
-            args: Prisma.BookingCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BookingPayload>
-          }
+            args: Prisma.BookingCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload>;
+          };
           createMany: {
-            args: Prisma.BookingCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.BookingCreateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           createManyAndReturn: {
-            args: Prisma.BookingCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BookingPayload>[]
-          }
+            args: Prisma.BookingCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload>[];
+          };
           delete: {
-            args: Prisma.BookingDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BookingPayload>
-          }
+            args: Prisma.BookingDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload>;
+          };
           update: {
-            args: Prisma.BookingUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BookingPayload>
-          }
+            args: Prisma.BookingUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload>;
+          };
           deleteMany: {
-            args: Prisma.BookingDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.BookingDeleteManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateMany: {
-            args: Prisma.BookingUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.BookingUpdateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateManyAndReturn: {
-            args: Prisma.BookingUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BookingPayload>[]
-          }
+            args: Prisma.BookingUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload>[];
+          };
           upsert: {
-            args: Prisma.BookingUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BookingPayload>
-          }
+            args: Prisma.BookingUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload>;
+          };
           aggregate: {
-            args: Prisma.BookingAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateBooking>
-          }
+            args: Prisma.BookingAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregateBooking>;
+          };
           groupBy: {
-            args: Prisma.BookingGroupByArgs<ExtArgs>
-            result: $Utils.Optional<BookingGroupByOutputType>[]
-          }
+            args: Prisma.BookingGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<BookingGroupByOutputType>[];
+          };
           count: {
-            args: Prisma.BookingCountArgs<ExtArgs>
-            result: $Utils.Optional<BookingCountAggregateOutputType> | number
-          }
-        }
-      }
-    }
+            args: Prisma.BookingCountArgs<ExtArgs>;
+            result: $Utils.Optional<BookingCountAggregateOutputType> | number;
+          };
+        };
+      };
+    };
   } & {
     other: {
-      payload: any
+      payload: any;
       operations: {
         $executeRaw: {
-          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
-          result: any
-        }
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]];
+          result: any;
+        };
         $executeRawUnsafe: {
-          args: [query: string, ...values: any[]],
-          result: any
-        }
+          args: [query: string, ...values: any[]];
+          result: any;
+        };
         $queryRaw: {
-          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
-          result: any
-        }
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]];
+          result: any;
+        };
         $queryRawUnsafe: {
-          args: [query: string, ...values: any[]],
-          result: any
-        }
-      }
-    }
-  }
-  export const defineExtension: $Extensions.ExtendsHook<"define", Prisma.TypeMapCb, $Extensions.DefaultArgs>
-  export type DefaultPrismaClient = PrismaClient
-  export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
+          args: [query: string, ...values: any[]];
+          result: any;
+        };
+      };
+    };
+  };
+  export const defineExtension: $Extensions.ExtendsHook<
+    'define',
+    Prisma.TypeMapCb,
+    $Extensions.DefaultArgs
+  >;
+  export type DefaultPrismaClient = PrismaClient;
+  export type ErrorFormat = 'pretty' | 'colorless' | 'minimal';
   export interface PrismaClientOptions {
     /**
      * @default "colorless"
      */
-    errorFormat?: ErrorFormat
+    errorFormat?: ErrorFormat;
     /**
      * @example
      * ```
      * // Shorthand for `emit: 'stdout'`
      * log: ['query', 'info', 'warn', 'error']
-     * 
+     *
      * // Emit as events only
      * log: [
      *   { emit: 'event', level: 'query' },
@@ -1024,39 +1095,39 @@ export namespace Prisma {
      *   { emit: 'event', level: 'warn' }
      *   { emit: 'event', level: 'error' }
      * ]
-     * 
+     *
      * / Emit as events and log to stdout
      * og: [
      *  { emit: 'stdout', level: 'query' },
      *  { emit: 'stdout', level: 'info' },
      *  { emit: 'stdout', level: 'warn' }
      *  { emit: 'stdout', level: 'error' }
-     * 
+     *
      * ```
      * Read more in our [docs](https://pris.ly/d/logging).
      */
-    log?: (LogLevel | LogDefinition)[]
+    log?: (LogLevel | LogDefinition)[];
     /**
      * The default values for transactionOptions
      * maxWait ?= 2000
      * timeout ?= 5000
      */
     transactionOptions?: {
-      maxWait?: number
-      timeout?: number
-      isolationLevel?: Prisma.TransactionIsolationLevel
-    }
+      maxWait?: number;
+      timeout?: number;
+      isolationLevel?: Prisma.TransactionIsolationLevel;
+    };
     /**
      * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-planetscale`
      */
-    adapter?: runtime.SqlDriverAdapterFactory
+    adapter?: runtime.SqlDriverAdapterFactory;
     /**
      * Prisma Accelerate URL allowing the client to connect through Accelerate instead of a direct database.
      */
-    accelerateUrl?: string
+    accelerateUrl?: string;
     /**
      * Global configuration for omitting model fields by default.
-     * 
+     *
      * @example
      * ```
      * const prisma = new PrismaClient({
@@ -1068,11 +1139,11 @@ export namespace Prisma {
      * })
      * ```
      */
-    omit?: Prisma.GlobalOmitConfig
+    omit?: Prisma.GlobalOmitConfig;
     /**
      * SQL commenter plugins that add metadata to SQL queries as comments.
      * Comments follow the sqlcommenter format: https://google.github.io/sqlcommenter/
-     * 
+     *
      * @example
      * ```
      * const prisma = new PrismaClient({
@@ -1084,21 +1155,21 @@ export namespace Prisma {
      * })
      * ```
      */
-    comments?: runtime.SqlCommenterPlugin[]
+    comments?: runtime.SqlCommenterPlugin[];
   }
   export type GlobalOmitConfig = {
-    user?: UserOmit
-    property?: PropertyOmit
-    propertyImage?: PropertyImageOmit
-    booking?: BookingOmit
-  }
+    user?: UserOmit;
+    property?: PropertyOmit;
+    propertyImage?: PropertyImageOmit;
+    booking?: BookingOmit;
+  };
 
   /* Types for Logging */
-  export type LogLevel = 'info' | 'query' | 'warn' | 'error'
+  export type LogLevel = 'info' | 'query' | 'warn' | 'error';
   export type LogDefinition = {
-    level: LogLevel
-    emit: 'stdout' | 'event'
-  }
+    level: LogLevel;
+    emit: 'stdout' | 'event';
+  };
 
   export type CheckIsLogLevel<T> = T extends LogLevel ? T : never;
 
@@ -1106,25 +1177,23 @@ export namespace Prisma {
     T extends LogDefinition ? T['level'] : T
   >;
 
-  export type GetEvents<T extends any[]> = T extends Array<LogLevel | LogDefinition>
-    ? GetLogType<T[number]>
-    : never;
+  export type GetEvents<T extends any[]> =
+    T extends Array<LogLevel | LogDefinition> ? GetLogType<T[number]> : never;
 
   export type QueryEvent = {
-    timestamp: Date
-    query: string
-    params: string
-    duration: number
-    target: string
-  }
+    timestamp: Date;
+    query: string;
+    params: string;
+    duration: number;
+    target: string;
+  };
 
   export type LogEvent = {
-    timestamp: Date
-    message: string
-    target: string
-  }
+    timestamp: Date;
+    message: string;
+    target: string;
+  };
   /* End Types for Logging */
-
 
   export type PrismaAction =
     | 'findUnique'
@@ -1147,104 +1216,122 @@ export namespace Prisma {
     | 'count'
     | 'runCommandRaw'
     | 'findRaw'
-    | 'groupBy'
+    | 'groupBy';
 
   // tested in getLogLevel.test.ts
-  export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
+  export function getLogLevel(
+    log: Array<LogLevel | LogDefinition>,
+  ): LogLevel | undefined;
 
   /**
    * `PrismaClient` proxy available in interactive transactions.
    */
-  export type TransactionClient = Omit<Prisma.DefaultPrismaClient, runtime.ITXClientDenyList>
+  export type TransactionClient = Omit<
+    Prisma.DefaultPrismaClient,
+    runtime.ITXClientDenyList
+  >;
 
   export type Datasource = {
-    url?: string
-  }
+    url?: string;
+  };
 
   /**
    * Count Types
    */
-
 
   /**
    * Count Type UserCountOutputType
    */
 
   export type UserCountOutputType = {
-    properties: number
-    Bookings: number
-  }
+    properties: number;
+    Bookings: number;
+  };
 
-  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    properties?: boolean | UserCountOutputTypeCountPropertiesArgs
-    Bookings?: boolean | UserCountOutputTypeCountBookingsArgs
-  }
+  export type UserCountOutputTypeSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    properties?: boolean | UserCountOutputTypeCountPropertiesArgs;
+    Bookings?: boolean | UserCountOutputTypeCountBookingsArgs;
+  };
 
   // Custom InputTypes
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the UserCountOutputType
      */
-    select?: UserCountOutputTypeSelect<ExtArgs> | null
-  }
+    select?: UserCountOutputTypeSelect<ExtArgs> | null;
+  };
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountPropertiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PropertyWhereInput
-  }
+  export type UserCountOutputTypeCountPropertiesArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: PropertyWhereInput;
+  };
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountBookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: BookingWhereInput
-  }
-
+  export type UserCountOutputTypeCountBookingsArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: BookingWhereInput;
+  };
 
   /**
    * Count Type PropertyCountOutputType
    */
 
   export type PropertyCountOutputType = {
-    images: number
-    bookings: number
-  }
+    images: number;
+    bookings: number;
+  };
 
-  export type PropertyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    images?: boolean | PropertyCountOutputTypeCountImagesArgs
-    bookings?: boolean | PropertyCountOutputTypeCountBookingsArgs
-  }
+  export type PropertyCountOutputTypeSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    images?: boolean | PropertyCountOutputTypeCountImagesArgs;
+    bookings?: boolean | PropertyCountOutputTypeCountBookingsArgs;
+  };
 
   // Custom InputTypes
   /**
    * PropertyCountOutputType without action
    */
-  export type PropertyCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyCountOutputTypeDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the PropertyCountOutputType
      */
-    select?: PropertyCountOutputTypeSelect<ExtArgs> | null
-  }
+    select?: PropertyCountOutputTypeSelect<ExtArgs> | null;
+  };
 
   /**
    * PropertyCountOutputType without action
    */
-  export type PropertyCountOutputTypeCountImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PropertyImageWhereInput
-  }
+  export type PropertyCountOutputTypeCountImagesArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: PropertyImageWhereInput;
+  };
 
   /**
    * PropertyCountOutputType without action
    */
-  export type PropertyCountOutputTypeCountBookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: BookingWhereInput
-  }
-
+  export type PropertyCountOutputTypeCountBookingsArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: BookingWhereInput;
+  };
 
   /**
    * Models
@@ -1255,252 +1342,297 @@ export namespace Prisma {
    */
 
   export type AggregateUser = {
-    _count: UserCountAggregateOutputType | null
-    _min: UserMinAggregateOutputType | null
-    _max: UserMaxAggregateOutputType | null
-  }
+    _count: UserCountAggregateOutputType | null;
+    _min: UserMinAggregateOutputType | null;
+    _max: UserMaxAggregateOutputType | null;
+  };
 
   export type UserMinAggregateOutputType = {
-    id: string | null
-    email: string | null
-    passwordHash: string | null
-    name: string | null
-    role: $Enums.Role | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
+    id: string | null;
+    email: string | null;
+    passwordHash: string | null;
+    name: string | null;
+    role: $Enums.Role | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+  };
 
   export type UserMaxAggregateOutputType = {
-    id: string | null
-    email: string | null
-    passwordHash: string | null
-    name: string | null
-    role: $Enums.Role | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
+    id: string | null;
+    email: string | null;
+    passwordHash: string | null;
+    name: string | null;
+    role: $Enums.Role | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+  };
 
   export type UserCountAggregateOutputType = {
-    id: number
-    email: number
-    passwordHash: number
-    name: number
-    role: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
+    id: number;
+    email: number;
+    passwordHash: number;
+    name: number;
+    role: number;
+    createdAt: number;
+    updatedAt: number;
+    _all: number;
+  };
 
   export type UserMinAggregateInputType = {
-    id?: true
-    email?: true
-    passwordHash?: true
-    name?: true
-    role?: true
-    createdAt?: true
-    updatedAt?: true
-  }
+    id?: true;
+    email?: true;
+    passwordHash?: true;
+    name?: true;
+    role?: true;
+    createdAt?: true;
+    updatedAt?: true;
+  };
 
   export type UserMaxAggregateInputType = {
-    id?: true
-    email?: true
-    passwordHash?: true
-    name?: true
-    role?: true
-    createdAt?: true
-    updatedAt?: true
-  }
+    id?: true;
+    email?: true;
+    passwordHash?: true;
+    name?: true;
+    role?: true;
+    createdAt?: true;
+    updatedAt?: true;
+  };
 
   export type UserCountAggregateInputType = {
-    id?: true
-    email?: true
-    passwordHash?: true
-    name?: true
-    role?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
+    id?: true;
+    email?: true;
+    passwordHash?: true;
+    name?: true;
+    role?: true;
+    createdAt?: true;
+    updatedAt?: true;
+    _all?: true;
+  };
 
-  export type UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserAggregateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which User to aggregate.
      */
-    where?: UserWhereInput
+    where?: UserWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Users to fetch.
      */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
-    cursor?: UserWhereUniqueInput
+    cursor?: UserWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Users from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Users.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned Users
-    **/
-    _count?: true | UserCountAggregateInputType
+     **/
+    _count?: true | UserCountAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
-    _min?: UserMinAggregateInputType
+     **/
+    _min?: UserMinAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
-    _max?: UserMaxAggregateInputType
-  }
+     **/
+    _max?: UserMaxAggregateInputType;
+  };
 
   export type GetUserAggregateType<T extends UserAggregateArgs> = {
-        [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
+    [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateUser[P]>
-      : GetScalarType<T[P], AggregateUser[P]>
-  }
+      : GetScalarType<T[P], AggregateUser[P]>;
+  };
 
-
-
-
-  export type UserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserWhereInput
-    orderBy?: UserOrderByWithAggregationInput | UserOrderByWithAggregationInput[]
-    by: UserScalarFieldEnum[] | UserScalarFieldEnum
-    having?: UserScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: UserCountAggregateInputType | true
-    _min?: UserMinAggregateInputType
-    _max?: UserMaxAggregateInputType
-  }
+  export type UserGroupByArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: UserWhereInput;
+    orderBy?:
+      | UserOrderByWithAggregationInput
+      | UserOrderByWithAggregationInput[];
+    by: UserScalarFieldEnum[] | UserScalarFieldEnum;
+    having?: UserScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: UserCountAggregateInputType | true;
+    _min?: UserMinAggregateInputType;
+    _max?: UserMaxAggregateInputType;
+  };
 
   export type UserGroupByOutputType = {
-    id: string
-    email: string
-    passwordHash: string
-    name: string
-    role: $Enums.Role
-    createdAt: Date
-    updatedAt: Date
-    _count: UserCountAggregateOutputType | null
-    _min: UserMinAggregateOutputType | null
-    _max: UserMaxAggregateOutputType | null
-  }
+    id: string;
+    email: string;
+    passwordHash: string;
+    name: string;
+    role: $Enums.Role;
+    createdAt: Date;
+    updatedAt: Date;
+    _count: UserCountAggregateOutputType | null;
+    _min: UserMinAggregateOutputType | null;
+    _max: UserMaxAggregateOutputType | null;
+  };
 
   type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<UserGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof UserGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], UserGroupByOutputType[P]>
+      PickEnumerable<UserGroupByOutputType, T['by']> & {
+        [P in keyof T & keyof UserGroupByOutputType]: P extends '_count'
+          ? T[P] extends boolean
+            ? number
             : GetScalarType<T[P], UserGroupByOutputType[P]>
-        }
-      >
+          : GetScalarType<T[P], UserGroupByOutputType[P]>;
+      }
     >
+  >;
 
+  export type UserSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      email?: boolean;
+      passwordHash?: boolean;
+      name?: boolean;
+      role?: boolean;
+      createdAt?: boolean;
+      updatedAt?: boolean;
+      properties?: boolean | User$propertiesArgs<ExtArgs>;
+      Bookings?: boolean | User$BookingsArgs<ExtArgs>;
+      _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['user']
+  >;
 
-  export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    email?: boolean
-    passwordHash?: boolean
-    name?: boolean
-    role?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    properties?: boolean | User$propertiesArgs<ExtArgs>
-    Bookings?: boolean | User$BookingsArgs<ExtArgs>
-    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["user"]>
+  export type UserSelectCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      email?: boolean;
+      passwordHash?: boolean;
+      name?: boolean;
+      role?: boolean;
+      createdAt?: boolean;
+      updatedAt?: boolean;
+    },
+    ExtArgs['result']['user']
+  >;
 
-  export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    email?: boolean
-    passwordHash?: boolean
-    name?: boolean
-    role?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["user"]>
-
-  export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    email?: boolean
-    passwordHash?: boolean
-    name?: boolean
-    role?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["user"]>
+  export type UserSelectUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      email?: boolean;
+      passwordHash?: boolean;
+      name?: boolean;
+      role?: boolean;
+      createdAt?: boolean;
+      updatedAt?: boolean;
+    },
+    ExtArgs['result']['user']
+  >;
 
   export type UserSelectScalar = {
-    id?: boolean
-    email?: boolean
-    passwordHash?: boolean
-    name?: boolean
-    role?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
+    id?: boolean;
+    email?: boolean;
+    passwordHash?: boolean;
+    name?: boolean;
+    role?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+  };
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "passwordHash" | "name" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
-  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    properties?: boolean | User$propertiesArgs<ExtArgs>
-    Bookings?: boolean | User$BookingsArgs<ExtArgs>
-    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserOmit<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetOmit<
+    | 'id'
+    | 'email'
+    | 'passwordHash'
+    | 'name'
+    | 'role'
+    | 'createdAt'
+    | 'updatedAt',
+    ExtArgs['result']['user']
+  >;
+  export type UserInclude<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    properties?: boolean | User$propertiesArgs<ExtArgs>;
+    Bookings?: boolean | User$BookingsArgs<ExtArgs>;
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>;
+  };
+  export type UserIncludeCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {};
+  export type UserIncludeUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {};
 
-  export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "User"
+  export type $UserPayload<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    name: 'User';
     objects: {
-      properties: Prisma.$PropertyPayload<ExtArgs>[]
-      Bookings: Prisma.$BookingPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      email: string
-      passwordHash: string
-      name: string
-      role: $Enums.Role
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["user"]>
-    composites: {}
-  }
+      properties: Prisma.$PropertyPayload<ExtArgs>[];
+      Bookings: Prisma.$BookingPayload<ExtArgs>[];
+    };
+    scalars: $Extensions.GetPayloadResult<
+      {
+        id: string;
+        email: string;
+        passwordHash: string;
+        name: string;
+        role: $Enums.Role;
+        createdAt: Date;
+        updatedAt: Date;
+      },
+      ExtArgs['result']['user']
+    >;
+    composites: {};
+  };
 
-  type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
+  type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> =
+    $Result.GetResult<Prisma.$UserPayload, S>;
 
-  type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: UserCountAggregateInputType | true
-    }
+  type UserCountArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: UserCountAggregateInputType | true;
+  };
 
-  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
+  export interface UserDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: {
+      types: Prisma.TypeMap<ExtArgs>['model']['User'];
+      meta: { name: 'User' };
+    };
     /**
      * Find zero or one User that matches the filter.
      * @param {UserFindUniqueArgs} args - Arguments to find a User
@@ -1512,7 +1644,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends UserFindUniqueArgs>(args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends UserFindUniqueArgs>(
+      args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>,
+    ): Prisma__UserClient<
+      $Result.GetResult<
+        Prisma.$UserPayload<ExtArgs>,
+        T,
+        'findUnique',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find one User that matches the filter or throw an error with `error.code='P2025'`
@@ -1526,7 +1670,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(args: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__UserClient<
+      $Result.GetResult<
+        Prisma.$UserPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first User that matches the filter.
@@ -1541,7 +1697,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends UserFindFirstArgs>(args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends UserFindFirstArgs>(
+      args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>,
+    ): Prisma__UserClient<
+      $Result.GetResult<
+        Prisma.$UserPayload<ExtArgs>,
+        T,
+        'findFirst',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first User that matches the filter or
@@ -1557,7 +1725,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__UserClient<
+      $Result.GetResult<
+        Prisma.$UserPayload<ExtArgs>,
+        T,
+        'findFirstOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find zero or more Users that matches the filter.
@@ -1567,15 +1747,24 @@ export namespace Prisma {
      * @example
      * // Get all Users
      * const users = await prisma.user.findMany()
-     * 
+     *
      * // Get first 10 Users
      * const users = await prisma.user.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `id`
      * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
-     * 
+     *
      */
-    findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends UserFindManyArgs>(
+      args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$UserPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    >;
 
     /**
      * Create a User.
@@ -1587,9 +1776,21 @@ export namespace Prisma {
      *     // ... data to create a User
      *   }
      * })
-     * 
+     *
      */
-    create<T extends UserCreateArgs>(args: SelectSubset<T, UserCreateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends UserCreateArgs>(
+      args: SelectSubset<T, UserCreateArgs<ExtArgs>>,
+    ): Prisma__UserClient<
+      $Result.GetResult<
+        Prisma.$UserPayload<ExtArgs>,
+        T,
+        'create',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Create many Users.
@@ -1601,9 +1802,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends UserCreateManyArgs>(args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends UserCreateManyArgs>(
+      args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Create many Users and returns the data saved in the database.
@@ -1615,7 +1818,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many Users and only return the `id`
      * const userWithIdOnly = await prisma.user.createManyAndReturn({
      *   select: { id: true },
@@ -1625,9 +1828,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends UserCreateManyAndReturnArgs>(args?: SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends UserCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$UserPayload<ExtArgs>,
+        T,
+        'createManyAndReturn',
+        GlobalOmitOptions
+      >
+    >;
 
     /**
      * Delete a User.
@@ -1639,9 +1851,21 @@ export namespace Prisma {
      *     // ... filter to delete one User
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends UserDeleteArgs>(args: SelectSubset<T, UserDeleteArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends UserDeleteArgs>(
+      args: SelectSubset<T, UserDeleteArgs<ExtArgs>>,
+    ): Prisma__UserClient<
+      $Result.GetResult<
+        Prisma.$UserPayload<ExtArgs>,
+        T,
+        'delete',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Update one User.
@@ -1656,9 +1880,21 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends UserUpdateArgs>(args: SelectSubset<T, UserUpdateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends UserUpdateArgs>(
+      args: SelectSubset<T, UserUpdateArgs<ExtArgs>>,
+    ): Prisma__UserClient<
+      $Result.GetResult<
+        Prisma.$UserPayload<ExtArgs>,
+        T,
+        'update',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Delete zero or more Users.
@@ -1670,9 +1906,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends UserDeleteManyArgs>(args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends UserDeleteManyArgs>(
+      args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Users.
@@ -1689,9 +1927,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends UserUpdateManyArgs>(args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends UserUpdateManyArgs>(
+      args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Users and returns the data updated in the database.
@@ -1706,7 +1946,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more Users and only return the `id`
      * const userWithIdOnly = await prisma.user.updateManyAndReturn({
      *   select: { id: true },
@@ -1719,9 +1959,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends UserUpdateManyAndReturnArgs>(args: SelectSubset<T, UserUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends UserUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, UserUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$UserPayload<ExtArgs>,
+        T,
+        'updateManyAndReturn',
+        GlobalOmitOptions
+      >
+    >;
 
     /**
      * Create or update one User.
@@ -1740,8 +1989,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends UserUpsertArgs>(args: SelectSubset<T, UserUpsertArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends UserUpsertArgs>(
+      args: SelectSubset<T, UserUpsertArgs<ExtArgs>>,
+    ): Prisma__UserClient<
+      $Result.GetResult<
+        Prisma.$UserPayload<ExtArgs>,
+        T,
+        'upsert',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Count the number of Users.
@@ -1755,7 +2015,7 @@ export namespace Prisma {
      *     // ... the filter for the Users we want to count
      *   }
      * })
-    **/
+     **/
     count<T extends UserCountArgs>(
       args?: Subset<T, UserCountArgs>,
     ): Prisma.PrismaPromise<
@@ -1764,7 +2024,7 @@ export namespace Prisma {
           ? number
           : GetScalarType<T['select'], UserCountAggregateOutputType>
         : number
-    >
+    >;
 
     /**
      * Allows you to perform aggregations operations on a User.
@@ -1789,8 +2049,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends UserAggregateArgs>(args: Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
+     **/
+    aggregate<T extends UserAggregateArgs>(
+      args: Subset<T, UserAggregateArgs>,
+    ): Prisma.PrismaPromise<GetUserAggregateType<T>>;
 
     /**
      * Group by User.
@@ -1808,8 +2070,8 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     **/
     groupBy<
       T extends UserGroupByArgs,
       HasSelectOrTake extends Or<
@@ -1819,59 +2081,65 @@ export namespace Prisma {
       OrderByArg extends True extends HasSelectOrTake
         ? { orderBy: UserGroupByArgs['orderBy'] }
         : { orderBy?: UserGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      OrderFields extends ExcludeUnderscoreKeys<
+        Keys<MaybeTupleToUnion<T['orderBy']>>
+      >,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
       HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
       ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the User model
-   */
-  readonly fields: UserFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [
+                      Error,
+                      'Field ',
+                      P,
+                      ` in "having" needs to be provided in "by"`,
+                    ];
+            }[HavingFields]
+          : 'take' extends Keys<T>
+            ? 'orderBy' extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : 'skip' extends Keys<T>
+              ? 'orderBy' extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors,
+    ): {} extends InputErrors
+      ? GetUserGroupByPayload<T>
+      : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the User model
+     */
+    readonly fields: UserFieldRefs;
   }
 
   /**
@@ -1880,871 +2148,988 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    properties<T extends User$propertiesArgs<ExtArgs> = {}>(args?: Subset<T, User$propertiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Bookings<T extends User$BookingsArgs<ExtArgs> = {}>(args?: Subset<T, User$BookingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  export interface Prisma__UserClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    properties<T extends User$propertiesArgs<ExtArgs> = {}>(
+      args?: Subset<T, User$propertiesArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      | $Result.GetResult<
+          Prisma.$PropertyPayload<ExtArgs>,
+          T,
+          'findMany',
+          GlobalOmitOptions
+        >
+      | Null
+    >;
+    Bookings<T extends User$BookingsArgs<ExtArgs> = {}>(
+      args?: Subset<T, User$BookingsArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      | $Result.GetResult<
+          Prisma.$BookingPayload<ExtArgs>,
+          T,
+          'findMany',
+          GlobalOmitOptions
+        >
+      | Null
+    >;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | null,
+      onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | null,
+    ): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | null): $Utils.JsPromise<T>;
   }
-
-
-
 
   /**
    * Fields of the User model
    */
   interface UserFieldRefs {
-    readonly id: FieldRef<"User", 'String'>
-    readonly email: FieldRef<"User", 'String'>
-    readonly passwordHash: FieldRef<"User", 'String'>
-    readonly name: FieldRef<"User", 'String'>
-    readonly role: FieldRef<"User", 'Role'>
-    readonly createdAt: FieldRef<"User", 'DateTime'>
-    readonly updatedAt: FieldRef<"User", 'DateTime'>
+    readonly id: FieldRef<'User', 'String'>;
+    readonly email: FieldRef<'User', 'String'>;
+    readonly passwordHash: FieldRef<'User', 'String'>;
+    readonly name: FieldRef<'User', 'String'>;
+    readonly role: FieldRef<'User', 'Role'>;
+    readonly createdAt: FieldRef<'User', 'DateTime'>;
+    readonly updatedAt: FieldRef<'User', 'DateTime'>;
   }
-    
 
   // Custom InputTypes
   /**
    * User findUnique
    */
-  export type UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindUniqueArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the User
      */
-    select?: UserSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the User
      */
-    omit?: UserOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null;
     /**
      * Filter, which User to fetch.
      */
-    where: UserWhereUniqueInput
-  }
+    where: UserWhereUniqueInput;
+  };
 
   /**
    * User findUniqueOrThrow
    */
-  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindUniqueOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the User
      */
-    select?: UserSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the User
      */
-    omit?: UserOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null;
     /**
      * Filter, which User to fetch.
      */
-    where: UserWhereUniqueInput
-  }
+    where: UserWhereUniqueInput;
+  };
 
   /**
    * User findFirst
    */
-  export type UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindFirstArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the User
      */
-    select?: UserSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the User
      */
-    omit?: UserOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null;
     /**
      * Filter, which User to fetch.
      */
-    where?: UserWhereInput
+    where?: UserWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Users to fetch.
      */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Users.
      */
-    cursor?: UserWhereUniqueInput
+    cursor?: UserWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Users from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Users.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Users.
      */
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
-  }
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[];
+  };
 
   /**
    * User findFirstOrThrow
    */
-  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindFirstOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the User
      */
-    select?: UserSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the User
      */
-    omit?: UserOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null;
     /**
      * Filter, which User to fetch.
      */
-    where?: UserWhereInput
+    where?: UserWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Users to fetch.
      */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Users.
      */
-    cursor?: UserWhereUniqueInput
+    cursor?: UserWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Users from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Users.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Users.
      */
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
-  }
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[];
+  };
 
   /**
    * User findMany
    */
-  export type UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the User
      */
-    select?: UserSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the User
      */
-    omit?: UserOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null;
     /**
      * Filter, which Users to fetch.
      */
-    where?: UserWhereInput
+    where?: UserWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Users to fetch.
      */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing Users.
      */
-    cursor?: UserWhereUniqueInput
+    cursor?: UserWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Users from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Users.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Users.
      */
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
-  }
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[];
+  };
 
   /**
    * User create
    */
-  export type UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCreateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the User
      */
-    select?: UserSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the User
      */
-    omit?: UserOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null;
     /**
      * The data needed to create a User.
      */
-    data: XOR<UserCreateInput, UserUncheckedCreateInput>
-  }
+    data: XOR<UserCreateInput, UserUncheckedCreateInput>;
+  };
 
   /**
    * User createMany
    */
-  export type UserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCreateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to create many Users.
      */
-    data: UserCreateManyInput | UserCreateManyInput[]
-    skipDuplicates?: boolean
-  }
+    data: UserCreateManyInput | UserCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
 
   /**
    * User createManyAndReturn
    */
-  export type UserCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCreateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the User
      */
-    select?: UserSelectCreateManyAndReturn<ExtArgs> | null
+    select?: UserSelectCreateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the User
      */
-    omit?: UserOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null;
     /**
      * The data used to create many Users.
      */
-    data: UserCreateManyInput | UserCreateManyInput[]
-    skipDuplicates?: boolean
-  }
+    data: UserCreateManyInput | UserCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
 
   /**
    * User update
    */
-  export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserUpdateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the User
      */
-    select?: UserSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the User
      */
-    omit?: UserOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null;
     /**
      * The data needed to update a User.
      */
-    data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+    data: XOR<UserUpdateInput, UserUncheckedUpdateInput>;
     /**
      * Choose, which User to update.
      */
-    where: UserWhereUniqueInput
-  }
+    where: UserWhereUniqueInput;
+  };
 
   /**
    * User updateMany
    */
-  export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserUpdateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to update Users.
      */
-    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>;
     /**
      * Filter which Users to update
      */
-    where?: UserWhereInput
+    where?: UserWhereInput;
     /**
      * Limit how many Users to update.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * User updateManyAndReturn
    */
-  export type UserUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserUpdateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the User
      */
-    select?: UserSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: UserSelectUpdateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the User
      */
-    omit?: UserOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null;
     /**
      * The data used to update Users.
      */
-    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>;
     /**
      * Filter which Users to update
      */
-    where?: UserWhereInput
+    where?: UserWhereInput;
     /**
      * Limit how many Users to update.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * User upsert
    */
-  export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserUpsertArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the User
      */
-    select?: UserSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the User
      */
-    omit?: UserOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null;
     /**
      * The filter to search for the User to update in case it exists.
      */
-    where: UserWhereUniqueInput
+    where: UserWhereUniqueInput;
     /**
      * In case the User found by the `where` argument doesn't exist, create a new User with this data.
      */
-    create: XOR<UserCreateInput, UserUncheckedCreateInput>
+    create: XOR<UserCreateInput, UserUncheckedCreateInput>;
     /**
      * In case the User was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
-  }
+    update: XOR<UserUpdateInput, UserUncheckedUpdateInput>;
+  };
 
   /**
    * User delete
    */
-  export type UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDeleteArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the User
      */
-    select?: UserSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the User
      */
-    omit?: UserOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null;
     /**
      * Filter which User to delete.
      */
-    where: UserWhereUniqueInput
-  }
+    where: UserWhereUniqueInput;
+  };
 
   /**
    * User deleteMany
    */
-  export type UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDeleteManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which Users to delete
      */
-    where?: UserWhereInput
+    where?: UserWhereInput;
     /**
      * Limit how many Users to delete.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * User.properties
    */
-  export type User$propertiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$propertiesArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Property
      */
-    select?: PropertySelect<ExtArgs> | null
+    select?: PropertySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Property
      */
-    omit?: PropertyOmit<ExtArgs> | null
+    omit?: PropertyOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyInclude<ExtArgs> | null
-    where?: PropertyWhereInput
-    orderBy?: PropertyOrderByWithRelationInput | PropertyOrderByWithRelationInput[]
-    cursor?: PropertyWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PropertyScalarFieldEnum | PropertyScalarFieldEnum[]
-  }
+    include?: PropertyInclude<ExtArgs> | null;
+    where?: PropertyWhereInput;
+    orderBy?:
+      | PropertyOrderByWithRelationInput
+      | PropertyOrderByWithRelationInput[];
+    cursor?: PropertyWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: PropertyScalarFieldEnum | PropertyScalarFieldEnum[];
+  };
 
   /**
    * User.Bookings
    */
-  export type User$BookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$BookingsArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Booking
      */
-    select?: BookingSelect<ExtArgs> | null
+    select?: BookingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Booking
      */
-    omit?: BookingOmit<ExtArgs> | null
+    omit?: BookingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BookingInclude<ExtArgs> | null
-    where?: BookingWhereInput
-    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
-    cursor?: BookingWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
-  }
+    include?: BookingInclude<ExtArgs> | null;
+    where?: BookingWhereInput;
+    orderBy?:
+      | BookingOrderByWithRelationInput
+      | BookingOrderByWithRelationInput[];
+    cursor?: BookingWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[];
+  };
 
   /**
    * User without action
    */
-  export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the User
      */
-    select?: UserSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the User
      */
-    omit?: UserOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
-  }
-
+    include?: UserInclude<ExtArgs> | null;
+  };
 
   /**
    * Model Property
    */
 
   export type AggregateProperty = {
-    _count: PropertyCountAggregateOutputType | null
-    _avg: PropertyAvgAggregateOutputType | null
-    _sum: PropertySumAggregateOutputType | null
-    _min: PropertyMinAggregateOutputType | null
-    _max: PropertyMaxAggregateOutputType | null
-  }
+    _count: PropertyCountAggregateOutputType | null;
+    _avg: PropertyAvgAggregateOutputType | null;
+    _sum: PropertySumAggregateOutputType | null;
+    _min: PropertyMinAggregateOutputType | null;
+    _max: PropertyMaxAggregateOutputType | null;
+  };
 
   export type PropertyAvgAggregateOutputType = {
-    price: number | null
-    bedrooms: number | null
-    bathrooms: number | null
-    area: number | null
-  }
+    price: number | null;
+    bedrooms: number | null;
+    bathrooms: number | null;
+    area: number | null;
+  };
 
   export type PropertySumAggregateOutputType = {
-    price: number | null
-    bedrooms: number | null
-    bathrooms: number | null
-    area: number | null
-  }
+    price: number | null;
+    bedrooms: number | null;
+    bathrooms: number | null;
+    area: number | null;
+  };
 
   export type PropertyMinAggregateOutputType = {
-    id: string | null
-    ownerId: string | null
-    title: string | null
-    description: string | null
-    price: number | null
-    location: string | null
-    bedrooms: number | null
-    bathrooms: number | null
-    parking: boolean | null
-    area: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
+    id: string | null;
+    ownerId: string | null;
+    title: string | null;
+    description: string | null;
+    price: number | null;
+    location: string | null;
+    bedrooms: number | null;
+    bathrooms: number | null;
+    parking: boolean | null;
+    area: number | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+  };
 
   export type PropertyMaxAggregateOutputType = {
-    id: string | null
-    ownerId: string | null
-    title: string | null
-    description: string | null
-    price: number | null
-    location: string | null
-    bedrooms: number | null
-    bathrooms: number | null
-    parking: boolean | null
-    area: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
+    id: string | null;
+    ownerId: string | null;
+    title: string | null;
+    description: string | null;
+    price: number | null;
+    location: string | null;
+    bedrooms: number | null;
+    bathrooms: number | null;
+    parking: boolean | null;
+    area: number | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+  };
 
   export type PropertyCountAggregateOutputType = {
-    id: number
-    ownerId: number
-    title: number
-    description: number
-    price: number
-    location: number
-    bedrooms: number
-    bathrooms: number
-    parking: number
-    area: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
+    id: number;
+    ownerId: number;
+    title: number;
+    description: number;
+    price: number;
+    location: number;
+    bedrooms: number;
+    bathrooms: number;
+    parking: number;
+    area: number;
+    createdAt: number;
+    updatedAt: number;
+    _all: number;
+  };
 
   export type PropertyAvgAggregateInputType = {
-    price?: true
-    bedrooms?: true
-    bathrooms?: true
-    area?: true
-  }
+    price?: true;
+    bedrooms?: true;
+    bathrooms?: true;
+    area?: true;
+  };
 
   export type PropertySumAggregateInputType = {
-    price?: true
-    bedrooms?: true
-    bathrooms?: true
-    area?: true
-  }
+    price?: true;
+    bedrooms?: true;
+    bathrooms?: true;
+    area?: true;
+  };
 
   export type PropertyMinAggregateInputType = {
-    id?: true
-    ownerId?: true
-    title?: true
-    description?: true
-    price?: true
-    location?: true
-    bedrooms?: true
-    bathrooms?: true
-    parking?: true
-    area?: true
-    createdAt?: true
-    updatedAt?: true
-  }
+    id?: true;
+    ownerId?: true;
+    title?: true;
+    description?: true;
+    price?: true;
+    location?: true;
+    bedrooms?: true;
+    bathrooms?: true;
+    parking?: true;
+    area?: true;
+    createdAt?: true;
+    updatedAt?: true;
+  };
 
   export type PropertyMaxAggregateInputType = {
-    id?: true
-    ownerId?: true
-    title?: true
-    description?: true
-    price?: true
-    location?: true
-    bedrooms?: true
-    bathrooms?: true
-    parking?: true
-    area?: true
-    createdAt?: true
-    updatedAt?: true
-  }
+    id?: true;
+    ownerId?: true;
+    title?: true;
+    description?: true;
+    price?: true;
+    location?: true;
+    bedrooms?: true;
+    bathrooms?: true;
+    parking?: true;
+    area?: true;
+    createdAt?: true;
+    updatedAt?: true;
+  };
 
   export type PropertyCountAggregateInputType = {
-    id?: true
-    ownerId?: true
-    title?: true
-    description?: true
-    price?: true
-    location?: true
-    bedrooms?: true
-    bathrooms?: true
-    parking?: true
-    area?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
+    id?: true;
+    ownerId?: true;
+    title?: true;
+    description?: true;
+    price?: true;
+    location?: true;
+    bedrooms?: true;
+    bathrooms?: true;
+    parking?: true;
+    area?: true;
+    createdAt?: true;
+    updatedAt?: true;
+    _all?: true;
+  };
 
-  export type PropertyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyAggregateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which Property to aggregate.
      */
-    where?: PropertyWhereInput
+    where?: PropertyWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Properties to fetch.
      */
-    orderBy?: PropertyOrderByWithRelationInput | PropertyOrderByWithRelationInput[]
+    orderBy?:
+      | PropertyOrderByWithRelationInput
+      | PropertyOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
-    cursor?: PropertyWhereUniqueInput
+    cursor?: PropertyWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Properties from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Properties.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned Properties
-    **/
-    _count?: true | PropertyCountAggregateInputType
+     **/
+    _count?: true | PropertyCountAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to average
-    **/
-    _avg?: PropertyAvgAggregateInputType
+     **/
+    _avg?: PropertyAvgAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to sum
-    **/
-    _sum?: PropertySumAggregateInputType
+     **/
+    _sum?: PropertySumAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
-    _min?: PropertyMinAggregateInputType
+     **/
+    _min?: PropertyMinAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
-    _max?: PropertyMaxAggregateInputType
-  }
+     **/
+    _max?: PropertyMaxAggregateInputType;
+  };
 
   export type GetPropertyAggregateType<T extends PropertyAggregateArgs> = {
-        [P in keyof T & keyof AggregateProperty]: P extends '_count' | 'count'
+    [P in keyof T & keyof AggregateProperty]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateProperty[P]>
-      : GetScalarType<T[P], AggregateProperty[P]>
-  }
+      : GetScalarType<T[P], AggregateProperty[P]>;
+  };
 
-
-
-
-  export type PropertyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PropertyWhereInput
-    orderBy?: PropertyOrderByWithAggregationInput | PropertyOrderByWithAggregationInput[]
-    by: PropertyScalarFieldEnum[] | PropertyScalarFieldEnum
-    having?: PropertyScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PropertyCountAggregateInputType | true
-    _avg?: PropertyAvgAggregateInputType
-    _sum?: PropertySumAggregateInputType
-    _min?: PropertyMinAggregateInputType
-    _max?: PropertyMaxAggregateInputType
-  }
+  export type PropertyGroupByArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: PropertyWhereInput;
+    orderBy?:
+      | PropertyOrderByWithAggregationInput
+      | PropertyOrderByWithAggregationInput[];
+    by: PropertyScalarFieldEnum[] | PropertyScalarFieldEnum;
+    having?: PropertyScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: PropertyCountAggregateInputType | true;
+    _avg?: PropertyAvgAggregateInputType;
+    _sum?: PropertySumAggregateInputType;
+    _min?: PropertyMinAggregateInputType;
+    _max?: PropertyMaxAggregateInputType;
+  };
 
   export type PropertyGroupByOutputType = {
-    id: string
-    ownerId: string
-    title: string
-    description: string
-    price: number
-    location: string
-    bedrooms: number
-    bathrooms: number
-    parking: boolean
-    area: number | null
-    createdAt: Date
-    updatedAt: Date
-    _count: PropertyCountAggregateOutputType | null
-    _avg: PropertyAvgAggregateOutputType | null
-    _sum: PropertySumAggregateOutputType | null
-    _min: PropertyMinAggregateOutputType | null
-    _max: PropertyMaxAggregateOutputType | null
-  }
+    id: string;
+    ownerId: string;
+    title: string;
+    description: string;
+    price: number;
+    location: string;
+    bedrooms: number;
+    bathrooms: number;
+    parking: boolean;
+    area: number | null;
+    createdAt: Date;
+    updatedAt: Date;
+    _count: PropertyCountAggregateOutputType | null;
+    _avg: PropertyAvgAggregateOutputType | null;
+    _sum: PropertySumAggregateOutputType | null;
+    _min: PropertyMinAggregateOutputType | null;
+    _max: PropertyMaxAggregateOutputType | null;
+  };
 
-  type GetPropertyGroupByPayload<T extends PropertyGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PropertyGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PropertyGroupByOutputType))]: P extends '_count'
+  type GetPropertyGroupByPayload<T extends PropertyGroupByArgs> =
+    Prisma.PrismaPromise<
+      Array<
+        PickEnumerable<PropertyGroupByOutputType, T['by']> & {
+          [P in keyof T & keyof PropertyGroupByOutputType]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], PropertyGroupByOutputType[P]>
-            : GetScalarType<T[P], PropertyGroupByOutputType[P]>
+            : GetScalarType<T[P], PropertyGroupByOutputType[P]>;
         }
       >
-    >
+    >;
 
+  export type PropertySelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      ownerId?: boolean;
+      title?: boolean;
+      description?: boolean;
+      price?: boolean;
+      location?: boolean;
+      bedrooms?: boolean;
+      bathrooms?: boolean;
+      parking?: boolean;
+      area?: boolean;
+      createdAt?: boolean;
+      updatedAt?: boolean;
+      owner?: boolean | UserDefaultArgs<ExtArgs>;
+      images?: boolean | Property$imagesArgs<ExtArgs>;
+      bookings?: boolean | Property$bookingsArgs<ExtArgs>;
+      _count?: boolean | PropertyCountOutputTypeDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['property']
+  >;
 
-  export type PropertySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    ownerId?: boolean
-    title?: boolean
-    description?: boolean
-    price?: boolean
-    location?: boolean
-    bedrooms?: boolean
-    bathrooms?: boolean
-    parking?: boolean
-    area?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    owner?: boolean | UserDefaultArgs<ExtArgs>
-    images?: boolean | Property$imagesArgs<ExtArgs>
-    bookings?: boolean | Property$bookingsArgs<ExtArgs>
-    _count?: boolean | PropertyCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["property"]>
+  export type PropertySelectCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      ownerId?: boolean;
+      title?: boolean;
+      description?: boolean;
+      price?: boolean;
+      location?: boolean;
+      bedrooms?: boolean;
+      bathrooms?: boolean;
+      parking?: boolean;
+      area?: boolean;
+      createdAt?: boolean;
+      updatedAt?: boolean;
+      owner?: boolean | UserDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['property']
+  >;
 
-  export type PropertySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    ownerId?: boolean
-    title?: boolean
-    description?: boolean
-    price?: boolean
-    location?: boolean
-    bedrooms?: boolean
-    bathrooms?: boolean
-    parking?: boolean
-    area?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    owner?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["property"]>
-
-  export type PropertySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    ownerId?: boolean
-    title?: boolean
-    description?: boolean
-    price?: boolean
-    location?: boolean
-    bedrooms?: boolean
-    bathrooms?: boolean
-    parking?: boolean
-    area?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    owner?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["property"]>
+  export type PropertySelectUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      ownerId?: boolean;
+      title?: boolean;
+      description?: boolean;
+      price?: boolean;
+      location?: boolean;
+      bedrooms?: boolean;
+      bathrooms?: boolean;
+      parking?: boolean;
+      area?: boolean;
+      createdAt?: boolean;
+      updatedAt?: boolean;
+      owner?: boolean | UserDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['property']
+  >;
 
   export type PropertySelectScalar = {
-    id?: boolean
-    ownerId?: boolean
-    title?: boolean
-    description?: boolean
-    price?: boolean
-    location?: boolean
-    bedrooms?: boolean
-    bathrooms?: boolean
-    parking?: boolean
-    area?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
+    id?: boolean;
+    ownerId?: boolean;
+    title?: boolean;
+    description?: boolean;
+    price?: boolean;
+    location?: boolean;
+    bedrooms?: boolean;
+    bathrooms?: boolean;
+    parking?: boolean;
+    area?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+  };
 
-  export type PropertyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ownerId" | "title" | "description" | "price" | "location" | "bedrooms" | "bathrooms" | "parking" | "area" | "createdAt" | "updatedAt", ExtArgs["result"]["property"]>
-  export type PropertyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    owner?: boolean | UserDefaultArgs<ExtArgs>
-    images?: boolean | Property$imagesArgs<ExtArgs>
-    bookings?: boolean | Property$bookingsArgs<ExtArgs>
-    _count?: boolean | PropertyCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type PropertyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    owner?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type PropertyIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    owner?: boolean | UserDefaultArgs<ExtArgs>
-  }
+  export type PropertyOmit<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetOmit<
+    | 'id'
+    | 'ownerId'
+    | 'title'
+    | 'description'
+    | 'price'
+    | 'location'
+    | 'bedrooms'
+    | 'bathrooms'
+    | 'parking'
+    | 'area'
+    | 'createdAt'
+    | 'updatedAt',
+    ExtArgs['result']['property']
+  >;
+  export type PropertyInclude<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    owner?: boolean | UserDefaultArgs<ExtArgs>;
+    images?: boolean | Property$imagesArgs<ExtArgs>;
+    bookings?: boolean | Property$bookingsArgs<ExtArgs>;
+    _count?: boolean | PropertyCountOutputTypeDefaultArgs<ExtArgs>;
+  };
+  export type PropertyIncludeCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    owner?: boolean | UserDefaultArgs<ExtArgs>;
+  };
+  export type PropertyIncludeUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    owner?: boolean | UserDefaultArgs<ExtArgs>;
+  };
 
-  export type $PropertyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Property"
+  export type $PropertyPayload<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    name: 'Property';
     objects: {
-      owner: Prisma.$UserPayload<ExtArgs>
-      images: Prisma.$PropertyImagePayload<ExtArgs>[]
-      bookings: Prisma.$BookingPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      ownerId: string
-      title: string
-      description: string
-      price: number
-      location: string
-      bedrooms: number
-      bathrooms: number
-      parking: boolean
-      area: number | null
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["property"]>
-    composites: {}
-  }
+      owner: Prisma.$UserPayload<ExtArgs>;
+      images: Prisma.$PropertyImagePayload<ExtArgs>[];
+      bookings: Prisma.$BookingPayload<ExtArgs>[];
+    };
+    scalars: $Extensions.GetPayloadResult<
+      {
+        id: string;
+        ownerId: string;
+        title: string;
+        description: string;
+        price: number;
+        location: string;
+        bedrooms: number;
+        bathrooms: number;
+        parking: boolean;
+        area: number | null;
+        createdAt: Date;
+        updatedAt: Date;
+      },
+      ExtArgs['result']['property']
+    >;
+    composites: {};
+  };
 
-  type PropertyGetPayload<S extends boolean | null | undefined | PropertyDefaultArgs> = $Result.GetResult<Prisma.$PropertyPayload, S>
+  type PropertyGetPayload<
+    S extends boolean | null | undefined | PropertyDefaultArgs,
+  > = $Result.GetResult<Prisma.$PropertyPayload, S>;
 
-  type PropertyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PropertyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: PropertyCountAggregateInputType | true
-    }
+  type PropertyCountArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = Omit<PropertyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: PropertyCountAggregateInputType | true;
+  };
 
-  export interface PropertyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Property'], meta: { name: 'Property' } }
+  export interface PropertyDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: {
+      types: Prisma.TypeMap<ExtArgs>['model']['Property'];
+      meta: { name: 'Property' };
+    };
     /**
      * Find zero or one Property that matches the filter.
      * @param {PropertyFindUniqueArgs} args - Arguments to find a Property
@@ -2756,7 +3141,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends PropertyFindUniqueArgs>(args: SelectSubset<T, PropertyFindUniqueArgs<ExtArgs>>): Prisma__PropertyClient<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends PropertyFindUniqueArgs>(
+      args: SelectSubset<T, PropertyFindUniqueArgs<ExtArgs>>,
+    ): Prisma__PropertyClient<
+      $Result.GetResult<
+        Prisma.$PropertyPayload<ExtArgs>,
+        T,
+        'findUnique',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find one Property that matches the filter or throw an error with `error.code='P2025'`
@@ -2770,7 +3167,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends PropertyFindUniqueOrThrowArgs>(args: SelectSubset<T, PropertyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PropertyClient<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends PropertyFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, PropertyFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__PropertyClient<
+      $Result.GetResult<
+        Prisma.$PropertyPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first Property that matches the filter.
@@ -2785,7 +3194,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends PropertyFindFirstArgs>(args?: SelectSubset<T, PropertyFindFirstArgs<ExtArgs>>): Prisma__PropertyClient<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends PropertyFindFirstArgs>(
+      args?: SelectSubset<T, PropertyFindFirstArgs<ExtArgs>>,
+    ): Prisma__PropertyClient<
+      $Result.GetResult<
+        Prisma.$PropertyPayload<ExtArgs>,
+        T,
+        'findFirst',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first Property that matches the filter or
@@ -2801,7 +3222,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends PropertyFindFirstOrThrowArgs>(args?: SelectSubset<T, PropertyFindFirstOrThrowArgs<ExtArgs>>): Prisma__PropertyClient<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends PropertyFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, PropertyFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__PropertyClient<
+      $Result.GetResult<
+        Prisma.$PropertyPayload<ExtArgs>,
+        T,
+        'findFirstOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find zero or more Properties that matches the filter.
@@ -2811,15 +3244,24 @@ export namespace Prisma {
      * @example
      * // Get all Properties
      * const properties = await prisma.property.findMany()
-     * 
+     *
      * // Get first 10 Properties
      * const properties = await prisma.property.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `id`
      * const propertyWithIdOnly = await prisma.property.findMany({ select: { id: true } })
-     * 
+     *
      */
-    findMany<T extends PropertyFindManyArgs>(args?: SelectSubset<T, PropertyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends PropertyFindManyArgs>(
+      args?: SelectSubset<T, PropertyFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$PropertyPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    >;
 
     /**
      * Create a Property.
@@ -2831,9 +3273,21 @@ export namespace Prisma {
      *     // ... data to create a Property
      *   }
      * })
-     * 
+     *
      */
-    create<T extends PropertyCreateArgs>(args: SelectSubset<T, PropertyCreateArgs<ExtArgs>>): Prisma__PropertyClient<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends PropertyCreateArgs>(
+      args: SelectSubset<T, PropertyCreateArgs<ExtArgs>>,
+    ): Prisma__PropertyClient<
+      $Result.GetResult<
+        Prisma.$PropertyPayload<ExtArgs>,
+        T,
+        'create',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Create many Properties.
@@ -2845,9 +3299,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends PropertyCreateManyArgs>(args?: SelectSubset<T, PropertyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends PropertyCreateManyArgs>(
+      args?: SelectSubset<T, PropertyCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Create many Properties and returns the data saved in the database.
@@ -2859,7 +3315,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many Properties and only return the `id`
      * const propertyWithIdOnly = await prisma.property.createManyAndReturn({
      *   select: { id: true },
@@ -2869,9 +3325,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends PropertyCreateManyAndReturnArgs>(args?: SelectSubset<T, PropertyCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends PropertyCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, PropertyCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$PropertyPayload<ExtArgs>,
+        T,
+        'createManyAndReturn',
+        GlobalOmitOptions
+      >
+    >;
 
     /**
      * Delete a Property.
@@ -2883,9 +3348,21 @@ export namespace Prisma {
      *     // ... filter to delete one Property
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends PropertyDeleteArgs>(args: SelectSubset<T, PropertyDeleteArgs<ExtArgs>>): Prisma__PropertyClient<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends PropertyDeleteArgs>(
+      args: SelectSubset<T, PropertyDeleteArgs<ExtArgs>>,
+    ): Prisma__PropertyClient<
+      $Result.GetResult<
+        Prisma.$PropertyPayload<ExtArgs>,
+        T,
+        'delete',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Update one Property.
@@ -2900,9 +3377,21 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends PropertyUpdateArgs>(args: SelectSubset<T, PropertyUpdateArgs<ExtArgs>>): Prisma__PropertyClient<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends PropertyUpdateArgs>(
+      args: SelectSubset<T, PropertyUpdateArgs<ExtArgs>>,
+    ): Prisma__PropertyClient<
+      $Result.GetResult<
+        Prisma.$PropertyPayload<ExtArgs>,
+        T,
+        'update',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Delete zero or more Properties.
@@ -2914,9 +3403,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends PropertyDeleteManyArgs>(args?: SelectSubset<T, PropertyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends PropertyDeleteManyArgs>(
+      args?: SelectSubset<T, PropertyDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Properties.
@@ -2933,9 +3424,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends PropertyUpdateManyArgs>(args: SelectSubset<T, PropertyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends PropertyUpdateManyArgs>(
+      args: SelectSubset<T, PropertyUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Properties and returns the data updated in the database.
@@ -2950,7 +3443,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more Properties and only return the `id`
      * const propertyWithIdOnly = await prisma.property.updateManyAndReturn({
      *   select: { id: true },
@@ -2963,9 +3456,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends PropertyUpdateManyAndReturnArgs>(args: SelectSubset<T, PropertyUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends PropertyUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, PropertyUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$PropertyPayload<ExtArgs>,
+        T,
+        'updateManyAndReturn',
+        GlobalOmitOptions
+      >
+    >;
 
     /**
      * Create or update one Property.
@@ -2984,8 +3486,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends PropertyUpsertArgs>(args: SelectSubset<T, PropertyUpsertArgs<ExtArgs>>): Prisma__PropertyClient<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends PropertyUpsertArgs>(
+      args: SelectSubset<T, PropertyUpsertArgs<ExtArgs>>,
+    ): Prisma__PropertyClient<
+      $Result.GetResult<
+        Prisma.$PropertyPayload<ExtArgs>,
+        T,
+        'upsert',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Count the number of Properties.
@@ -2999,7 +3512,7 @@ export namespace Prisma {
      *     // ... the filter for the Properties we want to count
      *   }
      * })
-    **/
+     **/
     count<T extends PropertyCountArgs>(
       args?: Subset<T, PropertyCountArgs>,
     ): Prisma.PrismaPromise<
@@ -3008,7 +3521,7 @@ export namespace Prisma {
           ? number
           : GetScalarType<T['select'], PropertyCountAggregateOutputType>
         : number
-    >
+    >;
 
     /**
      * Allows you to perform aggregations operations on a Property.
@@ -3033,8 +3546,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends PropertyAggregateArgs>(args: Subset<T, PropertyAggregateArgs>): Prisma.PrismaPromise<GetPropertyAggregateType<T>>
+     **/
+    aggregate<T extends PropertyAggregateArgs>(
+      args: Subset<T, PropertyAggregateArgs>,
+    ): Prisma.PrismaPromise<GetPropertyAggregateType<T>>;
 
     /**
      * Group by Property.
@@ -3052,8 +3567,8 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     **/
     groupBy<
       T extends PropertyGroupByArgs,
       HasSelectOrTake extends Or<
@@ -3063,59 +3578,66 @@ export namespace Prisma {
       OrderByArg extends True extends HasSelectOrTake
         ? { orderBy: PropertyGroupByArgs['orderBy'] }
         : { orderBy?: PropertyGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      OrderFields extends ExcludeUnderscoreKeys<
+        Keys<MaybeTupleToUnion<T['orderBy']>>
+      >,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
       HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
       ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PropertyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPropertyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Property model
-   */
-  readonly fields: PropertyFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [
+                      Error,
+                      'Field ',
+                      P,
+                      ` in "having" needs to be provided in "by"`,
+                    ];
+            }[HavingFields]
+          : 'take' extends Keys<T>
+            ? 'orderBy' extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : 'skip' extends Keys<T>
+              ? 'orderBy' extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, PropertyGroupByArgs, OrderByArg> &
+        InputErrors,
+    ): {} extends InputErrors
+      ? GetPropertyGroupByPayload<T>
+      : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the Property model
+     */
+    readonly fields: PropertyFieldRefs;
   }
 
   /**
@@ -3124,747 +3646,884 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__PropertyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    owner<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    images<T extends Property$imagesArgs<ExtArgs> = {}>(args?: Subset<T, Property$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    bookings<T extends Property$bookingsArgs<ExtArgs> = {}>(args?: Subset<T, Property$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  export interface Prisma__PropertyClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    owner<T extends UserDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, UserDefaultArgs<ExtArgs>>,
+    ): Prisma__UserClient<
+      | $Result.GetResult<
+          Prisma.$UserPayload<ExtArgs>,
+          T,
+          'findUniqueOrThrow',
+          GlobalOmitOptions
+        >
+      | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+    images<T extends Property$imagesArgs<ExtArgs> = {}>(
+      args?: Subset<T, Property$imagesArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      | $Result.GetResult<
+          Prisma.$PropertyImagePayload<ExtArgs>,
+          T,
+          'findMany',
+          GlobalOmitOptions
+        >
+      | Null
+    >;
+    bookings<T extends Property$bookingsArgs<ExtArgs> = {}>(
+      args?: Subset<T, Property$bookingsArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      | $Result.GetResult<
+          Prisma.$BookingPayload<ExtArgs>,
+          T,
+          'findMany',
+          GlobalOmitOptions
+        >
+      | Null
+    >;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | null,
+      onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | null,
+    ): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | null): $Utils.JsPromise<T>;
   }
-
-
-
 
   /**
    * Fields of the Property model
    */
   interface PropertyFieldRefs {
-    readonly id: FieldRef<"Property", 'String'>
-    readonly ownerId: FieldRef<"Property", 'String'>
-    readonly title: FieldRef<"Property", 'String'>
-    readonly description: FieldRef<"Property", 'String'>
-    readonly price: FieldRef<"Property", 'Float'>
-    readonly location: FieldRef<"Property", 'String'>
-    readonly bedrooms: FieldRef<"Property", 'Int'>
-    readonly bathrooms: FieldRef<"Property", 'Int'>
-    readonly parking: FieldRef<"Property", 'Boolean'>
-    readonly area: FieldRef<"Property", 'Float'>
-    readonly createdAt: FieldRef<"Property", 'DateTime'>
-    readonly updatedAt: FieldRef<"Property", 'DateTime'>
+    readonly id: FieldRef<'Property', 'String'>;
+    readonly ownerId: FieldRef<'Property', 'String'>;
+    readonly title: FieldRef<'Property', 'String'>;
+    readonly description: FieldRef<'Property', 'String'>;
+    readonly price: FieldRef<'Property', 'Float'>;
+    readonly location: FieldRef<'Property', 'String'>;
+    readonly bedrooms: FieldRef<'Property', 'Int'>;
+    readonly bathrooms: FieldRef<'Property', 'Int'>;
+    readonly parking: FieldRef<'Property', 'Boolean'>;
+    readonly area: FieldRef<'Property', 'Float'>;
+    readonly createdAt: FieldRef<'Property', 'DateTime'>;
+    readonly updatedAt: FieldRef<'Property', 'DateTime'>;
   }
-    
 
   // Custom InputTypes
   /**
    * Property findUnique
    */
-  export type PropertyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyFindUniqueArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Property
      */
-    select?: PropertySelect<ExtArgs> | null
+    select?: PropertySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Property
      */
-    omit?: PropertyOmit<ExtArgs> | null
+    omit?: PropertyOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyInclude<ExtArgs> | null
+    include?: PropertyInclude<ExtArgs> | null;
     /**
      * Filter, which Property to fetch.
      */
-    where: PropertyWhereUniqueInput
-  }
+    where: PropertyWhereUniqueInput;
+  };
 
   /**
    * Property findUniqueOrThrow
    */
-  export type PropertyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyFindUniqueOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Property
      */
-    select?: PropertySelect<ExtArgs> | null
+    select?: PropertySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Property
      */
-    omit?: PropertyOmit<ExtArgs> | null
+    omit?: PropertyOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyInclude<ExtArgs> | null
+    include?: PropertyInclude<ExtArgs> | null;
     /**
      * Filter, which Property to fetch.
      */
-    where: PropertyWhereUniqueInput
-  }
+    where: PropertyWhereUniqueInput;
+  };
 
   /**
    * Property findFirst
    */
-  export type PropertyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyFindFirstArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Property
      */
-    select?: PropertySelect<ExtArgs> | null
+    select?: PropertySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Property
      */
-    omit?: PropertyOmit<ExtArgs> | null
+    omit?: PropertyOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyInclude<ExtArgs> | null
+    include?: PropertyInclude<ExtArgs> | null;
     /**
      * Filter, which Property to fetch.
      */
-    where?: PropertyWhereInput
+    where?: PropertyWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Properties to fetch.
      */
-    orderBy?: PropertyOrderByWithRelationInput | PropertyOrderByWithRelationInput[]
+    orderBy?:
+      | PropertyOrderByWithRelationInput
+      | PropertyOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Properties.
      */
-    cursor?: PropertyWhereUniqueInput
+    cursor?: PropertyWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Properties from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Properties.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Properties.
      */
-    distinct?: PropertyScalarFieldEnum | PropertyScalarFieldEnum[]
-  }
+    distinct?: PropertyScalarFieldEnum | PropertyScalarFieldEnum[];
+  };
 
   /**
    * Property findFirstOrThrow
    */
-  export type PropertyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyFindFirstOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Property
      */
-    select?: PropertySelect<ExtArgs> | null
+    select?: PropertySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Property
      */
-    omit?: PropertyOmit<ExtArgs> | null
+    omit?: PropertyOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyInclude<ExtArgs> | null
+    include?: PropertyInclude<ExtArgs> | null;
     /**
      * Filter, which Property to fetch.
      */
-    where?: PropertyWhereInput
+    where?: PropertyWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Properties to fetch.
      */
-    orderBy?: PropertyOrderByWithRelationInput | PropertyOrderByWithRelationInput[]
+    orderBy?:
+      | PropertyOrderByWithRelationInput
+      | PropertyOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Properties.
      */
-    cursor?: PropertyWhereUniqueInput
+    cursor?: PropertyWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Properties from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Properties.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Properties.
      */
-    distinct?: PropertyScalarFieldEnum | PropertyScalarFieldEnum[]
-  }
+    distinct?: PropertyScalarFieldEnum | PropertyScalarFieldEnum[];
+  };
 
   /**
    * Property findMany
    */
-  export type PropertyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyFindManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Property
      */
-    select?: PropertySelect<ExtArgs> | null
+    select?: PropertySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Property
      */
-    omit?: PropertyOmit<ExtArgs> | null
+    omit?: PropertyOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyInclude<ExtArgs> | null
+    include?: PropertyInclude<ExtArgs> | null;
     /**
      * Filter, which Properties to fetch.
      */
-    where?: PropertyWhereInput
+    where?: PropertyWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Properties to fetch.
      */
-    orderBy?: PropertyOrderByWithRelationInput | PropertyOrderByWithRelationInput[]
+    orderBy?:
+      | PropertyOrderByWithRelationInput
+      | PropertyOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing Properties.
      */
-    cursor?: PropertyWhereUniqueInput
+    cursor?: PropertyWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Properties from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Properties.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Properties.
      */
-    distinct?: PropertyScalarFieldEnum | PropertyScalarFieldEnum[]
-  }
+    distinct?: PropertyScalarFieldEnum | PropertyScalarFieldEnum[];
+  };
 
   /**
    * Property create
    */
-  export type PropertyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyCreateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Property
      */
-    select?: PropertySelect<ExtArgs> | null
+    select?: PropertySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Property
      */
-    omit?: PropertyOmit<ExtArgs> | null
+    omit?: PropertyOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyInclude<ExtArgs> | null
+    include?: PropertyInclude<ExtArgs> | null;
     /**
      * The data needed to create a Property.
      */
-    data: XOR<PropertyCreateInput, PropertyUncheckedCreateInput>
-  }
+    data: XOR<PropertyCreateInput, PropertyUncheckedCreateInput>;
+  };
 
   /**
    * Property createMany
    */
-  export type PropertyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyCreateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to create many Properties.
      */
-    data: PropertyCreateManyInput | PropertyCreateManyInput[]
-    skipDuplicates?: boolean
-  }
+    data: PropertyCreateManyInput | PropertyCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
 
   /**
    * Property createManyAndReturn
    */
-  export type PropertyCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyCreateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Property
      */
-    select?: PropertySelectCreateManyAndReturn<ExtArgs> | null
+    select?: PropertySelectCreateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the Property
      */
-    omit?: PropertyOmit<ExtArgs> | null
+    omit?: PropertyOmit<ExtArgs> | null;
     /**
      * The data used to create many Properties.
      */
-    data: PropertyCreateManyInput | PropertyCreateManyInput[]
-    skipDuplicates?: boolean
+    data: PropertyCreateManyInput | PropertyCreateManyInput[];
+    skipDuplicates?: boolean;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyIncludeCreateManyAndReturn<ExtArgs> | null
-  }
+    include?: PropertyIncludeCreateManyAndReturn<ExtArgs> | null;
+  };
 
   /**
    * Property update
    */
-  export type PropertyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyUpdateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Property
      */
-    select?: PropertySelect<ExtArgs> | null
+    select?: PropertySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Property
      */
-    omit?: PropertyOmit<ExtArgs> | null
+    omit?: PropertyOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyInclude<ExtArgs> | null
+    include?: PropertyInclude<ExtArgs> | null;
     /**
      * The data needed to update a Property.
      */
-    data: XOR<PropertyUpdateInput, PropertyUncheckedUpdateInput>
+    data: XOR<PropertyUpdateInput, PropertyUncheckedUpdateInput>;
     /**
      * Choose, which Property to update.
      */
-    where: PropertyWhereUniqueInput
-  }
+    where: PropertyWhereUniqueInput;
+  };
 
   /**
    * Property updateMany
    */
-  export type PropertyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyUpdateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to update Properties.
      */
-    data: XOR<PropertyUpdateManyMutationInput, PropertyUncheckedUpdateManyInput>
+    data: XOR<
+      PropertyUpdateManyMutationInput,
+      PropertyUncheckedUpdateManyInput
+    >;
     /**
      * Filter which Properties to update
      */
-    where?: PropertyWhereInput
+    where?: PropertyWhereInput;
     /**
      * Limit how many Properties to update.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Property updateManyAndReturn
    */
-  export type PropertyUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyUpdateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Property
      */
-    select?: PropertySelectUpdateManyAndReturn<ExtArgs> | null
+    select?: PropertySelectUpdateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the Property
      */
-    omit?: PropertyOmit<ExtArgs> | null
+    omit?: PropertyOmit<ExtArgs> | null;
     /**
      * The data used to update Properties.
      */
-    data: XOR<PropertyUpdateManyMutationInput, PropertyUncheckedUpdateManyInput>
+    data: XOR<
+      PropertyUpdateManyMutationInput,
+      PropertyUncheckedUpdateManyInput
+    >;
     /**
      * Filter which Properties to update
      */
-    where?: PropertyWhereInput
+    where?: PropertyWhereInput;
     /**
      * Limit how many Properties to update.
      */
-    limit?: number
+    limit?: number;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
+    include?: PropertyIncludeUpdateManyAndReturn<ExtArgs> | null;
+  };
 
   /**
    * Property upsert
    */
-  export type PropertyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyUpsertArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Property
      */
-    select?: PropertySelect<ExtArgs> | null
+    select?: PropertySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Property
      */
-    omit?: PropertyOmit<ExtArgs> | null
+    omit?: PropertyOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyInclude<ExtArgs> | null
+    include?: PropertyInclude<ExtArgs> | null;
     /**
      * The filter to search for the Property to update in case it exists.
      */
-    where: PropertyWhereUniqueInput
+    where: PropertyWhereUniqueInput;
     /**
      * In case the Property found by the `where` argument doesn't exist, create a new Property with this data.
      */
-    create: XOR<PropertyCreateInput, PropertyUncheckedCreateInput>
+    create: XOR<PropertyCreateInput, PropertyUncheckedCreateInput>;
     /**
      * In case the Property was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<PropertyUpdateInput, PropertyUncheckedUpdateInput>
-  }
+    update: XOR<PropertyUpdateInput, PropertyUncheckedUpdateInput>;
+  };
 
   /**
    * Property delete
    */
-  export type PropertyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyDeleteArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Property
      */
-    select?: PropertySelect<ExtArgs> | null
+    select?: PropertySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Property
      */
-    omit?: PropertyOmit<ExtArgs> | null
+    omit?: PropertyOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyInclude<ExtArgs> | null
+    include?: PropertyInclude<ExtArgs> | null;
     /**
      * Filter which Property to delete.
      */
-    where: PropertyWhereUniqueInput
-  }
+    where: PropertyWhereUniqueInput;
+  };
 
   /**
    * Property deleteMany
    */
-  export type PropertyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyDeleteManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which Properties to delete
      */
-    where?: PropertyWhereInput
+    where?: PropertyWhereInput;
     /**
      * Limit how many Properties to delete.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Property.images
    */
-  export type Property$imagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Property$imagesArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the PropertyImage
      */
-    select?: PropertyImageSelect<ExtArgs> | null
+    select?: PropertyImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PropertyImage
      */
-    omit?: PropertyImageOmit<ExtArgs> | null
+    omit?: PropertyImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyImageInclude<ExtArgs> | null
-    where?: PropertyImageWhereInput
-    orderBy?: PropertyImageOrderByWithRelationInput | PropertyImageOrderByWithRelationInput[]
-    cursor?: PropertyImageWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PropertyImageScalarFieldEnum | PropertyImageScalarFieldEnum[]
-  }
+    include?: PropertyImageInclude<ExtArgs> | null;
+    where?: PropertyImageWhereInput;
+    orderBy?:
+      | PropertyImageOrderByWithRelationInput
+      | PropertyImageOrderByWithRelationInput[];
+    cursor?: PropertyImageWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: PropertyImageScalarFieldEnum | PropertyImageScalarFieldEnum[];
+  };
 
   /**
    * Property.bookings
    */
-  export type Property$bookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Property$bookingsArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Booking
      */
-    select?: BookingSelect<ExtArgs> | null
+    select?: BookingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Booking
      */
-    omit?: BookingOmit<ExtArgs> | null
+    omit?: BookingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BookingInclude<ExtArgs> | null
-    where?: BookingWhereInput
-    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
-    cursor?: BookingWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
-  }
+    include?: BookingInclude<ExtArgs> | null;
+    where?: BookingWhereInput;
+    orderBy?:
+      | BookingOrderByWithRelationInput
+      | BookingOrderByWithRelationInput[];
+    cursor?: BookingWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[];
+  };
 
   /**
    * Property without action
    */
-  export type PropertyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Property
      */
-    select?: PropertySelect<ExtArgs> | null
+    select?: PropertySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Property
      */
-    omit?: PropertyOmit<ExtArgs> | null
+    omit?: PropertyOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyInclude<ExtArgs> | null
-  }
-
+    include?: PropertyInclude<ExtArgs> | null;
+  };
 
   /**
    * Model PropertyImage
    */
 
   export type AggregatePropertyImage = {
-    _count: PropertyImageCountAggregateOutputType | null
-    _min: PropertyImageMinAggregateOutputType | null
-    _max: PropertyImageMaxAggregateOutputType | null
-  }
+    _count: PropertyImageCountAggregateOutputType | null;
+    _min: PropertyImageMinAggregateOutputType | null;
+    _max: PropertyImageMaxAggregateOutputType | null;
+  };
 
   export type PropertyImageMinAggregateOutputType = {
-    id: string | null
-    propertyId: string | null
-    url: string | null
-    publicId: string | null
-    createdAt: Date | null
-  }
+    id: string | null;
+    propertyId: string | null;
+    url: string | null;
+    publicId: string | null;
+    createdAt: Date | null;
+  };
 
   export type PropertyImageMaxAggregateOutputType = {
-    id: string | null
-    propertyId: string | null
-    url: string | null
-    publicId: string | null
-    createdAt: Date | null
-  }
+    id: string | null;
+    propertyId: string | null;
+    url: string | null;
+    publicId: string | null;
+    createdAt: Date | null;
+  };
 
   export type PropertyImageCountAggregateOutputType = {
-    id: number
-    propertyId: number
-    url: number
-    publicId: number
-    createdAt: number
-    _all: number
-  }
-
+    id: number;
+    propertyId: number;
+    url: number;
+    publicId: number;
+    createdAt: number;
+    _all: number;
+  };
 
   export type PropertyImageMinAggregateInputType = {
-    id?: true
-    propertyId?: true
-    url?: true
-    publicId?: true
-    createdAt?: true
-  }
+    id?: true;
+    propertyId?: true;
+    url?: true;
+    publicId?: true;
+    createdAt?: true;
+  };
 
   export type PropertyImageMaxAggregateInputType = {
-    id?: true
-    propertyId?: true
-    url?: true
-    publicId?: true
-    createdAt?: true
-  }
+    id?: true;
+    propertyId?: true;
+    url?: true;
+    publicId?: true;
+    createdAt?: true;
+  };
 
   export type PropertyImageCountAggregateInputType = {
-    id?: true
-    propertyId?: true
-    url?: true
-    publicId?: true
-    createdAt?: true
-    _all?: true
-  }
+    id?: true;
+    propertyId?: true;
+    url?: true;
+    publicId?: true;
+    createdAt?: true;
+    _all?: true;
+  };
 
-  export type PropertyImageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyImageAggregateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which PropertyImage to aggregate.
      */
-    where?: PropertyImageWhereInput
+    where?: PropertyImageWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of PropertyImages to fetch.
      */
-    orderBy?: PropertyImageOrderByWithRelationInput | PropertyImageOrderByWithRelationInput[]
+    orderBy?:
+      | PropertyImageOrderByWithRelationInput
+      | PropertyImageOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
-    cursor?: PropertyImageWhereUniqueInput
+    cursor?: PropertyImageWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` PropertyImages from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` PropertyImages.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned PropertyImages
-    **/
-    _count?: true | PropertyImageCountAggregateInputType
+     **/
+    _count?: true | PropertyImageCountAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
-    _min?: PropertyImageMinAggregateInputType
+     **/
+    _min?: PropertyImageMinAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
-    _max?: PropertyImageMaxAggregateInputType
-  }
+     **/
+    _max?: PropertyImageMaxAggregateInputType;
+  };
 
-  export type GetPropertyImageAggregateType<T extends PropertyImageAggregateArgs> = {
-        [P in keyof T & keyof AggregatePropertyImage]: P extends '_count' | 'count'
+  export type GetPropertyImageAggregateType<
+    T extends PropertyImageAggregateArgs,
+  > = {
+    [P in keyof T & keyof AggregatePropertyImage]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregatePropertyImage[P]>
-      : GetScalarType<T[P], AggregatePropertyImage[P]>
-  }
+      : GetScalarType<T[P], AggregatePropertyImage[P]>;
+  };
 
-
-
-
-  export type PropertyImageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PropertyImageWhereInput
-    orderBy?: PropertyImageOrderByWithAggregationInput | PropertyImageOrderByWithAggregationInput[]
-    by: PropertyImageScalarFieldEnum[] | PropertyImageScalarFieldEnum
-    having?: PropertyImageScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PropertyImageCountAggregateInputType | true
-    _min?: PropertyImageMinAggregateInputType
-    _max?: PropertyImageMaxAggregateInputType
-  }
+  export type PropertyImageGroupByArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: PropertyImageWhereInput;
+    orderBy?:
+      | PropertyImageOrderByWithAggregationInput
+      | PropertyImageOrderByWithAggregationInput[];
+    by: PropertyImageScalarFieldEnum[] | PropertyImageScalarFieldEnum;
+    having?: PropertyImageScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: PropertyImageCountAggregateInputType | true;
+    _min?: PropertyImageMinAggregateInputType;
+    _max?: PropertyImageMaxAggregateInputType;
+  };
 
   export type PropertyImageGroupByOutputType = {
-    id: string
-    propertyId: string
-    url: string
-    publicId: string
-    createdAt: Date
-    _count: PropertyImageCountAggregateOutputType | null
-    _min: PropertyImageMinAggregateOutputType | null
-    _max: PropertyImageMaxAggregateOutputType | null
-  }
+    id: string;
+    propertyId: string;
+    url: string;
+    publicId: string;
+    createdAt: Date;
+    _count: PropertyImageCountAggregateOutputType | null;
+    _min: PropertyImageMinAggregateOutputType | null;
+    _max: PropertyImageMaxAggregateOutputType | null;
+  };
 
-  type GetPropertyImageGroupByPayload<T extends PropertyImageGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PropertyImageGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PropertyImageGroupByOutputType))]: P extends '_count'
+  type GetPropertyImageGroupByPayload<T extends PropertyImageGroupByArgs> =
+    Prisma.PrismaPromise<
+      Array<
+        PickEnumerable<PropertyImageGroupByOutputType, T['by']> & {
+          [P in keyof T &
+            keyof PropertyImageGroupByOutputType]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], PropertyImageGroupByOutputType[P]>
-            : GetScalarType<T[P], PropertyImageGroupByOutputType[P]>
+            : GetScalarType<T[P], PropertyImageGroupByOutputType[P]>;
         }
       >
-    >
+    >;
 
+  export type PropertyImageSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      propertyId?: boolean;
+      url?: boolean;
+      publicId?: boolean;
+      createdAt?: boolean;
+      property?: boolean | PropertyDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['propertyImage']
+  >;
 
-  export type PropertyImageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    propertyId?: boolean
-    url?: boolean
-    publicId?: boolean
-    createdAt?: boolean
-    property?: boolean | PropertyDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["propertyImage"]>
+  export type PropertyImageSelectCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      propertyId?: boolean;
+      url?: boolean;
+      publicId?: boolean;
+      createdAt?: boolean;
+      property?: boolean | PropertyDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['propertyImage']
+  >;
 
-  export type PropertyImageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    propertyId?: boolean
-    url?: boolean
-    publicId?: boolean
-    createdAt?: boolean
-    property?: boolean | PropertyDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["propertyImage"]>
-
-  export type PropertyImageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    propertyId?: boolean
-    url?: boolean
-    publicId?: boolean
-    createdAt?: boolean
-    property?: boolean | PropertyDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["propertyImage"]>
+  export type PropertyImageSelectUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      propertyId?: boolean;
+      url?: boolean;
+      publicId?: boolean;
+      createdAt?: boolean;
+      property?: boolean | PropertyDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['propertyImage']
+  >;
 
   export type PropertyImageSelectScalar = {
-    id?: boolean
-    propertyId?: boolean
-    url?: boolean
-    publicId?: boolean
-    createdAt?: boolean
-  }
+    id?: boolean;
+    propertyId?: boolean;
+    url?: boolean;
+    publicId?: boolean;
+    createdAt?: boolean;
+  };
 
-  export type PropertyImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "propertyId" | "url" | "publicId" | "createdAt", ExtArgs["result"]["propertyImage"]>
-  export type PropertyImageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    property?: boolean | PropertyDefaultArgs<ExtArgs>
-  }
-  export type PropertyImageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    property?: boolean | PropertyDefaultArgs<ExtArgs>
-  }
-  export type PropertyImageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    property?: boolean | PropertyDefaultArgs<ExtArgs>
-  }
+  export type PropertyImageOmit<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetOmit<
+    'id' | 'propertyId' | 'url' | 'publicId' | 'createdAt',
+    ExtArgs['result']['propertyImage']
+  >;
+  export type PropertyImageInclude<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    property?: boolean | PropertyDefaultArgs<ExtArgs>;
+  };
+  export type PropertyImageIncludeCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    property?: boolean | PropertyDefaultArgs<ExtArgs>;
+  };
+  export type PropertyImageIncludeUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    property?: boolean | PropertyDefaultArgs<ExtArgs>;
+  };
 
-  export type $PropertyImagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "PropertyImage"
+  export type $PropertyImagePayload<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    name: 'PropertyImage';
     objects: {
-      property: Prisma.$PropertyPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      propertyId: string
-      url: string
-      publicId: string
-      createdAt: Date
-    }, ExtArgs["result"]["propertyImage"]>
-    composites: {}
-  }
+      property: Prisma.$PropertyPayload<ExtArgs>;
+    };
+    scalars: $Extensions.GetPayloadResult<
+      {
+        id: string;
+        propertyId: string;
+        url: string;
+        publicId: string;
+        createdAt: Date;
+      },
+      ExtArgs['result']['propertyImage']
+    >;
+    composites: {};
+  };
 
-  type PropertyImageGetPayload<S extends boolean | null | undefined | PropertyImageDefaultArgs> = $Result.GetResult<Prisma.$PropertyImagePayload, S>
+  type PropertyImageGetPayload<
+    S extends boolean | null | undefined | PropertyImageDefaultArgs,
+  > = $Result.GetResult<Prisma.$PropertyImagePayload, S>;
 
-  type PropertyImageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PropertyImageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: PropertyImageCountAggregateInputType | true
-    }
+  type PropertyImageCountArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = Omit<
+    PropertyImageFindManyArgs,
+    'select' | 'include' | 'distinct' | 'omit'
+  > & {
+    select?: PropertyImageCountAggregateInputType | true;
+  };
 
-  export interface PropertyImageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PropertyImage'], meta: { name: 'PropertyImage' } }
+  export interface PropertyImageDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: {
+      types: Prisma.TypeMap<ExtArgs>['model']['PropertyImage'];
+      meta: { name: 'PropertyImage' };
+    };
     /**
      * Find zero or one PropertyImage that matches the filter.
      * @param {PropertyImageFindUniqueArgs} args - Arguments to find a PropertyImage
@@ -3876,7 +4535,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends PropertyImageFindUniqueArgs>(args: SelectSubset<T, PropertyImageFindUniqueArgs<ExtArgs>>): Prisma__PropertyImageClient<$Result.GetResult<Prisma.$PropertyImagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends PropertyImageFindUniqueArgs>(
+      args: SelectSubset<T, PropertyImageFindUniqueArgs<ExtArgs>>,
+    ): Prisma__PropertyImageClient<
+      $Result.GetResult<
+        Prisma.$PropertyImagePayload<ExtArgs>,
+        T,
+        'findUnique',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find one PropertyImage that matches the filter or throw an error with `error.code='P2025'`
@@ -3890,7 +4561,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends PropertyImageFindUniqueOrThrowArgs>(args: SelectSubset<T, PropertyImageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PropertyImageClient<$Result.GetResult<Prisma.$PropertyImagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends PropertyImageFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, PropertyImageFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__PropertyImageClient<
+      $Result.GetResult<
+        Prisma.$PropertyImagePayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first PropertyImage that matches the filter.
@@ -3905,7 +4588,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends PropertyImageFindFirstArgs>(args?: SelectSubset<T, PropertyImageFindFirstArgs<ExtArgs>>): Prisma__PropertyImageClient<$Result.GetResult<Prisma.$PropertyImagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends PropertyImageFindFirstArgs>(
+      args?: SelectSubset<T, PropertyImageFindFirstArgs<ExtArgs>>,
+    ): Prisma__PropertyImageClient<
+      $Result.GetResult<
+        Prisma.$PropertyImagePayload<ExtArgs>,
+        T,
+        'findFirst',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first PropertyImage that matches the filter or
@@ -3921,7 +4616,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends PropertyImageFindFirstOrThrowArgs>(args?: SelectSubset<T, PropertyImageFindFirstOrThrowArgs<ExtArgs>>): Prisma__PropertyImageClient<$Result.GetResult<Prisma.$PropertyImagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends PropertyImageFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, PropertyImageFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__PropertyImageClient<
+      $Result.GetResult<
+        Prisma.$PropertyImagePayload<ExtArgs>,
+        T,
+        'findFirstOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find zero or more PropertyImages that matches the filter.
@@ -3931,15 +4638,24 @@ export namespace Prisma {
      * @example
      * // Get all PropertyImages
      * const propertyImages = await prisma.propertyImage.findMany()
-     * 
+     *
      * // Get first 10 PropertyImages
      * const propertyImages = await prisma.propertyImage.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `id`
      * const propertyImageWithIdOnly = await prisma.propertyImage.findMany({ select: { id: true } })
-     * 
+     *
      */
-    findMany<T extends PropertyImageFindManyArgs>(args?: SelectSubset<T, PropertyImageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends PropertyImageFindManyArgs>(
+      args?: SelectSubset<T, PropertyImageFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$PropertyImagePayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    >;
 
     /**
      * Create a PropertyImage.
@@ -3951,9 +4667,21 @@ export namespace Prisma {
      *     // ... data to create a PropertyImage
      *   }
      * })
-     * 
+     *
      */
-    create<T extends PropertyImageCreateArgs>(args: SelectSubset<T, PropertyImageCreateArgs<ExtArgs>>): Prisma__PropertyImageClient<$Result.GetResult<Prisma.$PropertyImagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends PropertyImageCreateArgs>(
+      args: SelectSubset<T, PropertyImageCreateArgs<ExtArgs>>,
+    ): Prisma__PropertyImageClient<
+      $Result.GetResult<
+        Prisma.$PropertyImagePayload<ExtArgs>,
+        T,
+        'create',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Create many PropertyImages.
@@ -3965,9 +4693,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends PropertyImageCreateManyArgs>(args?: SelectSubset<T, PropertyImageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends PropertyImageCreateManyArgs>(
+      args?: SelectSubset<T, PropertyImageCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Create many PropertyImages and returns the data saved in the database.
@@ -3979,7 +4709,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many PropertyImages and only return the `id`
      * const propertyImageWithIdOnly = await prisma.propertyImage.createManyAndReturn({
      *   select: { id: true },
@@ -3989,9 +4719,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends PropertyImageCreateManyAndReturnArgs>(args?: SelectSubset<T, PropertyImageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyImagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends PropertyImageCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, PropertyImageCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$PropertyImagePayload<ExtArgs>,
+        T,
+        'createManyAndReturn',
+        GlobalOmitOptions
+      >
+    >;
 
     /**
      * Delete a PropertyImage.
@@ -4003,9 +4742,21 @@ export namespace Prisma {
      *     // ... filter to delete one PropertyImage
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends PropertyImageDeleteArgs>(args: SelectSubset<T, PropertyImageDeleteArgs<ExtArgs>>): Prisma__PropertyImageClient<$Result.GetResult<Prisma.$PropertyImagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends PropertyImageDeleteArgs>(
+      args: SelectSubset<T, PropertyImageDeleteArgs<ExtArgs>>,
+    ): Prisma__PropertyImageClient<
+      $Result.GetResult<
+        Prisma.$PropertyImagePayload<ExtArgs>,
+        T,
+        'delete',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Update one PropertyImage.
@@ -4020,9 +4771,21 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends PropertyImageUpdateArgs>(args: SelectSubset<T, PropertyImageUpdateArgs<ExtArgs>>): Prisma__PropertyImageClient<$Result.GetResult<Prisma.$PropertyImagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends PropertyImageUpdateArgs>(
+      args: SelectSubset<T, PropertyImageUpdateArgs<ExtArgs>>,
+    ): Prisma__PropertyImageClient<
+      $Result.GetResult<
+        Prisma.$PropertyImagePayload<ExtArgs>,
+        T,
+        'update',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Delete zero or more PropertyImages.
@@ -4034,9 +4797,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends PropertyImageDeleteManyArgs>(args?: SelectSubset<T, PropertyImageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends PropertyImageDeleteManyArgs>(
+      args?: SelectSubset<T, PropertyImageDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more PropertyImages.
@@ -4053,9 +4818,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends PropertyImageUpdateManyArgs>(args: SelectSubset<T, PropertyImageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends PropertyImageUpdateManyArgs>(
+      args: SelectSubset<T, PropertyImageUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more PropertyImages and returns the data updated in the database.
@@ -4070,7 +4837,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more PropertyImages and only return the `id`
      * const propertyImageWithIdOnly = await prisma.propertyImage.updateManyAndReturn({
      *   select: { id: true },
@@ -4083,9 +4850,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends PropertyImageUpdateManyAndReturnArgs>(args: SelectSubset<T, PropertyImageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyImagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends PropertyImageUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, PropertyImageUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$PropertyImagePayload<ExtArgs>,
+        T,
+        'updateManyAndReturn',
+        GlobalOmitOptions
+      >
+    >;
 
     /**
      * Create or update one PropertyImage.
@@ -4104,8 +4880,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends PropertyImageUpsertArgs>(args: SelectSubset<T, PropertyImageUpsertArgs<ExtArgs>>): Prisma__PropertyImageClient<$Result.GetResult<Prisma.$PropertyImagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends PropertyImageUpsertArgs>(
+      args: SelectSubset<T, PropertyImageUpsertArgs<ExtArgs>>,
+    ): Prisma__PropertyImageClient<
+      $Result.GetResult<
+        Prisma.$PropertyImagePayload<ExtArgs>,
+        T,
+        'upsert',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Count the number of PropertyImages.
@@ -4119,7 +4906,7 @@ export namespace Prisma {
      *     // ... the filter for the PropertyImages we want to count
      *   }
      * })
-    **/
+     **/
     count<T extends PropertyImageCountArgs>(
       args?: Subset<T, PropertyImageCountArgs>,
     ): Prisma.PrismaPromise<
@@ -4128,7 +4915,7 @@ export namespace Prisma {
           ? number
           : GetScalarType<T['select'], PropertyImageCountAggregateOutputType>
         : number
-    >
+    >;
 
     /**
      * Allows you to perform aggregations operations on a PropertyImage.
@@ -4153,8 +4940,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends PropertyImageAggregateArgs>(args: Subset<T, PropertyImageAggregateArgs>): Prisma.PrismaPromise<GetPropertyImageAggregateType<T>>
+     **/
+    aggregate<T extends PropertyImageAggregateArgs>(
+      args: Subset<T, PropertyImageAggregateArgs>,
+    ): Prisma.PrismaPromise<GetPropertyImageAggregateType<T>>;
 
     /**
      * Group by PropertyImage.
@@ -4172,8 +4961,8 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     **/
     groupBy<
       T extends PropertyImageGroupByArgs,
       HasSelectOrTake extends Or<
@@ -4183,59 +4972,66 @@ export namespace Prisma {
       OrderByArg extends True extends HasSelectOrTake
         ? { orderBy: PropertyImageGroupByArgs['orderBy'] }
         : { orderBy?: PropertyImageGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      OrderFields extends ExcludeUnderscoreKeys<
+        Keys<MaybeTupleToUnion<T['orderBy']>>
+      >,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
       HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
       ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PropertyImageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPropertyImageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the PropertyImage model
-   */
-  readonly fields: PropertyImageFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [
+                      Error,
+                      'Field ',
+                      P,
+                      ` in "having" needs to be provided in "by"`,
+                    ];
+            }[HavingFields]
+          : 'take' extends Keys<T>
+            ? 'orderBy' extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : 'skip' extends Keys<T>
+              ? 'orderBy' extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, PropertyImageGroupByArgs, OrderByArg> &
+        InputErrors,
+    ): {} extends InputErrors
+      ? GetPropertyImageGroupByPayload<T>
+      : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the PropertyImage model
+     */
+    readonly fields: PropertyImageFieldRefs;
   }
 
   /**
@@ -4244,733 +5040,843 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__PropertyImageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    property<T extends PropertyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PropertyDefaultArgs<ExtArgs>>): Prisma__PropertyClient<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  export interface Prisma__PropertyImageClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    property<T extends PropertyDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, PropertyDefaultArgs<ExtArgs>>,
+    ): Prisma__PropertyClient<
+      | $Result.GetResult<
+          Prisma.$PropertyPayload<ExtArgs>,
+          T,
+          'findUniqueOrThrow',
+          GlobalOmitOptions
+        >
+      | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | null,
+      onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | null,
+    ): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | null): $Utils.JsPromise<T>;
   }
-
-
-
 
   /**
    * Fields of the PropertyImage model
    */
   interface PropertyImageFieldRefs {
-    readonly id: FieldRef<"PropertyImage", 'String'>
-    readonly propertyId: FieldRef<"PropertyImage", 'String'>
-    readonly url: FieldRef<"PropertyImage", 'String'>
-    readonly publicId: FieldRef<"PropertyImage", 'String'>
-    readonly createdAt: FieldRef<"PropertyImage", 'DateTime'>
+    readonly id: FieldRef<'PropertyImage', 'String'>;
+    readonly propertyId: FieldRef<'PropertyImage', 'String'>;
+    readonly url: FieldRef<'PropertyImage', 'String'>;
+    readonly publicId: FieldRef<'PropertyImage', 'String'>;
+    readonly createdAt: FieldRef<'PropertyImage', 'DateTime'>;
   }
-    
 
   // Custom InputTypes
   /**
    * PropertyImage findUnique
    */
-  export type PropertyImageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyImageFindUniqueArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the PropertyImage
      */
-    select?: PropertyImageSelect<ExtArgs> | null
+    select?: PropertyImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PropertyImage
      */
-    omit?: PropertyImageOmit<ExtArgs> | null
+    omit?: PropertyImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyImageInclude<ExtArgs> | null
+    include?: PropertyImageInclude<ExtArgs> | null;
     /**
      * Filter, which PropertyImage to fetch.
      */
-    where: PropertyImageWhereUniqueInput
-  }
+    where: PropertyImageWhereUniqueInput;
+  };
 
   /**
    * PropertyImage findUniqueOrThrow
    */
-  export type PropertyImageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyImageFindUniqueOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the PropertyImage
      */
-    select?: PropertyImageSelect<ExtArgs> | null
+    select?: PropertyImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PropertyImage
      */
-    omit?: PropertyImageOmit<ExtArgs> | null
+    omit?: PropertyImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyImageInclude<ExtArgs> | null
+    include?: PropertyImageInclude<ExtArgs> | null;
     /**
      * Filter, which PropertyImage to fetch.
      */
-    where: PropertyImageWhereUniqueInput
-  }
+    where: PropertyImageWhereUniqueInput;
+  };
 
   /**
    * PropertyImage findFirst
    */
-  export type PropertyImageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyImageFindFirstArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the PropertyImage
      */
-    select?: PropertyImageSelect<ExtArgs> | null
+    select?: PropertyImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PropertyImage
      */
-    omit?: PropertyImageOmit<ExtArgs> | null
+    omit?: PropertyImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyImageInclude<ExtArgs> | null
+    include?: PropertyImageInclude<ExtArgs> | null;
     /**
      * Filter, which PropertyImage to fetch.
      */
-    where?: PropertyImageWhereInput
+    where?: PropertyImageWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of PropertyImages to fetch.
      */
-    orderBy?: PropertyImageOrderByWithRelationInput | PropertyImageOrderByWithRelationInput[]
+    orderBy?:
+      | PropertyImageOrderByWithRelationInput
+      | PropertyImageOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for PropertyImages.
      */
-    cursor?: PropertyImageWhereUniqueInput
+    cursor?: PropertyImageWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` PropertyImages from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` PropertyImages.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of PropertyImages.
      */
-    distinct?: PropertyImageScalarFieldEnum | PropertyImageScalarFieldEnum[]
-  }
+    distinct?: PropertyImageScalarFieldEnum | PropertyImageScalarFieldEnum[];
+  };
 
   /**
    * PropertyImage findFirstOrThrow
    */
-  export type PropertyImageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyImageFindFirstOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the PropertyImage
      */
-    select?: PropertyImageSelect<ExtArgs> | null
+    select?: PropertyImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PropertyImage
      */
-    omit?: PropertyImageOmit<ExtArgs> | null
+    omit?: PropertyImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyImageInclude<ExtArgs> | null
+    include?: PropertyImageInclude<ExtArgs> | null;
     /**
      * Filter, which PropertyImage to fetch.
      */
-    where?: PropertyImageWhereInput
+    where?: PropertyImageWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of PropertyImages to fetch.
      */
-    orderBy?: PropertyImageOrderByWithRelationInput | PropertyImageOrderByWithRelationInput[]
+    orderBy?:
+      | PropertyImageOrderByWithRelationInput
+      | PropertyImageOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for PropertyImages.
      */
-    cursor?: PropertyImageWhereUniqueInput
+    cursor?: PropertyImageWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` PropertyImages from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` PropertyImages.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of PropertyImages.
      */
-    distinct?: PropertyImageScalarFieldEnum | PropertyImageScalarFieldEnum[]
-  }
+    distinct?: PropertyImageScalarFieldEnum | PropertyImageScalarFieldEnum[];
+  };
 
   /**
    * PropertyImage findMany
    */
-  export type PropertyImageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyImageFindManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the PropertyImage
      */
-    select?: PropertyImageSelect<ExtArgs> | null
+    select?: PropertyImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PropertyImage
      */
-    omit?: PropertyImageOmit<ExtArgs> | null
+    omit?: PropertyImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyImageInclude<ExtArgs> | null
+    include?: PropertyImageInclude<ExtArgs> | null;
     /**
      * Filter, which PropertyImages to fetch.
      */
-    where?: PropertyImageWhereInput
+    where?: PropertyImageWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of PropertyImages to fetch.
      */
-    orderBy?: PropertyImageOrderByWithRelationInput | PropertyImageOrderByWithRelationInput[]
+    orderBy?:
+      | PropertyImageOrderByWithRelationInput
+      | PropertyImageOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing PropertyImages.
      */
-    cursor?: PropertyImageWhereUniqueInput
+    cursor?: PropertyImageWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` PropertyImages from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` PropertyImages.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of PropertyImages.
      */
-    distinct?: PropertyImageScalarFieldEnum | PropertyImageScalarFieldEnum[]
-  }
+    distinct?: PropertyImageScalarFieldEnum | PropertyImageScalarFieldEnum[];
+  };
 
   /**
    * PropertyImage create
    */
-  export type PropertyImageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyImageCreateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the PropertyImage
      */
-    select?: PropertyImageSelect<ExtArgs> | null
+    select?: PropertyImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PropertyImage
      */
-    omit?: PropertyImageOmit<ExtArgs> | null
+    omit?: PropertyImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyImageInclude<ExtArgs> | null
+    include?: PropertyImageInclude<ExtArgs> | null;
     /**
      * The data needed to create a PropertyImage.
      */
-    data: XOR<PropertyImageCreateInput, PropertyImageUncheckedCreateInput>
-  }
+    data: XOR<PropertyImageCreateInput, PropertyImageUncheckedCreateInput>;
+  };
 
   /**
    * PropertyImage createMany
    */
-  export type PropertyImageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyImageCreateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to create many PropertyImages.
      */
-    data: PropertyImageCreateManyInput | PropertyImageCreateManyInput[]
-    skipDuplicates?: boolean
-  }
+    data: PropertyImageCreateManyInput | PropertyImageCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
 
   /**
    * PropertyImage createManyAndReturn
    */
-  export type PropertyImageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyImageCreateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the PropertyImage
      */
-    select?: PropertyImageSelectCreateManyAndReturn<ExtArgs> | null
+    select?: PropertyImageSelectCreateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the PropertyImage
      */
-    omit?: PropertyImageOmit<ExtArgs> | null
+    omit?: PropertyImageOmit<ExtArgs> | null;
     /**
      * The data used to create many PropertyImages.
      */
-    data: PropertyImageCreateManyInput | PropertyImageCreateManyInput[]
-    skipDuplicates?: boolean
+    data: PropertyImageCreateManyInput | PropertyImageCreateManyInput[];
+    skipDuplicates?: boolean;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyImageIncludeCreateManyAndReturn<ExtArgs> | null
-  }
+    include?: PropertyImageIncludeCreateManyAndReturn<ExtArgs> | null;
+  };
 
   /**
    * PropertyImage update
    */
-  export type PropertyImageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyImageUpdateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the PropertyImage
      */
-    select?: PropertyImageSelect<ExtArgs> | null
+    select?: PropertyImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PropertyImage
      */
-    omit?: PropertyImageOmit<ExtArgs> | null
+    omit?: PropertyImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyImageInclude<ExtArgs> | null
+    include?: PropertyImageInclude<ExtArgs> | null;
     /**
      * The data needed to update a PropertyImage.
      */
-    data: XOR<PropertyImageUpdateInput, PropertyImageUncheckedUpdateInput>
+    data: XOR<PropertyImageUpdateInput, PropertyImageUncheckedUpdateInput>;
     /**
      * Choose, which PropertyImage to update.
      */
-    where: PropertyImageWhereUniqueInput
-  }
+    where: PropertyImageWhereUniqueInput;
+  };
 
   /**
    * PropertyImage updateMany
    */
-  export type PropertyImageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyImageUpdateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to update PropertyImages.
      */
-    data: XOR<PropertyImageUpdateManyMutationInput, PropertyImageUncheckedUpdateManyInput>
+    data: XOR<
+      PropertyImageUpdateManyMutationInput,
+      PropertyImageUncheckedUpdateManyInput
+    >;
     /**
      * Filter which PropertyImages to update
      */
-    where?: PropertyImageWhereInput
+    where?: PropertyImageWhereInput;
     /**
      * Limit how many PropertyImages to update.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * PropertyImage updateManyAndReturn
    */
-  export type PropertyImageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyImageUpdateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the PropertyImage
      */
-    select?: PropertyImageSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: PropertyImageSelectUpdateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the PropertyImage
      */
-    omit?: PropertyImageOmit<ExtArgs> | null
+    omit?: PropertyImageOmit<ExtArgs> | null;
     /**
      * The data used to update PropertyImages.
      */
-    data: XOR<PropertyImageUpdateManyMutationInput, PropertyImageUncheckedUpdateManyInput>
+    data: XOR<
+      PropertyImageUpdateManyMutationInput,
+      PropertyImageUncheckedUpdateManyInput
+    >;
     /**
      * Filter which PropertyImages to update
      */
-    where?: PropertyImageWhereInput
+    where?: PropertyImageWhereInput;
     /**
      * Limit how many PropertyImages to update.
      */
-    limit?: number
+    limit?: number;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyImageIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
+    include?: PropertyImageIncludeUpdateManyAndReturn<ExtArgs> | null;
+  };
 
   /**
    * PropertyImage upsert
    */
-  export type PropertyImageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyImageUpsertArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the PropertyImage
      */
-    select?: PropertyImageSelect<ExtArgs> | null
+    select?: PropertyImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PropertyImage
      */
-    omit?: PropertyImageOmit<ExtArgs> | null
+    omit?: PropertyImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyImageInclude<ExtArgs> | null
+    include?: PropertyImageInclude<ExtArgs> | null;
     /**
      * The filter to search for the PropertyImage to update in case it exists.
      */
-    where: PropertyImageWhereUniqueInput
+    where: PropertyImageWhereUniqueInput;
     /**
      * In case the PropertyImage found by the `where` argument doesn't exist, create a new PropertyImage with this data.
      */
-    create: XOR<PropertyImageCreateInput, PropertyImageUncheckedCreateInput>
+    create: XOR<PropertyImageCreateInput, PropertyImageUncheckedCreateInput>;
     /**
      * In case the PropertyImage was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<PropertyImageUpdateInput, PropertyImageUncheckedUpdateInput>
-  }
+    update: XOR<PropertyImageUpdateInput, PropertyImageUncheckedUpdateInput>;
+  };
 
   /**
    * PropertyImage delete
    */
-  export type PropertyImageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyImageDeleteArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the PropertyImage
      */
-    select?: PropertyImageSelect<ExtArgs> | null
+    select?: PropertyImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PropertyImage
      */
-    omit?: PropertyImageOmit<ExtArgs> | null
+    omit?: PropertyImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyImageInclude<ExtArgs> | null
+    include?: PropertyImageInclude<ExtArgs> | null;
     /**
      * Filter which PropertyImage to delete.
      */
-    where: PropertyImageWhereUniqueInput
-  }
+    where: PropertyImageWhereUniqueInput;
+  };
 
   /**
    * PropertyImage deleteMany
    */
-  export type PropertyImageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyImageDeleteManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which PropertyImages to delete
      */
-    where?: PropertyImageWhereInput
+    where?: PropertyImageWhereInput;
     /**
      * Limit how many PropertyImages to delete.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * PropertyImage without action
    */
-  export type PropertyImageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyImageDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the PropertyImage
      */
-    select?: PropertyImageSelect<ExtArgs> | null
+    select?: PropertyImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PropertyImage
      */
-    omit?: PropertyImageOmit<ExtArgs> | null
+    omit?: PropertyImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PropertyImageInclude<ExtArgs> | null
-  }
-
+    include?: PropertyImageInclude<ExtArgs> | null;
+  };
 
   /**
    * Model Booking
    */
 
   export type AggregateBooking = {
-    _count: BookingCountAggregateOutputType | null
-    _min: BookingMinAggregateOutputType | null
-    _max: BookingMaxAggregateOutputType | null
-  }
+    _count: BookingCountAggregateOutputType | null;
+    _min: BookingMinAggregateOutputType | null;
+    _max: BookingMaxAggregateOutputType | null;
+  };
 
   export type BookingMinAggregateOutputType = {
-    id: string | null
-    propertyId: string | null
-    userId: string | null
-    visitDate: Date | null
-    status: $Enums.BookingStatus | null
-    message: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
+    id: string | null;
+    propertyId: string | null;
+    userId: string | null;
+    visitDate: Date | null;
+    status: $Enums.BookingStatus | null;
+    message: string | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+  };
 
   export type BookingMaxAggregateOutputType = {
-    id: string | null
-    propertyId: string | null
-    userId: string | null
-    visitDate: Date | null
-    status: $Enums.BookingStatus | null
-    message: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
+    id: string | null;
+    propertyId: string | null;
+    userId: string | null;
+    visitDate: Date | null;
+    status: $Enums.BookingStatus | null;
+    message: string | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+  };
 
   export type BookingCountAggregateOutputType = {
-    id: number
-    propertyId: number
-    userId: number
-    visitDate: number
-    status: number
-    message: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
+    id: number;
+    propertyId: number;
+    userId: number;
+    visitDate: number;
+    status: number;
+    message: number;
+    createdAt: number;
+    updatedAt: number;
+    _all: number;
+  };
 
   export type BookingMinAggregateInputType = {
-    id?: true
-    propertyId?: true
-    userId?: true
-    visitDate?: true
-    status?: true
-    message?: true
-    createdAt?: true
-    updatedAt?: true
-  }
+    id?: true;
+    propertyId?: true;
+    userId?: true;
+    visitDate?: true;
+    status?: true;
+    message?: true;
+    createdAt?: true;
+    updatedAt?: true;
+  };
 
   export type BookingMaxAggregateInputType = {
-    id?: true
-    propertyId?: true
-    userId?: true
-    visitDate?: true
-    status?: true
-    message?: true
-    createdAt?: true
-    updatedAt?: true
-  }
+    id?: true;
+    propertyId?: true;
+    userId?: true;
+    visitDate?: true;
+    status?: true;
+    message?: true;
+    createdAt?: true;
+    updatedAt?: true;
+  };
 
   export type BookingCountAggregateInputType = {
-    id?: true
-    propertyId?: true
-    userId?: true
-    visitDate?: true
-    status?: true
-    message?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
+    id?: true;
+    propertyId?: true;
+    userId?: true;
+    visitDate?: true;
+    status?: true;
+    message?: true;
+    createdAt?: true;
+    updatedAt?: true;
+    _all?: true;
+  };
 
-  export type BookingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BookingAggregateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which Booking to aggregate.
      */
-    where?: BookingWhereInput
+    where?: BookingWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Bookings to fetch.
      */
-    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
+    orderBy?:
+      | BookingOrderByWithRelationInput
+      | BookingOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
-    cursor?: BookingWhereUniqueInput
+    cursor?: BookingWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Bookings from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Bookings.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned Bookings
-    **/
-    _count?: true | BookingCountAggregateInputType
+     **/
+    _count?: true | BookingCountAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
-    _min?: BookingMinAggregateInputType
+     **/
+    _min?: BookingMinAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
-    _max?: BookingMaxAggregateInputType
-  }
+     **/
+    _max?: BookingMaxAggregateInputType;
+  };
 
   export type GetBookingAggregateType<T extends BookingAggregateArgs> = {
-        [P in keyof T & keyof AggregateBooking]: P extends '_count' | 'count'
+    [P in keyof T & keyof AggregateBooking]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateBooking[P]>
-      : GetScalarType<T[P], AggregateBooking[P]>
-  }
+      : GetScalarType<T[P], AggregateBooking[P]>;
+  };
 
-
-
-
-  export type BookingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: BookingWhereInput
-    orderBy?: BookingOrderByWithAggregationInput | BookingOrderByWithAggregationInput[]
-    by: BookingScalarFieldEnum[] | BookingScalarFieldEnum
-    having?: BookingScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: BookingCountAggregateInputType | true
-    _min?: BookingMinAggregateInputType
-    _max?: BookingMaxAggregateInputType
-  }
+  export type BookingGroupByArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: BookingWhereInput;
+    orderBy?:
+      | BookingOrderByWithAggregationInput
+      | BookingOrderByWithAggregationInput[];
+    by: BookingScalarFieldEnum[] | BookingScalarFieldEnum;
+    having?: BookingScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: BookingCountAggregateInputType | true;
+    _min?: BookingMinAggregateInputType;
+    _max?: BookingMaxAggregateInputType;
+  };
 
   export type BookingGroupByOutputType = {
-    id: string
-    propertyId: string
-    userId: string
-    visitDate: Date
-    status: $Enums.BookingStatus
-    message: string | null
-    createdAt: Date
-    updatedAt: Date
-    _count: BookingCountAggregateOutputType | null
-    _min: BookingMinAggregateOutputType | null
-    _max: BookingMaxAggregateOutputType | null
-  }
+    id: string;
+    propertyId: string;
+    userId: string;
+    visitDate: Date;
+    status: $Enums.BookingStatus;
+    message: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    _count: BookingCountAggregateOutputType | null;
+    _min: BookingMinAggregateOutputType | null;
+    _max: BookingMaxAggregateOutputType | null;
+  };
 
-  type GetBookingGroupByPayload<T extends BookingGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<BookingGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof BookingGroupByOutputType))]: P extends '_count'
+  type GetBookingGroupByPayload<T extends BookingGroupByArgs> =
+    Prisma.PrismaPromise<
+      Array<
+        PickEnumerable<BookingGroupByOutputType, T['by']> & {
+          [P in keyof T & keyof BookingGroupByOutputType]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], BookingGroupByOutputType[P]>
-            : GetScalarType<T[P], BookingGroupByOutputType[P]>
+            : GetScalarType<T[P], BookingGroupByOutputType[P]>;
         }
       >
-    >
+    >;
 
+  export type BookingSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      propertyId?: boolean;
+      userId?: boolean;
+      visitDate?: boolean;
+      status?: boolean;
+      message?: boolean;
+      createdAt?: boolean;
+      updatedAt?: boolean;
+      property?: boolean | PropertyDefaultArgs<ExtArgs>;
+      user?: boolean | UserDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['booking']
+  >;
 
-  export type BookingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    propertyId?: boolean
-    userId?: boolean
-    visitDate?: boolean
-    status?: boolean
-    message?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    property?: boolean | PropertyDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["booking"]>
+  export type BookingSelectCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      propertyId?: boolean;
+      userId?: boolean;
+      visitDate?: boolean;
+      status?: boolean;
+      message?: boolean;
+      createdAt?: boolean;
+      updatedAt?: boolean;
+      property?: boolean | PropertyDefaultArgs<ExtArgs>;
+      user?: boolean | UserDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['booking']
+  >;
 
-  export type BookingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    propertyId?: boolean
-    userId?: boolean
-    visitDate?: boolean
-    status?: boolean
-    message?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    property?: boolean | PropertyDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["booking"]>
-
-  export type BookingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    propertyId?: boolean
-    userId?: boolean
-    visitDate?: boolean
-    status?: boolean
-    message?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    property?: boolean | PropertyDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["booking"]>
+  export type BookingSelectUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      propertyId?: boolean;
+      userId?: boolean;
+      visitDate?: boolean;
+      status?: boolean;
+      message?: boolean;
+      createdAt?: boolean;
+      updatedAt?: boolean;
+      property?: boolean | PropertyDefaultArgs<ExtArgs>;
+      user?: boolean | UserDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['booking']
+  >;
 
   export type BookingSelectScalar = {
-    id?: boolean
-    propertyId?: boolean
-    userId?: boolean
-    visitDate?: boolean
-    status?: boolean
-    message?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
+    id?: boolean;
+    propertyId?: boolean;
+    userId?: boolean;
+    visitDate?: boolean;
+    status?: boolean;
+    message?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+  };
 
-  export type BookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "propertyId" | "userId" | "visitDate" | "status" | "message" | "createdAt" | "updatedAt", ExtArgs["result"]["booking"]>
-  export type BookingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    property?: boolean | PropertyDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type BookingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    property?: boolean | PropertyDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type BookingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    property?: boolean | PropertyDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
+  export type BookingOmit<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetOmit<
+    | 'id'
+    | 'propertyId'
+    | 'userId'
+    | 'visitDate'
+    | 'status'
+    | 'message'
+    | 'createdAt'
+    | 'updatedAt',
+    ExtArgs['result']['booking']
+  >;
+  export type BookingInclude<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    property?: boolean | PropertyDefaultArgs<ExtArgs>;
+    user?: boolean | UserDefaultArgs<ExtArgs>;
+  };
+  export type BookingIncludeCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    property?: boolean | PropertyDefaultArgs<ExtArgs>;
+    user?: boolean | UserDefaultArgs<ExtArgs>;
+  };
+  export type BookingIncludeUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    property?: boolean | PropertyDefaultArgs<ExtArgs>;
+    user?: boolean | UserDefaultArgs<ExtArgs>;
+  };
 
-  export type $BookingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Booking"
+  export type $BookingPayload<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    name: 'Booking';
     objects: {
-      property: Prisma.$PropertyPayload<ExtArgs>
-      user: Prisma.$UserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      propertyId: string
-      userId: string
-      visitDate: Date
-      status: $Enums.BookingStatus
-      message: string | null
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["booking"]>
-    composites: {}
-  }
+      property: Prisma.$PropertyPayload<ExtArgs>;
+      user: Prisma.$UserPayload<ExtArgs>;
+    };
+    scalars: $Extensions.GetPayloadResult<
+      {
+        id: string;
+        propertyId: string;
+        userId: string;
+        visitDate: Date;
+        status: $Enums.BookingStatus;
+        message: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+      },
+      ExtArgs['result']['booking']
+    >;
+    composites: {};
+  };
 
-  type BookingGetPayload<S extends boolean | null | undefined | BookingDefaultArgs> = $Result.GetResult<Prisma.$BookingPayload, S>
+  type BookingGetPayload<
+    S extends boolean | null | undefined | BookingDefaultArgs,
+  > = $Result.GetResult<Prisma.$BookingPayload, S>;
 
-  type BookingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<BookingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: BookingCountAggregateInputType | true
-    }
+  type BookingCountArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = Omit<BookingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: BookingCountAggregateInputType | true;
+  };
 
-  export interface BookingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Booking'], meta: { name: 'Booking' } }
+  export interface BookingDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: {
+      types: Prisma.TypeMap<ExtArgs>['model']['Booking'];
+      meta: { name: 'Booking' };
+    };
     /**
      * Find zero or one Booking that matches the filter.
      * @param {BookingFindUniqueArgs} args - Arguments to find a Booking
@@ -4982,7 +5888,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends BookingFindUniqueArgs>(args: SelectSubset<T, BookingFindUniqueArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends BookingFindUniqueArgs>(
+      args: SelectSubset<T, BookingFindUniqueArgs<ExtArgs>>,
+    ): Prisma__BookingClient<
+      $Result.GetResult<
+        Prisma.$BookingPayload<ExtArgs>,
+        T,
+        'findUnique',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find one Booking that matches the filter or throw an error with `error.code='P2025'`
@@ -4996,7 +5914,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends BookingFindUniqueOrThrowArgs>(args: SelectSubset<T, BookingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends BookingFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, BookingFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__BookingClient<
+      $Result.GetResult<
+        Prisma.$BookingPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first Booking that matches the filter.
@@ -5011,7 +5941,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends BookingFindFirstArgs>(args?: SelectSubset<T, BookingFindFirstArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends BookingFindFirstArgs>(
+      args?: SelectSubset<T, BookingFindFirstArgs<ExtArgs>>,
+    ): Prisma__BookingClient<
+      $Result.GetResult<
+        Prisma.$BookingPayload<ExtArgs>,
+        T,
+        'findFirst',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first Booking that matches the filter or
@@ -5027,7 +5969,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends BookingFindFirstOrThrowArgs>(args?: SelectSubset<T, BookingFindFirstOrThrowArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends BookingFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, BookingFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__BookingClient<
+      $Result.GetResult<
+        Prisma.$BookingPayload<ExtArgs>,
+        T,
+        'findFirstOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find zero or more Bookings that matches the filter.
@@ -5037,15 +5991,24 @@ export namespace Prisma {
      * @example
      * // Get all Bookings
      * const bookings = await prisma.booking.findMany()
-     * 
+     *
      * // Get first 10 Bookings
      * const bookings = await prisma.booking.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `id`
      * const bookingWithIdOnly = await prisma.booking.findMany({ select: { id: true } })
-     * 
+     *
      */
-    findMany<T extends BookingFindManyArgs>(args?: SelectSubset<T, BookingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends BookingFindManyArgs>(
+      args?: SelectSubset<T, BookingFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$BookingPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    >;
 
     /**
      * Create a Booking.
@@ -5057,9 +6020,21 @@ export namespace Prisma {
      *     // ... data to create a Booking
      *   }
      * })
-     * 
+     *
      */
-    create<T extends BookingCreateArgs>(args: SelectSubset<T, BookingCreateArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends BookingCreateArgs>(
+      args: SelectSubset<T, BookingCreateArgs<ExtArgs>>,
+    ): Prisma__BookingClient<
+      $Result.GetResult<
+        Prisma.$BookingPayload<ExtArgs>,
+        T,
+        'create',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Create many Bookings.
@@ -5071,9 +6046,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends BookingCreateManyArgs>(args?: SelectSubset<T, BookingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends BookingCreateManyArgs>(
+      args?: SelectSubset<T, BookingCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Create many Bookings and returns the data saved in the database.
@@ -5085,7 +6062,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many Bookings and only return the `id`
      * const bookingWithIdOnly = await prisma.booking.createManyAndReturn({
      *   select: { id: true },
@@ -5095,9 +6072,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends BookingCreateManyAndReturnArgs>(args?: SelectSubset<T, BookingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends BookingCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, BookingCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$BookingPayload<ExtArgs>,
+        T,
+        'createManyAndReturn',
+        GlobalOmitOptions
+      >
+    >;
 
     /**
      * Delete a Booking.
@@ -5109,9 +6095,21 @@ export namespace Prisma {
      *     // ... filter to delete one Booking
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends BookingDeleteArgs>(args: SelectSubset<T, BookingDeleteArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends BookingDeleteArgs>(
+      args: SelectSubset<T, BookingDeleteArgs<ExtArgs>>,
+    ): Prisma__BookingClient<
+      $Result.GetResult<
+        Prisma.$BookingPayload<ExtArgs>,
+        T,
+        'delete',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Update one Booking.
@@ -5126,9 +6124,21 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends BookingUpdateArgs>(args: SelectSubset<T, BookingUpdateArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends BookingUpdateArgs>(
+      args: SelectSubset<T, BookingUpdateArgs<ExtArgs>>,
+    ): Prisma__BookingClient<
+      $Result.GetResult<
+        Prisma.$BookingPayload<ExtArgs>,
+        T,
+        'update',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Delete zero or more Bookings.
@@ -5140,9 +6150,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends BookingDeleteManyArgs>(args?: SelectSubset<T, BookingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends BookingDeleteManyArgs>(
+      args?: SelectSubset<T, BookingDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Bookings.
@@ -5159,9 +6171,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends BookingUpdateManyArgs>(args: SelectSubset<T, BookingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends BookingUpdateManyArgs>(
+      args: SelectSubset<T, BookingUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Bookings and returns the data updated in the database.
@@ -5176,7 +6190,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more Bookings and only return the `id`
      * const bookingWithIdOnly = await prisma.booking.updateManyAndReturn({
      *   select: { id: true },
@@ -5189,9 +6203,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends BookingUpdateManyAndReturnArgs>(args: SelectSubset<T, BookingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends BookingUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, BookingUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$BookingPayload<ExtArgs>,
+        T,
+        'updateManyAndReturn',
+        GlobalOmitOptions
+      >
+    >;
 
     /**
      * Create or update one Booking.
@@ -5210,8 +6233,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends BookingUpsertArgs>(args: SelectSubset<T, BookingUpsertArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends BookingUpsertArgs>(
+      args: SelectSubset<T, BookingUpsertArgs<ExtArgs>>,
+    ): Prisma__BookingClient<
+      $Result.GetResult<
+        Prisma.$BookingPayload<ExtArgs>,
+        T,
+        'upsert',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Count the number of Bookings.
@@ -5225,7 +6259,7 @@ export namespace Prisma {
      *     // ... the filter for the Bookings we want to count
      *   }
      * })
-    **/
+     **/
     count<T extends BookingCountArgs>(
       args?: Subset<T, BookingCountArgs>,
     ): Prisma.PrismaPromise<
@@ -5234,7 +6268,7 @@ export namespace Prisma {
           ? number
           : GetScalarType<T['select'], BookingCountAggregateOutputType>
         : number
-    >
+    >;
 
     /**
      * Allows you to perform aggregations operations on a Booking.
@@ -5259,8 +6293,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends BookingAggregateArgs>(args: Subset<T, BookingAggregateArgs>): Prisma.PrismaPromise<GetBookingAggregateType<T>>
+     **/
+    aggregate<T extends BookingAggregateArgs>(
+      args: Subset<T, BookingAggregateArgs>,
+    ): Prisma.PrismaPromise<GetBookingAggregateType<T>>;
 
     /**
      * Group by Booking.
@@ -5278,8 +6314,8 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     **/
     groupBy<
       T extends BookingGroupByArgs,
       HasSelectOrTake extends Or<
@@ -5289,59 +6325,65 @@ export namespace Prisma {
       OrderByArg extends True extends HasSelectOrTake
         ? { orderBy: BookingGroupByArgs['orderBy'] }
         : { orderBy?: BookingGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      OrderFields extends ExcludeUnderscoreKeys<
+        Keys<MaybeTupleToUnion<T['orderBy']>>
+      >,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
       HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
       ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, BookingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBookingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Booking model
-   */
-  readonly fields: BookingFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [
+                      Error,
+                      'Field ',
+                      P,
+                      ` in "having" needs to be provided in "by"`,
+                    ];
+            }[HavingFields]
+          : 'take' extends Keys<T>
+            ? 'orderBy' extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : 'skip' extends Keys<T>
+              ? 'orderBy' extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, BookingGroupByArgs, OrderByArg> & InputErrors,
+    ): {} extends InputErrors
+      ? GetBookingGroupByPayload<T>
+      : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the Booking model
+     */
+    readonly fields: BookingFieldRefs;
   }
 
   /**
@@ -5350,2874 +6392,3355 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__BookingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    property<T extends PropertyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PropertyDefaultArgs<ExtArgs>>): Prisma__PropertyClient<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  export interface Prisma__BookingClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    property<T extends PropertyDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, PropertyDefaultArgs<ExtArgs>>,
+    ): Prisma__PropertyClient<
+      | $Result.GetResult<
+          Prisma.$PropertyPayload<ExtArgs>,
+          T,
+          'findUniqueOrThrow',
+          GlobalOmitOptions
+        >
+      | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, UserDefaultArgs<ExtArgs>>,
+    ): Prisma__UserClient<
+      | $Result.GetResult<
+          Prisma.$UserPayload<ExtArgs>,
+          T,
+          'findUniqueOrThrow',
+          GlobalOmitOptions
+        >
+      | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | null,
+      onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | null,
+    ): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | null): $Utils.JsPromise<T>;
   }
-
-
-
 
   /**
    * Fields of the Booking model
    */
   interface BookingFieldRefs {
-    readonly id: FieldRef<"Booking", 'String'>
-    readonly propertyId: FieldRef<"Booking", 'String'>
-    readonly userId: FieldRef<"Booking", 'String'>
-    readonly visitDate: FieldRef<"Booking", 'DateTime'>
-    readonly status: FieldRef<"Booking", 'BookingStatus'>
-    readonly message: FieldRef<"Booking", 'String'>
-    readonly createdAt: FieldRef<"Booking", 'DateTime'>
-    readonly updatedAt: FieldRef<"Booking", 'DateTime'>
+    readonly id: FieldRef<'Booking', 'String'>;
+    readonly propertyId: FieldRef<'Booking', 'String'>;
+    readonly userId: FieldRef<'Booking', 'String'>;
+    readonly visitDate: FieldRef<'Booking', 'DateTime'>;
+    readonly status: FieldRef<'Booking', 'BookingStatus'>;
+    readonly message: FieldRef<'Booking', 'String'>;
+    readonly createdAt: FieldRef<'Booking', 'DateTime'>;
+    readonly updatedAt: FieldRef<'Booking', 'DateTime'>;
   }
-    
 
   // Custom InputTypes
   /**
    * Booking findUnique
    */
-  export type BookingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BookingFindUniqueArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Booking
      */
-    select?: BookingSelect<ExtArgs> | null
+    select?: BookingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Booking
      */
-    omit?: BookingOmit<ExtArgs> | null
+    omit?: BookingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BookingInclude<ExtArgs> | null
+    include?: BookingInclude<ExtArgs> | null;
     /**
      * Filter, which Booking to fetch.
      */
-    where: BookingWhereUniqueInput
-  }
+    where: BookingWhereUniqueInput;
+  };
 
   /**
    * Booking findUniqueOrThrow
    */
-  export type BookingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BookingFindUniqueOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Booking
      */
-    select?: BookingSelect<ExtArgs> | null
+    select?: BookingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Booking
      */
-    omit?: BookingOmit<ExtArgs> | null
+    omit?: BookingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BookingInclude<ExtArgs> | null
+    include?: BookingInclude<ExtArgs> | null;
     /**
      * Filter, which Booking to fetch.
      */
-    where: BookingWhereUniqueInput
-  }
+    where: BookingWhereUniqueInput;
+  };
 
   /**
    * Booking findFirst
    */
-  export type BookingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BookingFindFirstArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Booking
      */
-    select?: BookingSelect<ExtArgs> | null
+    select?: BookingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Booking
      */
-    omit?: BookingOmit<ExtArgs> | null
+    omit?: BookingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BookingInclude<ExtArgs> | null
+    include?: BookingInclude<ExtArgs> | null;
     /**
      * Filter, which Booking to fetch.
      */
-    where?: BookingWhereInput
+    where?: BookingWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Bookings to fetch.
      */
-    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
+    orderBy?:
+      | BookingOrderByWithRelationInput
+      | BookingOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Bookings.
      */
-    cursor?: BookingWhereUniqueInput
+    cursor?: BookingWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Bookings from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Bookings.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Bookings.
      */
-    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
-  }
+    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[];
+  };
 
   /**
    * Booking findFirstOrThrow
    */
-  export type BookingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BookingFindFirstOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Booking
      */
-    select?: BookingSelect<ExtArgs> | null
+    select?: BookingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Booking
      */
-    omit?: BookingOmit<ExtArgs> | null
+    omit?: BookingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BookingInclude<ExtArgs> | null
+    include?: BookingInclude<ExtArgs> | null;
     /**
      * Filter, which Booking to fetch.
      */
-    where?: BookingWhereInput
+    where?: BookingWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Bookings to fetch.
      */
-    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
+    orderBy?:
+      | BookingOrderByWithRelationInput
+      | BookingOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Bookings.
      */
-    cursor?: BookingWhereUniqueInput
+    cursor?: BookingWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Bookings from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Bookings.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Bookings.
      */
-    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
-  }
+    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[];
+  };
 
   /**
    * Booking findMany
    */
-  export type BookingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BookingFindManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Booking
      */
-    select?: BookingSelect<ExtArgs> | null
+    select?: BookingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Booking
      */
-    omit?: BookingOmit<ExtArgs> | null
+    omit?: BookingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BookingInclude<ExtArgs> | null
+    include?: BookingInclude<ExtArgs> | null;
     /**
      * Filter, which Bookings to fetch.
      */
-    where?: BookingWhereInput
+    where?: BookingWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Bookings to fetch.
      */
-    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
+    orderBy?:
+      | BookingOrderByWithRelationInput
+      | BookingOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing Bookings.
      */
-    cursor?: BookingWhereUniqueInput
+    cursor?: BookingWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Bookings from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Bookings.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Bookings.
      */
-    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
-  }
+    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[];
+  };
 
   /**
    * Booking create
    */
-  export type BookingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BookingCreateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Booking
      */
-    select?: BookingSelect<ExtArgs> | null
+    select?: BookingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Booking
      */
-    omit?: BookingOmit<ExtArgs> | null
+    omit?: BookingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BookingInclude<ExtArgs> | null
+    include?: BookingInclude<ExtArgs> | null;
     /**
      * The data needed to create a Booking.
      */
-    data: XOR<BookingCreateInput, BookingUncheckedCreateInput>
-  }
+    data: XOR<BookingCreateInput, BookingUncheckedCreateInput>;
+  };
 
   /**
    * Booking createMany
    */
-  export type BookingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BookingCreateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to create many Bookings.
      */
-    data: BookingCreateManyInput | BookingCreateManyInput[]
-    skipDuplicates?: boolean
-  }
+    data: BookingCreateManyInput | BookingCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
 
   /**
    * Booking createManyAndReturn
    */
-  export type BookingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BookingCreateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Booking
      */
-    select?: BookingSelectCreateManyAndReturn<ExtArgs> | null
+    select?: BookingSelectCreateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the Booking
      */
-    omit?: BookingOmit<ExtArgs> | null
+    omit?: BookingOmit<ExtArgs> | null;
     /**
      * The data used to create many Bookings.
      */
-    data: BookingCreateManyInput | BookingCreateManyInput[]
-    skipDuplicates?: boolean
+    data: BookingCreateManyInput | BookingCreateManyInput[];
+    skipDuplicates?: boolean;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BookingIncludeCreateManyAndReturn<ExtArgs> | null
-  }
+    include?: BookingIncludeCreateManyAndReturn<ExtArgs> | null;
+  };
 
   /**
    * Booking update
    */
-  export type BookingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BookingUpdateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Booking
      */
-    select?: BookingSelect<ExtArgs> | null
+    select?: BookingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Booking
      */
-    omit?: BookingOmit<ExtArgs> | null
+    omit?: BookingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BookingInclude<ExtArgs> | null
+    include?: BookingInclude<ExtArgs> | null;
     /**
      * The data needed to update a Booking.
      */
-    data: XOR<BookingUpdateInput, BookingUncheckedUpdateInput>
+    data: XOR<BookingUpdateInput, BookingUncheckedUpdateInput>;
     /**
      * Choose, which Booking to update.
      */
-    where: BookingWhereUniqueInput
-  }
+    where: BookingWhereUniqueInput;
+  };
 
   /**
    * Booking updateMany
    */
-  export type BookingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BookingUpdateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to update Bookings.
      */
-    data: XOR<BookingUpdateManyMutationInput, BookingUncheckedUpdateManyInput>
+    data: XOR<BookingUpdateManyMutationInput, BookingUncheckedUpdateManyInput>;
     /**
      * Filter which Bookings to update
      */
-    where?: BookingWhereInput
+    where?: BookingWhereInput;
     /**
      * Limit how many Bookings to update.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Booking updateManyAndReturn
    */
-  export type BookingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BookingUpdateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Booking
      */
-    select?: BookingSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: BookingSelectUpdateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the Booking
      */
-    omit?: BookingOmit<ExtArgs> | null
+    omit?: BookingOmit<ExtArgs> | null;
     /**
      * The data used to update Bookings.
      */
-    data: XOR<BookingUpdateManyMutationInput, BookingUncheckedUpdateManyInput>
+    data: XOR<BookingUpdateManyMutationInput, BookingUncheckedUpdateManyInput>;
     /**
      * Filter which Bookings to update
      */
-    where?: BookingWhereInput
+    where?: BookingWhereInput;
     /**
      * Limit how many Bookings to update.
      */
-    limit?: number
+    limit?: number;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BookingIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
+    include?: BookingIncludeUpdateManyAndReturn<ExtArgs> | null;
+  };
 
   /**
    * Booking upsert
    */
-  export type BookingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BookingUpsertArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Booking
      */
-    select?: BookingSelect<ExtArgs> | null
+    select?: BookingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Booking
      */
-    omit?: BookingOmit<ExtArgs> | null
+    omit?: BookingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BookingInclude<ExtArgs> | null
+    include?: BookingInclude<ExtArgs> | null;
     /**
      * The filter to search for the Booking to update in case it exists.
      */
-    where: BookingWhereUniqueInput
+    where: BookingWhereUniqueInput;
     /**
      * In case the Booking found by the `where` argument doesn't exist, create a new Booking with this data.
      */
-    create: XOR<BookingCreateInput, BookingUncheckedCreateInput>
+    create: XOR<BookingCreateInput, BookingUncheckedCreateInput>;
     /**
      * In case the Booking was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<BookingUpdateInput, BookingUncheckedUpdateInput>
-  }
+    update: XOR<BookingUpdateInput, BookingUncheckedUpdateInput>;
+  };
 
   /**
    * Booking delete
    */
-  export type BookingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BookingDeleteArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Booking
      */
-    select?: BookingSelect<ExtArgs> | null
+    select?: BookingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Booking
      */
-    omit?: BookingOmit<ExtArgs> | null
+    omit?: BookingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BookingInclude<ExtArgs> | null
+    include?: BookingInclude<ExtArgs> | null;
     /**
      * Filter which Booking to delete.
      */
-    where: BookingWhereUniqueInput
-  }
+    where: BookingWhereUniqueInput;
+  };
 
   /**
    * Booking deleteMany
    */
-  export type BookingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BookingDeleteManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which Bookings to delete
      */
-    where?: BookingWhereInput
+    where?: BookingWhereInput;
     /**
      * Limit how many Bookings to delete.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Booking without action
    */
-  export type BookingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BookingDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Booking
      */
-    select?: BookingSelect<ExtArgs> | null
+    select?: BookingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Booking
      */
-    omit?: BookingOmit<ExtArgs> | null
+    omit?: BookingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BookingInclude<ExtArgs> | null
-  }
-
+    include?: BookingInclude<ExtArgs> | null;
+  };
 
   /**
    * Enums
    */
 
   export const TransactionIsolationLevel: {
-    ReadUncommitted: 'ReadUncommitted',
-    ReadCommitted: 'ReadCommitted',
-    RepeatableRead: 'RepeatableRead',
-    Serializable: 'Serializable'
+    ReadUncommitted: 'ReadUncommitted';
+    ReadCommitted: 'ReadCommitted';
+    RepeatableRead: 'RepeatableRead';
+    Serializable: 'Serializable';
   };
 
-  export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
-
+  export type TransactionIsolationLevel =
+    (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
 
   export const UserScalarFieldEnum: {
-    id: 'id',
-    email: 'email',
-    passwordHash: 'passwordHash',
-    name: 'name',
-    role: 'role',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    id: 'id';
+    email: 'email';
+    passwordHash: 'passwordHash';
+    name: 'name';
+    role: 'role';
+    createdAt: 'createdAt';
+    updatedAt: 'updatedAt';
   };
 
-  export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
-
+  export type UserScalarFieldEnum =
+    (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum];
 
   export const PropertyScalarFieldEnum: {
-    id: 'id',
-    ownerId: 'ownerId',
-    title: 'title',
-    description: 'description',
-    price: 'price',
-    location: 'location',
-    bedrooms: 'bedrooms',
-    bathrooms: 'bathrooms',
-    parking: 'parking',
-    area: 'area',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    id: 'id';
+    ownerId: 'ownerId';
+    title: 'title';
+    description: 'description';
+    price: 'price';
+    location: 'location';
+    bedrooms: 'bedrooms';
+    bathrooms: 'bathrooms';
+    parking: 'parking';
+    area: 'area';
+    createdAt: 'createdAt';
+    updatedAt: 'updatedAt';
   };
 
-  export type PropertyScalarFieldEnum = (typeof PropertyScalarFieldEnum)[keyof typeof PropertyScalarFieldEnum]
-
+  export type PropertyScalarFieldEnum =
+    (typeof PropertyScalarFieldEnum)[keyof typeof PropertyScalarFieldEnum];
 
   export const PropertyImageScalarFieldEnum: {
-    id: 'id',
-    propertyId: 'propertyId',
-    url: 'url',
-    publicId: 'publicId',
-    createdAt: 'createdAt'
+    id: 'id';
+    propertyId: 'propertyId';
+    url: 'url';
+    publicId: 'publicId';
+    createdAt: 'createdAt';
   };
 
-  export type PropertyImageScalarFieldEnum = (typeof PropertyImageScalarFieldEnum)[keyof typeof PropertyImageScalarFieldEnum]
-
+  export type PropertyImageScalarFieldEnum =
+    (typeof PropertyImageScalarFieldEnum)[keyof typeof PropertyImageScalarFieldEnum];
 
   export const BookingScalarFieldEnum: {
-    id: 'id',
-    propertyId: 'propertyId',
-    userId: 'userId',
-    visitDate: 'visitDate',
-    status: 'status',
-    message: 'message',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    id: 'id';
+    propertyId: 'propertyId';
+    userId: 'userId';
+    visitDate: 'visitDate';
+    status: 'status';
+    message: 'message';
+    createdAt: 'createdAt';
+    updatedAt: 'updatedAt';
   };
 
-  export type BookingScalarFieldEnum = (typeof BookingScalarFieldEnum)[keyof typeof BookingScalarFieldEnum]
-
+  export type BookingScalarFieldEnum =
+    (typeof BookingScalarFieldEnum)[keyof typeof BookingScalarFieldEnum];
 
   export const SortOrder: {
-    asc: 'asc',
-    desc: 'desc'
+    asc: 'asc';
+    desc: 'desc';
   };
 
-  export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
-
+  export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder];
 
   export const QueryMode: {
-    default: 'default',
-    insensitive: 'insensitive'
+    default: 'default';
+    insensitive: 'insensitive';
   };
 
-  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode];
 
   export const NullsOrder: {
-    first: 'first',
-    last: 'last'
+    first: 'first';
+    last: 'last';
   };
 
-  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
 
   /**
    * Field references
    */
 
-
   /**
    * Reference to a field of type 'String'
    */
-  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
-    
-
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'String'
+  >;
 
   /**
    * Reference to a field of type 'String[]'
    */
-  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
-    
-
+  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'String[]'
+  >;
 
   /**
    * Reference to a field of type 'Role'
    */
-  export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
-    
-
+  export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'Role'
+  >;
 
   /**
    * Reference to a field of type 'Role[]'
    */
-  export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
-    
-
+  export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'Role[]'
+  >;
 
   /**
    * Reference to a field of type 'DateTime'
    */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'DateTime'
+  >;
 
   /**
    * Reference to a field of type 'DateTime[]'
    */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'DateTime[]'
+  >;
 
   /**
    * Reference to a field of type 'Float'
    */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'Float'
+  >;
 
   /**
    * Reference to a field of type 'Float[]'
    */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'Float[]'
+  >;
 
   /**
    * Reference to a field of type 'Int'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'Int'
+  >;
 
   /**
    * Reference to a field of type 'Int[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'Int[]'
+  >;
 
   /**
    * Reference to a field of type 'Boolean'
    */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'Boolean'
+  >;
 
   /**
    * Reference to a field of type 'BookingStatus'
    */
-  export type EnumBookingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BookingStatus'>
-    
-
+  export type EnumBookingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'BookingStatus'
+  >;
 
   /**
    * Reference to a field of type 'BookingStatus[]'
    */
-  export type ListEnumBookingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BookingStatus[]'>
-    
+  export type ListEnumBookingStatusFieldRefInput<$PrismaModel> =
+    FieldRefInputType<$PrismaModel, 'BookingStatus[]'>;
+
   /**
    * Deep Input Types
    */
 
-
   export type UserWhereInput = {
-    AND?: UserWhereInput | UserWhereInput[]
-    OR?: UserWhereInput[]
-    NOT?: UserWhereInput | UserWhereInput[]
-    id?: StringFilter<"User"> | string
-    email?: StringFilter<"User"> | string
-    passwordHash?: StringFilter<"User"> | string
-    name?: StringFilter<"User"> | string
-    role?: EnumRoleFilter<"User"> | $Enums.Role
-    createdAt?: DateTimeFilter<"User"> | Date | string
-    updatedAt?: DateTimeFilter<"User"> | Date | string
-    properties?: PropertyListRelationFilter
-    Bookings?: BookingListRelationFilter
-  }
+    AND?: UserWhereInput | UserWhereInput[];
+    OR?: UserWhereInput[];
+    NOT?: UserWhereInput | UserWhereInput[];
+    id?: StringFilter<'User'> | string;
+    email?: StringFilter<'User'> | string;
+    passwordHash?: StringFilter<'User'> | string;
+    name?: StringFilter<'User'> | string;
+    role?: EnumRoleFilter<'User'> | $Enums.Role;
+    createdAt?: DateTimeFilter<'User'> | Date | string;
+    updatedAt?: DateTimeFilter<'User'> | Date | string;
+    properties?: PropertyListRelationFilter;
+    Bookings?: BookingListRelationFilter;
+  };
 
   export type UserOrderByWithRelationInput = {
-    id?: SortOrder
-    email?: SortOrder
-    passwordHash?: SortOrder
-    name?: SortOrder
-    role?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    properties?: PropertyOrderByRelationAggregateInput
-    Bookings?: BookingOrderByRelationAggregateInput
-  }
+    id?: SortOrder;
+    email?: SortOrder;
+    passwordHash?: SortOrder;
+    name?: SortOrder;
+    role?: SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+    properties?: PropertyOrderByRelationAggregateInput;
+    Bookings?: BookingOrderByRelationAggregateInput;
+  };
 
-  export type UserWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    email?: string
-    AND?: UserWhereInput | UserWhereInput[]
-    OR?: UserWhereInput[]
-    NOT?: UserWhereInput | UserWhereInput[]
-    passwordHash?: StringFilter<"User"> | string
-    name?: StringFilter<"User"> | string
-    role?: EnumRoleFilter<"User"> | $Enums.Role
-    createdAt?: DateTimeFilter<"User"> | Date | string
-    updatedAt?: DateTimeFilter<"User"> | Date | string
-    properties?: PropertyListRelationFilter
-    Bookings?: BookingListRelationFilter
-  }, "id" | "email">
+  export type UserWhereUniqueInput = Prisma.AtLeast<
+    {
+      id?: string;
+      email?: string;
+      AND?: UserWhereInput | UserWhereInput[];
+      OR?: UserWhereInput[];
+      NOT?: UserWhereInput | UserWhereInput[];
+      passwordHash?: StringFilter<'User'> | string;
+      name?: StringFilter<'User'> | string;
+      role?: EnumRoleFilter<'User'> | $Enums.Role;
+      createdAt?: DateTimeFilter<'User'> | Date | string;
+      updatedAt?: DateTimeFilter<'User'> | Date | string;
+      properties?: PropertyListRelationFilter;
+      Bookings?: BookingListRelationFilter;
+    },
+    'id' | 'email'
+  >;
 
   export type UserOrderByWithAggregationInput = {
-    id?: SortOrder
-    email?: SortOrder
-    passwordHash?: SortOrder
-    name?: SortOrder
-    role?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: UserCountOrderByAggregateInput
-    _max?: UserMaxOrderByAggregateInput
-    _min?: UserMinOrderByAggregateInput
-  }
+    id?: SortOrder;
+    email?: SortOrder;
+    passwordHash?: SortOrder;
+    name?: SortOrder;
+    role?: SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+    _count?: UserCountOrderByAggregateInput;
+    _max?: UserMaxOrderByAggregateInput;
+    _min?: UserMinOrderByAggregateInput;
+  };
 
   export type UserScalarWhereWithAggregatesInput = {
-    AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
-    OR?: UserScalarWhereWithAggregatesInput[]
-    NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"User"> | string
-    email?: StringWithAggregatesFilter<"User"> | string
-    passwordHash?: StringWithAggregatesFilter<"User"> | string
-    name?: StringWithAggregatesFilter<"User"> | string
-    role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
-    createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
-  }
+    AND?:
+      | UserScalarWhereWithAggregatesInput
+      | UserScalarWhereWithAggregatesInput[];
+    OR?: UserScalarWhereWithAggregatesInput[];
+    NOT?:
+      | UserScalarWhereWithAggregatesInput
+      | UserScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<'User'> | string;
+    email?: StringWithAggregatesFilter<'User'> | string;
+    passwordHash?: StringWithAggregatesFilter<'User'> | string;
+    name?: StringWithAggregatesFilter<'User'> | string;
+    role?: EnumRoleWithAggregatesFilter<'User'> | $Enums.Role;
+    createdAt?: DateTimeWithAggregatesFilter<'User'> | Date | string;
+    updatedAt?: DateTimeWithAggregatesFilter<'User'> | Date | string;
+  };
 
   export type PropertyWhereInput = {
-    AND?: PropertyWhereInput | PropertyWhereInput[]
-    OR?: PropertyWhereInput[]
-    NOT?: PropertyWhereInput | PropertyWhereInput[]
-    id?: StringFilter<"Property"> | string
-    ownerId?: StringFilter<"Property"> | string
-    title?: StringFilter<"Property"> | string
-    description?: StringFilter<"Property"> | string
-    price?: FloatFilter<"Property"> | number
-    location?: StringFilter<"Property"> | string
-    bedrooms?: IntFilter<"Property"> | number
-    bathrooms?: IntFilter<"Property"> | number
-    parking?: BoolFilter<"Property"> | boolean
-    area?: FloatNullableFilter<"Property"> | number | null
-    createdAt?: DateTimeFilter<"Property"> | Date | string
-    updatedAt?: DateTimeFilter<"Property"> | Date | string
-    owner?: XOR<UserScalarRelationFilter, UserWhereInput>
-    images?: PropertyImageListRelationFilter
-    bookings?: BookingListRelationFilter
-  }
+    AND?: PropertyWhereInput | PropertyWhereInput[];
+    OR?: PropertyWhereInput[];
+    NOT?: PropertyWhereInput | PropertyWhereInput[];
+    id?: StringFilter<'Property'> | string;
+    ownerId?: StringFilter<'Property'> | string;
+    title?: StringFilter<'Property'> | string;
+    description?: StringFilter<'Property'> | string;
+    price?: FloatFilter<'Property'> | number;
+    location?: StringFilter<'Property'> | string;
+    bedrooms?: IntFilter<'Property'> | number;
+    bathrooms?: IntFilter<'Property'> | number;
+    parking?: BoolFilter<'Property'> | boolean;
+    area?: FloatNullableFilter<'Property'> | number | null;
+    createdAt?: DateTimeFilter<'Property'> | Date | string;
+    updatedAt?: DateTimeFilter<'Property'> | Date | string;
+    owner?: XOR<UserScalarRelationFilter, UserWhereInput>;
+    images?: PropertyImageListRelationFilter;
+    bookings?: BookingListRelationFilter;
+  };
 
   export type PropertyOrderByWithRelationInput = {
-    id?: SortOrder
-    ownerId?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    price?: SortOrder
-    location?: SortOrder
-    bedrooms?: SortOrder
-    bathrooms?: SortOrder
-    parking?: SortOrder
-    area?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    owner?: UserOrderByWithRelationInput
-    images?: PropertyImageOrderByRelationAggregateInput
-    bookings?: BookingOrderByRelationAggregateInput
-  }
+    id?: SortOrder;
+    ownerId?: SortOrder;
+    title?: SortOrder;
+    description?: SortOrder;
+    price?: SortOrder;
+    location?: SortOrder;
+    bedrooms?: SortOrder;
+    bathrooms?: SortOrder;
+    parking?: SortOrder;
+    area?: SortOrderInput | SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+    owner?: UserOrderByWithRelationInput;
+    images?: PropertyImageOrderByRelationAggregateInput;
+    bookings?: BookingOrderByRelationAggregateInput;
+  };
 
-  export type PropertyWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: PropertyWhereInput | PropertyWhereInput[]
-    OR?: PropertyWhereInput[]
-    NOT?: PropertyWhereInput | PropertyWhereInput[]
-    ownerId?: StringFilter<"Property"> | string
-    title?: StringFilter<"Property"> | string
-    description?: StringFilter<"Property"> | string
-    price?: FloatFilter<"Property"> | number
-    location?: StringFilter<"Property"> | string
-    bedrooms?: IntFilter<"Property"> | number
-    bathrooms?: IntFilter<"Property"> | number
-    parking?: BoolFilter<"Property"> | boolean
-    area?: FloatNullableFilter<"Property"> | number | null
-    createdAt?: DateTimeFilter<"Property"> | Date | string
-    updatedAt?: DateTimeFilter<"Property"> | Date | string
-    owner?: XOR<UserScalarRelationFilter, UserWhereInput>
-    images?: PropertyImageListRelationFilter
-    bookings?: BookingListRelationFilter
-  }, "id">
+  export type PropertyWhereUniqueInput = Prisma.AtLeast<
+    {
+      id?: string;
+      AND?: PropertyWhereInput | PropertyWhereInput[];
+      OR?: PropertyWhereInput[];
+      NOT?: PropertyWhereInput | PropertyWhereInput[];
+      ownerId?: StringFilter<'Property'> | string;
+      title?: StringFilter<'Property'> | string;
+      description?: StringFilter<'Property'> | string;
+      price?: FloatFilter<'Property'> | number;
+      location?: StringFilter<'Property'> | string;
+      bedrooms?: IntFilter<'Property'> | number;
+      bathrooms?: IntFilter<'Property'> | number;
+      parking?: BoolFilter<'Property'> | boolean;
+      area?: FloatNullableFilter<'Property'> | number | null;
+      createdAt?: DateTimeFilter<'Property'> | Date | string;
+      updatedAt?: DateTimeFilter<'Property'> | Date | string;
+      owner?: XOR<UserScalarRelationFilter, UserWhereInput>;
+      images?: PropertyImageListRelationFilter;
+      bookings?: BookingListRelationFilter;
+    },
+    'id'
+  >;
 
   export type PropertyOrderByWithAggregationInput = {
-    id?: SortOrder
-    ownerId?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    price?: SortOrder
-    location?: SortOrder
-    bedrooms?: SortOrder
-    bathrooms?: SortOrder
-    parking?: SortOrder
-    area?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: PropertyCountOrderByAggregateInput
-    _avg?: PropertyAvgOrderByAggregateInput
-    _max?: PropertyMaxOrderByAggregateInput
-    _min?: PropertyMinOrderByAggregateInput
-    _sum?: PropertySumOrderByAggregateInput
-  }
+    id?: SortOrder;
+    ownerId?: SortOrder;
+    title?: SortOrder;
+    description?: SortOrder;
+    price?: SortOrder;
+    location?: SortOrder;
+    bedrooms?: SortOrder;
+    bathrooms?: SortOrder;
+    parking?: SortOrder;
+    area?: SortOrderInput | SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+    _count?: PropertyCountOrderByAggregateInput;
+    _avg?: PropertyAvgOrderByAggregateInput;
+    _max?: PropertyMaxOrderByAggregateInput;
+    _min?: PropertyMinOrderByAggregateInput;
+    _sum?: PropertySumOrderByAggregateInput;
+  };
 
   export type PropertyScalarWhereWithAggregatesInput = {
-    AND?: PropertyScalarWhereWithAggregatesInput | PropertyScalarWhereWithAggregatesInput[]
-    OR?: PropertyScalarWhereWithAggregatesInput[]
-    NOT?: PropertyScalarWhereWithAggregatesInput | PropertyScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Property"> | string
-    ownerId?: StringWithAggregatesFilter<"Property"> | string
-    title?: StringWithAggregatesFilter<"Property"> | string
-    description?: StringWithAggregatesFilter<"Property"> | string
-    price?: FloatWithAggregatesFilter<"Property"> | number
-    location?: StringWithAggregatesFilter<"Property"> | string
-    bedrooms?: IntWithAggregatesFilter<"Property"> | number
-    bathrooms?: IntWithAggregatesFilter<"Property"> | number
-    parking?: BoolWithAggregatesFilter<"Property"> | boolean
-    area?: FloatNullableWithAggregatesFilter<"Property"> | number | null
-    createdAt?: DateTimeWithAggregatesFilter<"Property"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Property"> | Date | string
-  }
+    AND?:
+      | PropertyScalarWhereWithAggregatesInput
+      | PropertyScalarWhereWithAggregatesInput[];
+    OR?: PropertyScalarWhereWithAggregatesInput[];
+    NOT?:
+      | PropertyScalarWhereWithAggregatesInput
+      | PropertyScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<'Property'> | string;
+    ownerId?: StringWithAggregatesFilter<'Property'> | string;
+    title?: StringWithAggregatesFilter<'Property'> | string;
+    description?: StringWithAggregatesFilter<'Property'> | string;
+    price?: FloatWithAggregatesFilter<'Property'> | number;
+    location?: StringWithAggregatesFilter<'Property'> | string;
+    bedrooms?: IntWithAggregatesFilter<'Property'> | number;
+    bathrooms?: IntWithAggregatesFilter<'Property'> | number;
+    parking?: BoolWithAggregatesFilter<'Property'> | boolean;
+    area?: FloatNullableWithAggregatesFilter<'Property'> | number | null;
+    createdAt?: DateTimeWithAggregatesFilter<'Property'> | Date | string;
+    updatedAt?: DateTimeWithAggregatesFilter<'Property'> | Date | string;
+  };
 
   export type PropertyImageWhereInput = {
-    AND?: PropertyImageWhereInput | PropertyImageWhereInput[]
-    OR?: PropertyImageWhereInput[]
-    NOT?: PropertyImageWhereInput | PropertyImageWhereInput[]
-    id?: StringFilter<"PropertyImage"> | string
-    propertyId?: StringFilter<"PropertyImage"> | string
-    url?: StringFilter<"PropertyImage"> | string
-    publicId?: StringFilter<"PropertyImage"> | string
-    createdAt?: DateTimeFilter<"PropertyImage"> | Date | string
-    property?: XOR<PropertyScalarRelationFilter, PropertyWhereInput>
-  }
+    AND?: PropertyImageWhereInput | PropertyImageWhereInput[];
+    OR?: PropertyImageWhereInput[];
+    NOT?: PropertyImageWhereInput | PropertyImageWhereInput[];
+    id?: StringFilter<'PropertyImage'> | string;
+    propertyId?: StringFilter<'PropertyImage'> | string;
+    url?: StringFilter<'PropertyImage'> | string;
+    publicId?: StringFilter<'PropertyImage'> | string;
+    createdAt?: DateTimeFilter<'PropertyImage'> | Date | string;
+    property?: XOR<PropertyScalarRelationFilter, PropertyWhereInput>;
+  };
 
   export type PropertyImageOrderByWithRelationInput = {
-    id?: SortOrder
-    propertyId?: SortOrder
-    url?: SortOrder
-    publicId?: SortOrder
-    createdAt?: SortOrder
-    property?: PropertyOrderByWithRelationInput
-  }
+    id?: SortOrder;
+    propertyId?: SortOrder;
+    url?: SortOrder;
+    publicId?: SortOrder;
+    createdAt?: SortOrder;
+    property?: PropertyOrderByWithRelationInput;
+  };
 
-  export type PropertyImageWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: PropertyImageWhereInput | PropertyImageWhereInput[]
-    OR?: PropertyImageWhereInput[]
-    NOT?: PropertyImageWhereInput | PropertyImageWhereInput[]
-    propertyId?: StringFilter<"PropertyImage"> | string
-    url?: StringFilter<"PropertyImage"> | string
-    publicId?: StringFilter<"PropertyImage"> | string
-    createdAt?: DateTimeFilter<"PropertyImage"> | Date | string
-    property?: XOR<PropertyScalarRelationFilter, PropertyWhereInput>
-  }, "id">
+  export type PropertyImageWhereUniqueInput = Prisma.AtLeast<
+    {
+      id?: string;
+      AND?: PropertyImageWhereInput | PropertyImageWhereInput[];
+      OR?: PropertyImageWhereInput[];
+      NOT?: PropertyImageWhereInput | PropertyImageWhereInput[];
+      propertyId?: StringFilter<'PropertyImage'> | string;
+      url?: StringFilter<'PropertyImage'> | string;
+      publicId?: StringFilter<'PropertyImage'> | string;
+      createdAt?: DateTimeFilter<'PropertyImage'> | Date | string;
+      property?: XOR<PropertyScalarRelationFilter, PropertyWhereInput>;
+    },
+    'id'
+  >;
 
   export type PropertyImageOrderByWithAggregationInput = {
-    id?: SortOrder
-    propertyId?: SortOrder
-    url?: SortOrder
-    publicId?: SortOrder
-    createdAt?: SortOrder
-    _count?: PropertyImageCountOrderByAggregateInput
-    _max?: PropertyImageMaxOrderByAggregateInput
-    _min?: PropertyImageMinOrderByAggregateInput
-  }
+    id?: SortOrder;
+    propertyId?: SortOrder;
+    url?: SortOrder;
+    publicId?: SortOrder;
+    createdAt?: SortOrder;
+    _count?: PropertyImageCountOrderByAggregateInput;
+    _max?: PropertyImageMaxOrderByAggregateInput;
+    _min?: PropertyImageMinOrderByAggregateInput;
+  };
 
   export type PropertyImageScalarWhereWithAggregatesInput = {
-    AND?: PropertyImageScalarWhereWithAggregatesInput | PropertyImageScalarWhereWithAggregatesInput[]
-    OR?: PropertyImageScalarWhereWithAggregatesInput[]
-    NOT?: PropertyImageScalarWhereWithAggregatesInput | PropertyImageScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"PropertyImage"> | string
-    propertyId?: StringWithAggregatesFilter<"PropertyImage"> | string
-    url?: StringWithAggregatesFilter<"PropertyImage"> | string
-    publicId?: StringWithAggregatesFilter<"PropertyImage"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"PropertyImage"> | Date | string
-  }
+    AND?:
+      | PropertyImageScalarWhereWithAggregatesInput
+      | PropertyImageScalarWhereWithAggregatesInput[];
+    OR?: PropertyImageScalarWhereWithAggregatesInput[];
+    NOT?:
+      | PropertyImageScalarWhereWithAggregatesInput
+      | PropertyImageScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<'PropertyImage'> | string;
+    propertyId?: StringWithAggregatesFilter<'PropertyImage'> | string;
+    url?: StringWithAggregatesFilter<'PropertyImage'> | string;
+    publicId?: StringWithAggregatesFilter<'PropertyImage'> | string;
+    createdAt?: DateTimeWithAggregatesFilter<'PropertyImage'> | Date | string;
+  };
 
   export type BookingWhereInput = {
-    AND?: BookingWhereInput | BookingWhereInput[]
-    OR?: BookingWhereInput[]
-    NOT?: BookingWhereInput | BookingWhereInput[]
-    id?: StringFilter<"Booking"> | string
-    propertyId?: StringFilter<"Booking"> | string
-    userId?: StringFilter<"Booking"> | string
-    visitDate?: DateTimeFilter<"Booking"> | Date | string
-    status?: EnumBookingStatusFilter<"Booking"> | $Enums.BookingStatus
-    message?: StringNullableFilter<"Booking"> | string | null
-    createdAt?: DateTimeFilter<"Booking"> | Date | string
-    updatedAt?: DateTimeFilter<"Booking"> | Date | string
-    property?: XOR<PropertyScalarRelationFilter, PropertyWhereInput>
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }
+    AND?: BookingWhereInput | BookingWhereInput[];
+    OR?: BookingWhereInput[];
+    NOT?: BookingWhereInput | BookingWhereInput[];
+    id?: StringFilter<'Booking'> | string;
+    propertyId?: StringFilter<'Booking'> | string;
+    userId?: StringFilter<'Booking'> | string;
+    visitDate?: DateTimeFilter<'Booking'> | Date | string;
+    status?: EnumBookingStatusFilter<'Booking'> | $Enums.BookingStatus;
+    message?: StringNullableFilter<'Booking'> | string | null;
+    createdAt?: DateTimeFilter<'Booking'> | Date | string;
+    updatedAt?: DateTimeFilter<'Booking'> | Date | string;
+    property?: XOR<PropertyScalarRelationFilter, PropertyWhereInput>;
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>;
+  };
 
   export type BookingOrderByWithRelationInput = {
-    id?: SortOrder
-    propertyId?: SortOrder
-    userId?: SortOrder
-    visitDate?: SortOrder
-    status?: SortOrder
-    message?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    property?: PropertyOrderByWithRelationInput
-    user?: UserOrderByWithRelationInput
-  }
+    id?: SortOrder;
+    propertyId?: SortOrder;
+    userId?: SortOrder;
+    visitDate?: SortOrder;
+    status?: SortOrder;
+    message?: SortOrderInput | SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+    property?: PropertyOrderByWithRelationInput;
+    user?: UserOrderByWithRelationInput;
+  };
 
-  export type BookingWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: BookingWhereInput | BookingWhereInput[]
-    OR?: BookingWhereInput[]
-    NOT?: BookingWhereInput | BookingWhereInput[]
-    propertyId?: StringFilter<"Booking"> | string
-    userId?: StringFilter<"Booking"> | string
-    visitDate?: DateTimeFilter<"Booking"> | Date | string
-    status?: EnumBookingStatusFilter<"Booking"> | $Enums.BookingStatus
-    message?: StringNullableFilter<"Booking"> | string | null
-    createdAt?: DateTimeFilter<"Booking"> | Date | string
-    updatedAt?: DateTimeFilter<"Booking"> | Date | string
-    property?: XOR<PropertyScalarRelationFilter, PropertyWhereInput>
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id">
+  export type BookingWhereUniqueInput = Prisma.AtLeast<
+    {
+      id?: string;
+      AND?: BookingWhereInput | BookingWhereInput[];
+      OR?: BookingWhereInput[];
+      NOT?: BookingWhereInput | BookingWhereInput[];
+      propertyId?: StringFilter<'Booking'> | string;
+      userId?: StringFilter<'Booking'> | string;
+      visitDate?: DateTimeFilter<'Booking'> | Date | string;
+      status?: EnumBookingStatusFilter<'Booking'> | $Enums.BookingStatus;
+      message?: StringNullableFilter<'Booking'> | string | null;
+      createdAt?: DateTimeFilter<'Booking'> | Date | string;
+      updatedAt?: DateTimeFilter<'Booking'> | Date | string;
+      property?: XOR<PropertyScalarRelationFilter, PropertyWhereInput>;
+      user?: XOR<UserScalarRelationFilter, UserWhereInput>;
+    },
+    'id'
+  >;
 
   export type BookingOrderByWithAggregationInput = {
-    id?: SortOrder
-    propertyId?: SortOrder
-    userId?: SortOrder
-    visitDate?: SortOrder
-    status?: SortOrder
-    message?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: BookingCountOrderByAggregateInput
-    _max?: BookingMaxOrderByAggregateInput
-    _min?: BookingMinOrderByAggregateInput
-  }
+    id?: SortOrder;
+    propertyId?: SortOrder;
+    userId?: SortOrder;
+    visitDate?: SortOrder;
+    status?: SortOrder;
+    message?: SortOrderInput | SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+    _count?: BookingCountOrderByAggregateInput;
+    _max?: BookingMaxOrderByAggregateInput;
+    _min?: BookingMinOrderByAggregateInput;
+  };
 
   export type BookingScalarWhereWithAggregatesInput = {
-    AND?: BookingScalarWhereWithAggregatesInput | BookingScalarWhereWithAggregatesInput[]
-    OR?: BookingScalarWhereWithAggregatesInput[]
-    NOT?: BookingScalarWhereWithAggregatesInput | BookingScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Booking"> | string
-    propertyId?: StringWithAggregatesFilter<"Booking"> | string
-    userId?: StringWithAggregatesFilter<"Booking"> | string
-    visitDate?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
-    status?: EnumBookingStatusWithAggregatesFilter<"Booking"> | $Enums.BookingStatus
-    message?: StringNullableWithAggregatesFilter<"Booking"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
-  }
+    AND?:
+      | BookingScalarWhereWithAggregatesInput
+      | BookingScalarWhereWithAggregatesInput[];
+    OR?: BookingScalarWhereWithAggregatesInput[];
+    NOT?:
+      | BookingScalarWhereWithAggregatesInput
+      | BookingScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<'Booking'> | string;
+    propertyId?: StringWithAggregatesFilter<'Booking'> | string;
+    userId?: StringWithAggregatesFilter<'Booking'> | string;
+    visitDate?: DateTimeWithAggregatesFilter<'Booking'> | Date | string;
+    status?:
+      | EnumBookingStatusWithAggregatesFilter<'Booking'>
+      | $Enums.BookingStatus;
+    message?: StringNullableWithAggregatesFilter<'Booking'> | string | null;
+    createdAt?: DateTimeWithAggregatesFilter<'Booking'> | Date | string;
+    updatedAt?: DateTimeWithAggregatesFilter<'Booking'> | Date | string;
+  };
 
   export type UserCreateInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    name: string
-    role?: $Enums.Role
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    properties?: PropertyCreateNestedManyWithoutOwnerInput
-    Bookings?: BookingCreateNestedManyWithoutUserInput
-  }
+    id?: string;
+    email: string;
+    passwordHash: string;
+    name: string;
+    role?: $Enums.Role;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    properties?: PropertyCreateNestedManyWithoutOwnerInput;
+    Bookings?: BookingCreateNestedManyWithoutUserInput;
+  };
 
   export type UserUncheckedCreateInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    name: string
-    role?: $Enums.Role
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    properties?: PropertyUncheckedCreateNestedManyWithoutOwnerInput
-    Bookings?: BookingUncheckedCreateNestedManyWithoutUserInput
-  }
+    id?: string;
+    email: string;
+    passwordHash: string;
+    name: string;
+    role?: $Enums.Role;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    properties?: PropertyUncheckedCreateNestedManyWithoutOwnerInput;
+    Bookings?: BookingUncheckedCreateNestedManyWithoutUserInput;
+  };
 
   export type UserUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    properties?: PropertyUpdateManyWithoutOwnerNestedInput
-    Bookings?: BookingUpdateManyWithoutUserNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    email?: StringFieldUpdateOperationsInput | string;
+    passwordHash?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    properties?: PropertyUpdateManyWithoutOwnerNestedInput;
+    Bookings?: BookingUpdateManyWithoutUserNestedInput;
+  };
 
   export type UserUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    properties?: PropertyUncheckedUpdateManyWithoutOwnerNestedInput
-    Bookings?: BookingUncheckedUpdateManyWithoutUserNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    email?: StringFieldUpdateOperationsInput | string;
+    passwordHash?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    properties?: PropertyUncheckedUpdateManyWithoutOwnerNestedInput;
+    Bookings?: BookingUncheckedUpdateManyWithoutUserNestedInput;
+  };
 
   export type UserCreateManyInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    name: string
-    role?: $Enums.Role
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
+    id?: string;
+    email: string;
+    passwordHash: string;
+    name: string;
+    role?: $Enums.Role;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
 
   export type UserUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    email?: StringFieldUpdateOperationsInput | string;
+    passwordHash?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type UserUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    email?: StringFieldUpdateOperationsInput | string;
+    passwordHash?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type PropertyCreateInput = {
-    id?: string
-    title: string
-    description: string
-    price: number
-    location: string
-    bedrooms: number
-    bathrooms: number
-    parking?: boolean
-    area?: number | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    owner: UserCreateNestedOneWithoutPropertiesInput
-    images?: PropertyImageCreateNestedManyWithoutPropertyInput
-    bookings?: BookingCreateNestedManyWithoutPropertyInput
-  }
+    id?: string;
+    title: string;
+    description: string;
+    price: number;
+    location: string;
+    bedrooms: number;
+    bathrooms: number;
+    parking?: boolean;
+    area?: number | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    owner: UserCreateNestedOneWithoutPropertiesInput;
+    images?: PropertyImageCreateNestedManyWithoutPropertyInput;
+    bookings?: BookingCreateNestedManyWithoutPropertyInput;
+  };
 
   export type PropertyUncheckedCreateInput = {
-    id?: string
-    ownerId: string
-    title: string
-    description: string
-    price: number
-    location: string
-    bedrooms: number
-    bathrooms: number
-    parking?: boolean
-    area?: number | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    images?: PropertyImageUncheckedCreateNestedManyWithoutPropertyInput
-    bookings?: BookingUncheckedCreateNestedManyWithoutPropertyInput
-  }
+    id?: string;
+    ownerId: string;
+    title: string;
+    description: string;
+    price: number;
+    location: string;
+    bedrooms: number;
+    bathrooms: number;
+    parking?: boolean;
+    area?: number | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    images?: PropertyImageUncheckedCreateNestedManyWithoutPropertyInput;
+    bookings?: BookingUncheckedCreateNestedManyWithoutPropertyInput;
+  };
 
   export type PropertyUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    location?: StringFieldUpdateOperationsInput | string
-    bedrooms?: IntFieldUpdateOperationsInput | number
-    bathrooms?: IntFieldUpdateOperationsInput | number
-    parking?: BoolFieldUpdateOperationsInput | boolean
-    area?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    owner?: UserUpdateOneRequiredWithoutPropertiesNestedInput
-    images?: PropertyImageUpdateManyWithoutPropertyNestedInput
-    bookings?: BookingUpdateManyWithoutPropertyNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: FloatFieldUpdateOperationsInput | number;
+    location?: StringFieldUpdateOperationsInput | string;
+    bedrooms?: IntFieldUpdateOperationsInput | number;
+    bathrooms?: IntFieldUpdateOperationsInput | number;
+    parking?: BoolFieldUpdateOperationsInput | boolean;
+    area?: NullableFloatFieldUpdateOperationsInput | number | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    owner?: UserUpdateOneRequiredWithoutPropertiesNestedInput;
+    images?: PropertyImageUpdateManyWithoutPropertyNestedInput;
+    bookings?: BookingUpdateManyWithoutPropertyNestedInput;
+  };
 
   export type PropertyUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    ownerId?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    location?: StringFieldUpdateOperationsInput | string
-    bedrooms?: IntFieldUpdateOperationsInput | number
-    bathrooms?: IntFieldUpdateOperationsInput | number
-    parking?: BoolFieldUpdateOperationsInput | boolean
-    area?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    images?: PropertyImageUncheckedUpdateManyWithoutPropertyNestedInput
-    bookings?: BookingUncheckedUpdateManyWithoutPropertyNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    ownerId?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: FloatFieldUpdateOperationsInput | number;
+    location?: StringFieldUpdateOperationsInput | string;
+    bedrooms?: IntFieldUpdateOperationsInput | number;
+    bathrooms?: IntFieldUpdateOperationsInput | number;
+    parking?: BoolFieldUpdateOperationsInput | boolean;
+    area?: NullableFloatFieldUpdateOperationsInput | number | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    images?: PropertyImageUncheckedUpdateManyWithoutPropertyNestedInput;
+    bookings?: BookingUncheckedUpdateManyWithoutPropertyNestedInput;
+  };
 
   export type PropertyCreateManyInput = {
-    id?: string
-    ownerId: string
-    title: string
-    description: string
-    price: number
-    location: string
-    bedrooms: number
-    bathrooms: number
-    parking?: boolean
-    area?: number | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
+    id?: string;
+    ownerId: string;
+    title: string;
+    description: string;
+    price: number;
+    location: string;
+    bedrooms: number;
+    bathrooms: number;
+    parking?: boolean;
+    area?: number | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
 
   export type PropertyUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    location?: StringFieldUpdateOperationsInput | string
-    bedrooms?: IntFieldUpdateOperationsInput | number
-    bathrooms?: IntFieldUpdateOperationsInput | number
-    parking?: BoolFieldUpdateOperationsInput | boolean
-    area?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: FloatFieldUpdateOperationsInput | number;
+    location?: StringFieldUpdateOperationsInput | string;
+    bedrooms?: IntFieldUpdateOperationsInput | number;
+    bathrooms?: IntFieldUpdateOperationsInput | number;
+    parking?: BoolFieldUpdateOperationsInput | boolean;
+    area?: NullableFloatFieldUpdateOperationsInput | number | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type PropertyUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    ownerId?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    location?: StringFieldUpdateOperationsInput | string
-    bedrooms?: IntFieldUpdateOperationsInput | number
-    bathrooms?: IntFieldUpdateOperationsInput | number
-    parking?: BoolFieldUpdateOperationsInput | boolean
-    area?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    ownerId?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: FloatFieldUpdateOperationsInput | number;
+    location?: StringFieldUpdateOperationsInput | string;
+    bedrooms?: IntFieldUpdateOperationsInput | number;
+    bathrooms?: IntFieldUpdateOperationsInput | number;
+    parking?: BoolFieldUpdateOperationsInput | boolean;
+    area?: NullableFloatFieldUpdateOperationsInput | number | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type PropertyImageCreateInput = {
-    id?: string
-    url: string
-    publicId: string
-    createdAt?: Date | string
-    property: PropertyCreateNestedOneWithoutImagesInput
-  }
+    id?: string;
+    url: string;
+    publicId: string;
+    createdAt?: Date | string;
+    property: PropertyCreateNestedOneWithoutImagesInput;
+  };
 
   export type PropertyImageUncheckedCreateInput = {
-    id?: string
-    propertyId: string
-    url: string
-    publicId: string
-    createdAt?: Date | string
-  }
+    id?: string;
+    propertyId: string;
+    url: string;
+    publicId: string;
+    createdAt?: Date | string;
+  };
 
   export type PropertyImageUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    publicId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    property?: PropertyUpdateOneRequiredWithoutImagesNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    publicId?: StringFieldUpdateOperationsInput | string;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    property?: PropertyUpdateOneRequiredWithoutImagesNestedInput;
+  };
 
   export type PropertyImageUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    propertyId?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    publicId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    propertyId?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    publicId?: StringFieldUpdateOperationsInput | string;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type PropertyImageCreateManyInput = {
-    id?: string
-    propertyId: string
-    url: string
-    publicId: string
-    createdAt?: Date | string
-  }
+    id?: string;
+    propertyId: string;
+    url: string;
+    publicId: string;
+    createdAt?: Date | string;
+  };
 
   export type PropertyImageUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    publicId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    publicId?: StringFieldUpdateOperationsInput | string;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type PropertyImageUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    propertyId?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    publicId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    propertyId?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    publicId?: StringFieldUpdateOperationsInput | string;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type BookingCreateInput = {
-    id?: string
-    visitDate: Date | string
-    status?: $Enums.BookingStatus
-    message?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    property: PropertyCreateNestedOneWithoutBookingsInput
-    user: UserCreateNestedOneWithoutBookingsInput
-  }
+    id?: string;
+    visitDate: Date | string;
+    status?: $Enums.BookingStatus;
+    message?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    property: PropertyCreateNestedOneWithoutBookingsInput;
+    user: UserCreateNestedOneWithoutBookingsInput;
+  };
 
   export type BookingUncheckedCreateInput = {
-    id?: string
-    propertyId: string
-    userId: string
-    visitDate: Date | string
-    status?: $Enums.BookingStatus
-    message?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
+    id?: string;
+    propertyId: string;
+    userId: string;
+    visitDate: Date | string;
+    status?: $Enums.BookingStatus;
+    message?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
 
   export type BookingUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    message?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    property?: PropertyUpdateOneRequiredWithoutBookingsNestedInput
-    user?: UserUpdateOneRequiredWithoutBookingsNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus;
+    message?: NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    property?: PropertyUpdateOneRequiredWithoutBookingsNestedInput;
+    user?: UserUpdateOneRequiredWithoutBookingsNestedInput;
+  };
 
   export type BookingUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    propertyId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    message?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    propertyId?: StringFieldUpdateOperationsInput | string;
+    userId?: StringFieldUpdateOperationsInput | string;
+    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus;
+    message?: NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type BookingCreateManyInput = {
-    id?: string
-    propertyId: string
-    userId: string
-    visitDate: Date | string
-    status?: $Enums.BookingStatus
-    message?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
+    id?: string;
+    propertyId: string;
+    userId: string;
+    visitDate: Date | string;
+    status?: $Enums.BookingStatus;
+    message?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
 
   export type BookingUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    message?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus;
+    message?: NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type BookingUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    propertyId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    message?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    propertyId?: StringFieldUpdateOperationsInput | string;
+    userId?: StringFieldUpdateOperationsInput | string;
+    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus;
+    message?: NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type StringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringFilter<$PrismaModel> | string
-  }
+    equals?: string | StringFieldRefInput<$PrismaModel>;
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>;
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>;
+    lt?: string | StringFieldRefInput<$PrismaModel>;
+    lte?: string | StringFieldRefInput<$PrismaModel>;
+    gt?: string | StringFieldRefInput<$PrismaModel>;
+    gte?: string | StringFieldRefInput<$PrismaModel>;
+    contains?: string | StringFieldRefInput<$PrismaModel>;
+    startsWith?: string | StringFieldRefInput<$PrismaModel>;
+    endsWith?: string | StringFieldRefInput<$PrismaModel>;
+    mode?: QueryMode;
+    not?: NestedStringFilter<$PrismaModel> | string;
+  };
 
   export type EnumRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
-  }
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>;
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>;
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role;
+  };
 
   export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string;
+  };
 
   export type PropertyListRelationFilter = {
-    every?: PropertyWhereInput
-    some?: PropertyWhereInput
-    none?: PropertyWhereInput
-  }
+    every?: PropertyWhereInput;
+    some?: PropertyWhereInput;
+    none?: PropertyWhereInput;
+  };
 
   export type BookingListRelationFilter = {
-    every?: BookingWhereInput
-    some?: BookingWhereInput
-    none?: BookingWhereInput
-  }
+    every?: BookingWhereInput;
+    some?: BookingWhereInput;
+    none?: BookingWhereInput;
+  };
 
   export type PropertyOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
+    _count?: SortOrder;
+  };
 
   export type BookingOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
+    _count?: SortOrder;
+  };
 
   export type UserCountOrderByAggregateInput = {
-    id?: SortOrder
-    email?: SortOrder
-    passwordHash?: SortOrder
-    name?: SortOrder
-    role?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
+    id?: SortOrder;
+    email?: SortOrder;
+    passwordHash?: SortOrder;
+    name?: SortOrder;
+    role?: SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+  };
 
   export type UserMaxOrderByAggregateInput = {
-    id?: SortOrder
-    email?: SortOrder
-    passwordHash?: SortOrder
-    name?: SortOrder
-    role?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
+    id?: SortOrder;
+    email?: SortOrder;
+    passwordHash?: SortOrder;
+    name?: SortOrder;
+    role?: SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+  };
 
   export type UserMinOrderByAggregateInput = {
-    id?: SortOrder
-    email?: SortOrder
-    passwordHash?: SortOrder
-    name?: SortOrder
-    role?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
+    id?: SortOrder;
+    email?: SortOrder;
+    passwordHash?: SortOrder;
+    name?: SortOrder;
+    role?: SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+  };
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
+    equals?: string | StringFieldRefInput<$PrismaModel>;
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>;
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>;
+    lt?: string | StringFieldRefInput<$PrismaModel>;
+    lte?: string | StringFieldRefInput<$PrismaModel>;
+    gt?: string | StringFieldRefInput<$PrismaModel>;
+    gte?: string | StringFieldRefInput<$PrismaModel>;
+    contains?: string | StringFieldRefInput<$PrismaModel>;
+    startsWith?: string | StringFieldRefInput<$PrismaModel>;
+    endsWith?: string | StringFieldRefInput<$PrismaModel>;
+    mode?: QueryMode;
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedStringFilter<$PrismaModel>;
+    _max?: NestedStringFilter<$PrismaModel>;
+  };
 
   export type EnumRoleWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumRoleFilter<$PrismaModel>
-    _max?: NestedEnumRoleFilter<$PrismaModel>
-  }
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>;
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>;
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedEnumRoleFilter<$PrismaModel>;
+    _max?: NestedEnumRoleFilter<$PrismaModel>;
+  };
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedDateTimeFilter<$PrismaModel>;
+    _max?: NestedDateTimeFilter<$PrismaModel>;
+  };
 
   export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
+    equals?: number | FloatFieldRefInput<$PrismaModel>;
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>;
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>;
+    lt?: number | FloatFieldRefInput<$PrismaModel>;
+    lte?: number | FloatFieldRefInput<$PrismaModel>;
+    gt?: number | FloatFieldRefInput<$PrismaModel>;
+    gte?: number | FloatFieldRefInput<$PrismaModel>;
+    not?: NestedFloatFilter<$PrismaModel> | number;
+  };
 
   export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
+    equals?: number | IntFieldRefInput<$PrismaModel>;
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>;
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>;
+    lt?: number | IntFieldRefInput<$PrismaModel>;
+    lte?: number | IntFieldRefInput<$PrismaModel>;
+    gt?: number | IntFieldRefInput<$PrismaModel>;
+    gte?: number | IntFieldRefInput<$PrismaModel>;
+    not?: NestedIntFilter<$PrismaModel> | number;
+  };
 
   export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>;
+    not?: NestedBoolFilter<$PrismaModel> | boolean;
+  };
 
   export type FloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null;
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null;
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null;
+    lt?: number | FloatFieldRefInput<$PrismaModel>;
+    lte?: number | FloatFieldRefInput<$PrismaModel>;
+    gt?: number | FloatFieldRefInput<$PrismaModel>;
+    gte?: number | FloatFieldRefInput<$PrismaModel>;
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null;
+  };
 
   export type UserScalarRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
-  }
+    is?: UserWhereInput;
+    isNot?: UserWhereInput;
+  };
 
   export type PropertyImageListRelationFilter = {
-    every?: PropertyImageWhereInput
-    some?: PropertyImageWhereInput
-    none?: PropertyImageWhereInput
-  }
+    every?: PropertyImageWhereInput;
+    some?: PropertyImageWhereInput;
+    none?: PropertyImageWhereInput;
+  };
 
   export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
+    sort: SortOrder;
+    nulls?: NullsOrder;
+  };
 
   export type PropertyImageOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
+    _count?: SortOrder;
+  };
 
   export type PropertyCountOrderByAggregateInput = {
-    id?: SortOrder
-    ownerId?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    price?: SortOrder
-    location?: SortOrder
-    bedrooms?: SortOrder
-    bathrooms?: SortOrder
-    parking?: SortOrder
-    area?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
+    id?: SortOrder;
+    ownerId?: SortOrder;
+    title?: SortOrder;
+    description?: SortOrder;
+    price?: SortOrder;
+    location?: SortOrder;
+    bedrooms?: SortOrder;
+    bathrooms?: SortOrder;
+    parking?: SortOrder;
+    area?: SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+  };
 
   export type PropertyAvgOrderByAggregateInput = {
-    price?: SortOrder
-    bedrooms?: SortOrder
-    bathrooms?: SortOrder
-    area?: SortOrder
-  }
+    price?: SortOrder;
+    bedrooms?: SortOrder;
+    bathrooms?: SortOrder;
+    area?: SortOrder;
+  };
 
   export type PropertyMaxOrderByAggregateInput = {
-    id?: SortOrder
-    ownerId?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    price?: SortOrder
-    location?: SortOrder
-    bedrooms?: SortOrder
-    bathrooms?: SortOrder
-    parking?: SortOrder
-    area?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
+    id?: SortOrder;
+    ownerId?: SortOrder;
+    title?: SortOrder;
+    description?: SortOrder;
+    price?: SortOrder;
+    location?: SortOrder;
+    bedrooms?: SortOrder;
+    bathrooms?: SortOrder;
+    parking?: SortOrder;
+    area?: SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+  };
 
   export type PropertyMinOrderByAggregateInput = {
-    id?: SortOrder
-    ownerId?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    price?: SortOrder
-    location?: SortOrder
-    bedrooms?: SortOrder
-    bathrooms?: SortOrder
-    parking?: SortOrder
-    area?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
+    id?: SortOrder;
+    ownerId?: SortOrder;
+    title?: SortOrder;
+    description?: SortOrder;
+    price?: SortOrder;
+    location?: SortOrder;
+    bedrooms?: SortOrder;
+    bathrooms?: SortOrder;
+    parking?: SortOrder;
+    area?: SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+  };
 
   export type PropertySumOrderByAggregateInput = {
-    price?: SortOrder
-    bedrooms?: SortOrder
-    bathrooms?: SortOrder
-    area?: SortOrder
-  }
+    price?: SortOrder;
+    bedrooms?: SortOrder;
+    bathrooms?: SortOrder;
+    area?: SortOrder;
+  };
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
-  }
+    equals?: number | FloatFieldRefInput<$PrismaModel>;
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>;
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>;
+    lt?: number | FloatFieldRefInput<$PrismaModel>;
+    lte?: number | FloatFieldRefInput<$PrismaModel>;
+    gt?: number | FloatFieldRefInput<$PrismaModel>;
+    gte?: number | FloatFieldRefInput<$PrismaModel>;
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _avg?: NestedFloatFilter<$PrismaModel>;
+    _sum?: NestedFloatFilter<$PrismaModel>;
+    _min?: NestedFloatFilter<$PrismaModel>;
+    _max?: NestedFloatFilter<$PrismaModel>;
+  };
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
+    equals?: number | IntFieldRefInput<$PrismaModel>;
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>;
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>;
+    lt?: number | IntFieldRefInput<$PrismaModel>;
+    lte?: number | IntFieldRefInput<$PrismaModel>;
+    gt?: number | IntFieldRefInput<$PrismaModel>;
+    gte?: number | IntFieldRefInput<$PrismaModel>;
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _avg?: NestedFloatFilter<$PrismaModel>;
+    _sum?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedIntFilter<$PrismaModel>;
+    _max?: NestedIntFilter<$PrismaModel>;
+  };
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>;
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedBoolFilter<$PrismaModel>;
+    _max?: NestedBoolFilter<$PrismaModel>;
+  };
 
   export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedFloatNullableFilter<$PrismaModel>
-    _min?: NestedFloatNullableFilter<$PrismaModel>
-    _max?: NestedFloatNullableFilter<$PrismaModel>
-  }
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null;
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null;
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null;
+    lt?: number | FloatFieldRefInput<$PrismaModel>;
+    lte?: number | FloatFieldRefInput<$PrismaModel>;
+    gt?: number | FloatFieldRefInput<$PrismaModel>;
+    gte?: number | FloatFieldRefInput<$PrismaModel>;
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null;
+    _count?: NestedIntNullableFilter<$PrismaModel>;
+    _avg?: NestedFloatNullableFilter<$PrismaModel>;
+    _sum?: NestedFloatNullableFilter<$PrismaModel>;
+    _min?: NestedFloatNullableFilter<$PrismaModel>;
+    _max?: NestedFloatNullableFilter<$PrismaModel>;
+  };
 
   export type PropertyScalarRelationFilter = {
-    is?: PropertyWhereInput
-    isNot?: PropertyWhereInput
-  }
+    is?: PropertyWhereInput;
+    isNot?: PropertyWhereInput;
+  };
 
   export type PropertyImageCountOrderByAggregateInput = {
-    id?: SortOrder
-    propertyId?: SortOrder
-    url?: SortOrder
-    publicId?: SortOrder
-    createdAt?: SortOrder
-  }
+    id?: SortOrder;
+    propertyId?: SortOrder;
+    url?: SortOrder;
+    publicId?: SortOrder;
+    createdAt?: SortOrder;
+  };
 
   export type PropertyImageMaxOrderByAggregateInput = {
-    id?: SortOrder
-    propertyId?: SortOrder
-    url?: SortOrder
-    publicId?: SortOrder
-    createdAt?: SortOrder
-  }
+    id?: SortOrder;
+    propertyId?: SortOrder;
+    url?: SortOrder;
+    publicId?: SortOrder;
+    createdAt?: SortOrder;
+  };
 
   export type PropertyImageMinOrderByAggregateInput = {
-    id?: SortOrder
-    propertyId?: SortOrder
-    url?: SortOrder
-    publicId?: SortOrder
-    createdAt?: SortOrder
-  }
+    id?: SortOrder;
+    propertyId?: SortOrder;
+    url?: SortOrder;
+    publicId?: SortOrder;
+    createdAt?: SortOrder;
+  };
 
   export type EnumBookingStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.BookingStatus | EnumBookingStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.BookingStatus[] | ListEnumBookingStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.BookingStatus[] | ListEnumBookingStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumBookingStatusFilter<$PrismaModel> | $Enums.BookingStatus
-  }
+    equals?:
+      | $Enums.BookingStatus
+      | EnumBookingStatusFieldRefInput<$PrismaModel>;
+    in?:
+      | $Enums.BookingStatus[]
+      | ListEnumBookingStatusFieldRefInput<$PrismaModel>;
+    notIn?:
+      | $Enums.BookingStatus[]
+      | ListEnumBookingStatusFieldRefInput<$PrismaModel>;
+    not?: NestedEnumBookingStatusFilter<$PrismaModel> | $Enums.BookingStatus;
+  };
 
   export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
+    equals?: string | StringFieldRefInput<$PrismaModel> | null;
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null;
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null;
+    lt?: string | StringFieldRefInput<$PrismaModel>;
+    lte?: string | StringFieldRefInput<$PrismaModel>;
+    gt?: string | StringFieldRefInput<$PrismaModel>;
+    gte?: string | StringFieldRefInput<$PrismaModel>;
+    contains?: string | StringFieldRefInput<$PrismaModel>;
+    startsWith?: string | StringFieldRefInput<$PrismaModel>;
+    endsWith?: string | StringFieldRefInput<$PrismaModel>;
+    mode?: QueryMode;
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null;
+  };
 
   export type BookingCountOrderByAggregateInput = {
-    id?: SortOrder
-    propertyId?: SortOrder
-    userId?: SortOrder
-    visitDate?: SortOrder
-    status?: SortOrder
-    message?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
+    id?: SortOrder;
+    propertyId?: SortOrder;
+    userId?: SortOrder;
+    visitDate?: SortOrder;
+    status?: SortOrder;
+    message?: SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+  };
 
   export type BookingMaxOrderByAggregateInput = {
-    id?: SortOrder
-    propertyId?: SortOrder
-    userId?: SortOrder
-    visitDate?: SortOrder
-    status?: SortOrder
-    message?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
+    id?: SortOrder;
+    propertyId?: SortOrder;
+    userId?: SortOrder;
+    visitDate?: SortOrder;
+    status?: SortOrder;
+    message?: SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+  };
 
   export type BookingMinOrderByAggregateInput = {
-    id?: SortOrder
-    propertyId?: SortOrder
-    userId?: SortOrder
-    visitDate?: SortOrder
-    status?: SortOrder
-    message?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
+    id?: SortOrder;
+    propertyId?: SortOrder;
+    userId?: SortOrder;
+    visitDate?: SortOrder;
+    status?: SortOrder;
+    message?: SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+  };
 
   export type EnumBookingStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.BookingStatus | EnumBookingStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.BookingStatus[] | ListEnumBookingStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.BookingStatus[] | ListEnumBookingStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumBookingStatusWithAggregatesFilter<$PrismaModel> | $Enums.BookingStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumBookingStatusFilter<$PrismaModel>
-    _max?: NestedEnumBookingStatusFilter<$PrismaModel>
-  }
+    equals?:
+      | $Enums.BookingStatus
+      | EnumBookingStatusFieldRefInput<$PrismaModel>;
+    in?:
+      | $Enums.BookingStatus[]
+      | ListEnumBookingStatusFieldRefInput<$PrismaModel>;
+    notIn?:
+      | $Enums.BookingStatus[]
+      | ListEnumBookingStatusFieldRefInput<$PrismaModel>;
+    not?:
+      | NestedEnumBookingStatusWithAggregatesFilter<$PrismaModel>
+      | $Enums.BookingStatus;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedEnumBookingStatusFilter<$PrismaModel>;
+    _max?: NestedEnumBookingStatusFilter<$PrismaModel>;
+  };
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
+    equals?: string | StringFieldRefInput<$PrismaModel> | null;
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null;
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null;
+    lt?: string | StringFieldRefInput<$PrismaModel>;
+    lte?: string | StringFieldRefInput<$PrismaModel>;
+    gt?: string | StringFieldRefInput<$PrismaModel>;
+    gte?: string | StringFieldRefInput<$PrismaModel>;
+    contains?: string | StringFieldRefInput<$PrismaModel>;
+    startsWith?: string | StringFieldRefInput<$PrismaModel>;
+    endsWith?: string | StringFieldRefInput<$PrismaModel>;
+    mode?: QueryMode;
+    not?:
+      | NestedStringNullableWithAggregatesFilter<$PrismaModel>
+      | string
+      | null;
+    _count?: NestedIntNullableFilter<$PrismaModel>;
+    _min?: NestedStringNullableFilter<$PrismaModel>;
+    _max?: NestedStringNullableFilter<$PrismaModel>;
+  };
 
   export type PropertyCreateNestedManyWithoutOwnerInput = {
-    create?: XOR<PropertyCreateWithoutOwnerInput, PropertyUncheckedCreateWithoutOwnerInput> | PropertyCreateWithoutOwnerInput[] | PropertyUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?: PropertyCreateOrConnectWithoutOwnerInput | PropertyCreateOrConnectWithoutOwnerInput[]
-    createMany?: PropertyCreateManyOwnerInputEnvelope
-    connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
-  }
+    create?:
+      | XOR<
+          PropertyCreateWithoutOwnerInput,
+          PropertyUncheckedCreateWithoutOwnerInput
+        >
+      | PropertyCreateWithoutOwnerInput[]
+      | PropertyUncheckedCreateWithoutOwnerInput[];
+    connectOrCreate?:
+      | PropertyCreateOrConnectWithoutOwnerInput
+      | PropertyCreateOrConnectWithoutOwnerInput[];
+    createMany?: PropertyCreateManyOwnerInputEnvelope;
+    connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[];
+  };
 
   export type BookingCreateNestedManyWithoutUserInput = {
-    create?: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput> | BookingCreateWithoutUserInput[] | BookingUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: BookingCreateOrConnectWithoutUserInput | BookingCreateOrConnectWithoutUserInput[]
-    createMany?: BookingCreateManyUserInputEnvelope
-    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-  }
+    create?:
+      | XOR<
+          BookingCreateWithoutUserInput,
+          BookingUncheckedCreateWithoutUserInput
+        >
+      | BookingCreateWithoutUserInput[]
+      | BookingUncheckedCreateWithoutUserInput[];
+    connectOrCreate?:
+      | BookingCreateOrConnectWithoutUserInput
+      | BookingCreateOrConnectWithoutUserInput[];
+    createMany?: BookingCreateManyUserInputEnvelope;
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+  };
 
   export type PropertyUncheckedCreateNestedManyWithoutOwnerInput = {
-    create?: XOR<PropertyCreateWithoutOwnerInput, PropertyUncheckedCreateWithoutOwnerInput> | PropertyCreateWithoutOwnerInput[] | PropertyUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?: PropertyCreateOrConnectWithoutOwnerInput | PropertyCreateOrConnectWithoutOwnerInput[]
-    createMany?: PropertyCreateManyOwnerInputEnvelope
-    connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
-  }
+    create?:
+      | XOR<
+          PropertyCreateWithoutOwnerInput,
+          PropertyUncheckedCreateWithoutOwnerInput
+        >
+      | PropertyCreateWithoutOwnerInput[]
+      | PropertyUncheckedCreateWithoutOwnerInput[];
+    connectOrCreate?:
+      | PropertyCreateOrConnectWithoutOwnerInput
+      | PropertyCreateOrConnectWithoutOwnerInput[];
+    createMany?: PropertyCreateManyOwnerInputEnvelope;
+    connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[];
+  };
 
   export type BookingUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput> | BookingCreateWithoutUserInput[] | BookingUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: BookingCreateOrConnectWithoutUserInput | BookingCreateOrConnectWithoutUserInput[]
-    createMany?: BookingCreateManyUserInputEnvelope
-    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-  }
+    create?:
+      | XOR<
+          BookingCreateWithoutUserInput,
+          BookingUncheckedCreateWithoutUserInput
+        >
+      | BookingCreateWithoutUserInput[]
+      | BookingUncheckedCreateWithoutUserInput[];
+    connectOrCreate?:
+      | BookingCreateOrConnectWithoutUserInput
+      | BookingCreateOrConnectWithoutUserInput[];
+    createMany?: BookingCreateManyUserInputEnvelope;
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+  };
 
   export type StringFieldUpdateOperationsInput = {
-    set?: string
-  }
+    set?: string;
+  };
 
   export type EnumRoleFieldUpdateOperationsInput = {
-    set?: $Enums.Role
-  }
+    set?: $Enums.Role;
+  };
 
   export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
+    set?: Date | string;
+  };
 
   export type PropertyUpdateManyWithoutOwnerNestedInput = {
-    create?: XOR<PropertyCreateWithoutOwnerInput, PropertyUncheckedCreateWithoutOwnerInput> | PropertyCreateWithoutOwnerInput[] | PropertyUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?: PropertyCreateOrConnectWithoutOwnerInput | PropertyCreateOrConnectWithoutOwnerInput[]
-    upsert?: PropertyUpsertWithWhereUniqueWithoutOwnerInput | PropertyUpsertWithWhereUniqueWithoutOwnerInput[]
-    createMany?: PropertyCreateManyOwnerInputEnvelope
-    set?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
-    disconnect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
-    delete?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
-    connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
-    update?: PropertyUpdateWithWhereUniqueWithoutOwnerInput | PropertyUpdateWithWhereUniqueWithoutOwnerInput[]
-    updateMany?: PropertyUpdateManyWithWhereWithoutOwnerInput | PropertyUpdateManyWithWhereWithoutOwnerInput[]
-    deleteMany?: PropertyScalarWhereInput | PropertyScalarWhereInput[]
-  }
+    create?:
+      | XOR<
+          PropertyCreateWithoutOwnerInput,
+          PropertyUncheckedCreateWithoutOwnerInput
+        >
+      | PropertyCreateWithoutOwnerInput[]
+      | PropertyUncheckedCreateWithoutOwnerInput[];
+    connectOrCreate?:
+      | PropertyCreateOrConnectWithoutOwnerInput
+      | PropertyCreateOrConnectWithoutOwnerInput[];
+    upsert?:
+      | PropertyUpsertWithWhereUniqueWithoutOwnerInput
+      | PropertyUpsertWithWhereUniqueWithoutOwnerInput[];
+    createMany?: PropertyCreateManyOwnerInputEnvelope;
+    set?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[];
+    disconnect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[];
+    delete?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[];
+    connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[];
+    update?:
+      | PropertyUpdateWithWhereUniqueWithoutOwnerInput
+      | PropertyUpdateWithWhereUniqueWithoutOwnerInput[];
+    updateMany?:
+      | PropertyUpdateManyWithWhereWithoutOwnerInput
+      | PropertyUpdateManyWithWhereWithoutOwnerInput[];
+    deleteMany?: PropertyScalarWhereInput | PropertyScalarWhereInput[];
+  };
 
   export type BookingUpdateManyWithoutUserNestedInput = {
-    create?: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput> | BookingCreateWithoutUserInput[] | BookingUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: BookingCreateOrConnectWithoutUserInput | BookingCreateOrConnectWithoutUserInput[]
-    upsert?: BookingUpsertWithWhereUniqueWithoutUserInput | BookingUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: BookingCreateManyUserInputEnvelope
-    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    update?: BookingUpdateWithWhereUniqueWithoutUserInput | BookingUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: BookingUpdateManyWithWhereWithoutUserInput | BookingUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[]
-  }
+    create?:
+      | XOR<
+          BookingCreateWithoutUserInput,
+          BookingUncheckedCreateWithoutUserInput
+        >
+      | BookingCreateWithoutUserInput[]
+      | BookingUncheckedCreateWithoutUserInput[];
+    connectOrCreate?:
+      | BookingCreateOrConnectWithoutUserInput
+      | BookingCreateOrConnectWithoutUserInput[];
+    upsert?:
+      | BookingUpsertWithWhereUniqueWithoutUserInput
+      | BookingUpsertWithWhereUniqueWithoutUserInput[];
+    createMany?: BookingCreateManyUserInputEnvelope;
+    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+    update?:
+      | BookingUpdateWithWhereUniqueWithoutUserInput
+      | BookingUpdateWithWhereUniqueWithoutUserInput[];
+    updateMany?:
+      | BookingUpdateManyWithWhereWithoutUserInput
+      | BookingUpdateManyWithWhereWithoutUserInput[];
+    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[];
+  };
 
   export type PropertyUncheckedUpdateManyWithoutOwnerNestedInput = {
-    create?: XOR<PropertyCreateWithoutOwnerInput, PropertyUncheckedCreateWithoutOwnerInput> | PropertyCreateWithoutOwnerInput[] | PropertyUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?: PropertyCreateOrConnectWithoutOwnerInput | PropertyCreateOrConnectWithoutOwnerInput[]
-    upsert?: PropertyUpsertWithWhereUniqueWithoutOwnerInput | PropertyUpsertWithWhereUniqueWithoutOwnerInput[]
-    createMany?: PropertyCreateManyOwnerInputEnvelope
-    set?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
-    disconnect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
-    delete?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
-    connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
-    update?: PropertyUpdateWithWhereUniqueWithoutOwnerInput | PropertyUpdateWithWhereUniqueWithoutOwnerInput[]
-    updateMany?: PropertyUpdateManyWithWhereWithoutOwnerInput | PropertyUpdateManyWithWhereWithoutOwnerInput[]
-    deleteMany?: PropertyScalarWhereInput | PropertyScalarWhereInput[]
-  }
+    create?:
+      | XOR<
+          PropertyCreateWithoutOwnerInput,
+          PropertyUncheckedCreateWithoutOwnerInput
+        >
+      | PropertyCreateWithoutOwnerInput[]
+      | PropertyUncheckedCreateWithoutOwnerInput[];
+    connectOrCreate?:
+      | PropertyCreateOrConnectWithoutOwnerInput
+      | PropertyCreateOrConnectWithoutOwnerInput[];
+    upsert?:
+      | PropertyUpsertWithWhereUniqueWithoutOwnerInput
+      | PropertyUpsertWithWhereUniqueWithoutOwnerInput[];
+    createMany?: PropertyCreateManyOwnerInputEnvelope;
+    set?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[];
+    disconnect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[];
+    delete?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[];
+    connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[];
+    update?:
+      | PropertyUpdateWithWhereUniqueWithoutOwnerInput
+      | PropertyUpdateWithWhereUniqueWithoutOwnerInput[];
+    updateMany?:
+      | PropertyUpdateManyWithWhereWithoutOwnerInput
+      | PropertyUpdateManyWithWhereWithoutOwnerInput[];
+    deleteMany?: PropertyScalarWhereInput | PropertyScalarWhereInput[];
+  };
 
   export type BookingUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput> | BookingCreateWithoutUserInput[] | BookingUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: BookingCreateOrConnectWithoutUserInput | BookingCreateOrConnectWithoutUserInput[]
-    upsert?: BookingUpsertWithWhereUniqueWithoutUserInput | BookingUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: BookingCreateManyUserInputEnvelope
-    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    update?: BookingUpdateWithWhereUniqueWithoutUserInput | BookingUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: BookingUpdateManyWithWhereWithoutUserInput | BookingUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[]
-  }
+    create?:
+      | XOR<
+          BookingCreateWithoutUserInput,
+          BookingUncheckedCreateWithoutUserInput
+        >
+      | BookingCreateWithoutUserInput[]
+      | BookingUncheckedCreateWithoutUserInput[];
+    connectOrCreate?:
+      | BookingCreateOrConnectWithoutUserInput
+      | BookingCreateOrConnectWithoutUserInput[];
+    upsert?:
+      | BookingUpsertWithWhereUniqueWithoutUserInput
+      | BookingUpsertWithWhereUniqueWithoutUserInput[];
+    createMany?: BookingCreateManyUserInputEnvelope;
+    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+    update?:
+      | BookingUpdateWithWhereUniqueWithoutUserInput
+      | BookingUpdateWithWhereUniqueWithoutUserInput[];
+    updateMany?:
+      | BookingUpdateManyWithWhereWithoutUserInput
+      | BookingUpdateManyWithWhereWithoutUserInput[];
+    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[];
+  };
 
   export type UserCreateNestedOneWithoutPropertiesInput = {
-    create?: XOR<UserCreateWithoutPropertiesInput, UserUncheckedCreateWithoutPropertiesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPropertiesInput
-    connect?: UserWhereUniqueInput
-  }
+    create?: XOR<
+      UserCreateWithoutPropertiesInput,
+      UserUncheckedCreateWithoutPropertiesInput
+    >;
+    connectOrCreate?: UserCreateOrConnectWithoutPropertiesInput;
+    connect?: UserWhereUniqueInput;
+  };
 
   export type PropertyImageCreateNestedManyWithoutPropertyInput = {
-    create?: XOR<PropertyImageCreateWithoutPropertyInput, PropertyImageUncheckedCreateWithoutPropertyInput> | PropertyImageCreateWithoutPropertyInput[] | PropertyImageUncheckedCreateWithoutPropertyInput[]
-    connectOrCreate?: PropertyImageCreateOrConnectWithoutPropertyInput | PropertyImageCreateOrConnectWithoutPropertyInput[]
-    createMany?: PropertyImageCreateManyPropertyInputEnvelope
-    connect?: PropertyImageWhereUniqueInput | PropertyImageWhereUniqueInput[]
-  }
+    create?:
+      | XOR<
+          PropertyImageCreateWithoutPropertyInput,
+          PropertyImageUncheckedCreateWithoutPropertyInput
+        >
+      | PropertyImageCreateWithoutPropertyInput[]
+      | PropertyImageUncheckedCreateWithoutPropertyInput[];
+    connectOrCreate?:
+      | PropertyImageCreateOrConnectWithoutPropertyInput
+      | PropertyImageCreateOrConnectWithoutPropertyInput[];
+    createMany?: PropertyImageCreateManyPropertyInputEnvelope;
+    connect?: PropertyImageWhereUniqueInput | PropertyImageWhereUniqueInput[];
+  };
 
   export type BookingCreateNestedManyWithoutPropertyInput = {
-    create?: XOR<BookingCreateWithoutPropertyInput, BookingUncheckedCreateWithoutPropertyInput> | BookingCreateWithoutPropertyInput[] | BookingUncheckedCreateWithoutPropertyInput[]
-    connectOrCreate?: BookingCreateOrConnectWithoutPropertyInput | BookingCreateOrConnectWithoutPropertyInput[]
-    createMany?: BookingCreateManyPropertyInputEnvelope
-    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-  }
+    create?:
+      | XOR<
+          BookingCreateWithoutPropertyInput,
+          BookingUncheckedCreateWithoutPropertyInput
+        >
+      | BookingCreateWithoutPropertyInput[]
+      | BookingUncheckedCreateWithoutPropertyInput[];
+    connectOrCreate?:
+      | BookingCreateOrConnectWithoutPropertyInput
+      | BookingCreateOrConnectWithoutPropertyInput[];
+    createMany?: BookingCreateManyPropertyInputEnvelope;
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+  };
 
   export type PropertyImageUncheckedCreateNestedManyWithoutPropertyInput = {
-    create?: XOR<PropertyImageCreateWithoutPropertyInput, PropertyImageUncheckedCreateWithoutPropertyInput> | PropertyImageCreateWithoutPropertyInput[] | PropertyImageUncheckedCreateWithoutPropertyInput[]
-    connectOrCreate?: PropertyImageCreateOrConnectWithoutPropertyInput | PropertyImageCreateOrConnectWithoutPropertyInput[]
-    createMany?: PropertyImageCreateManyPropertyInputEnvelope
-    connect?: PropertyImageWhereUniqueInput | PropertyImageWhereUniqueInput[]
-  }
+    create?:
+      | XOR<
+          PropertyImageCreateWithoutPropertyInput,
+          PropertyImageUncheckedCreateWithoutPropertyInput
+        >
+      | PropertyImageCreateWithoutPropertyInput[]
+      | PropertyImageUncheckedCreateWithoutPropertyInput[];
+    connectOrCreate?:
+      | PropertyImageCreateOrConnectWithoutPropertyInput
+      | PropertyImageCreateOrConnectWithoutPropertyInput[];
+    createMany?: PropertyImageCreateManyPropertyInputEnvelope;
+    connect?: PropertyImageWhereUniqueInput | PropertyImageWhereUniqueInput[];
+  };
 
   export type BookingUncheckedCreateNestedManyWithoutPropertyInput = {
-    create?: XOR<BookingCreateWithoutPropertyInput, BookingUncheckedCreateWithoutPropertyInput> | BookingCreateWithoutPropertyInput[] | BookingUncheckedCreateWithoutPropertyInput[]
-    connectOrCreate?: BookingCreateOrConnectWithoutPropertyInput | BookingCreateOrConnectWithoutPropertyInput[]
-    createMany?: BookingCreateManyPropertyInputEnvelope
-    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-  }
+    create?:
+      | XOR<
+          BookingCreateWithoutPropertyInput,
+          BookingUncheckedCreateWithoutPropertyInput
+        >
+      | BookingCreateWithoutPropertyInput[]
+      | BookingUncheckedCreateWithoutPropertyInput[];
+    connectOrCreate?:
+      | BookingCreateOrConnectWithoutPropertyInput
+      | BookingCreateOrConnectWithoutPropertyInput[];
+    createMany?: BookingCreateManyPropertyInputEnvelope;
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+  };
 
   export type FloatFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
+    set?: number;
+    increment?: number;
+    decrement?: number;
+    multiply?: number;
+    divide?: number;
+  };
 
   export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
+    set?: number;
+    increment?: number;
+    decrement?: number;
+    multiply?: number;
+    divide?: number;
+  };
 
   export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
+    set?: boolean;
+  };
 
   export type NullableFloatFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
+    set?: number | null;
+    increment?: number;
+    decrement?: number;
+    multiply?: number;
+    divide?: number;
+  };
 
   export type UserUpdateOneRequiredWithoutPropertiesNestedInput = {
-    create?: XOR<UserCreateWithoutPropertiesInput, UserUncheckedCreateWithoutPropertiesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPropertiesInput
-    upsert?: UserUpsertWithoutPropertiesInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPropertiesInput, UserUpdateWithoutPropertiesInput>, UserUncheckedUpdateWithoutPropertiesInput>
-  }
+    create?: XOR<
+      UserCreateWithoutPropertiesInput,
+      UserUncheckedCreateWithoutPropertiesInput
+    >;
+    connectOrCreate?: UserCreateOrConnectWithoutPropertiesInput;
+    upsert?: UserUpsertWithoutPropertiesInput;
+    connect?: UserWhereUniqueInput;
+    update?: XOR<
+      XOR<
+        UserUpdateToOneWithWhereWithoutPropertiesInput,
+        UserUpdateWithoutPropertiesInput
+      >,
+      UserUncheckedUpdateWithoutPropertiesInput
+    >;
+  };
 
   export type PropertyImageUpdateManyWithoutPropertyNestedInput = {
-    create?: XOR<PropertyImageCreateWithoutPropertyInput, PropertyImageUncheckedCreateWithoutPropertyInput> | PropertyImageCreateWithoutPropertyInput[] | PropertyImageUncheckedCreateWithoutPropertyInput[]
-    connectOrCreate?: PropertyImageCreateOrConnectWithoutPropertyInput | PropertyImageCreateOrConnectWithoutPropertyInput[]
-    upsert?: PropertyImageUpsertWithWhereUniqueWithoutPropertyInput | PropertyImageUpsertWithWhereUniqueWithoutPropertyInput[]
-    createMany?: PropertyImageCreateManyPropertyInputEnvelope
-    set?: PropertyImageWhereUniqueInput | PropertyImageWhereUniqueInput[]
-    disconnect?: PropertyImageWhereUniqueInput | PropertyImageWhereUniqueInput[]
-    delete?: PropertyImageWhereUniqueInput | PropertyImageWhereUniqueInput[]
-    connect?: PropertyImageWhereUniqueInput | PropertyImageWhereUniqueInput[]
-    update?: PropertyImageUpdateWithWhereUniqueWithoutPropertyInput | PropertyImageUpdateWithWhereUniqueWithoutPropertyInput[]
-    updateMany?: PropertyImageUpdateManyWithWhereWithoutPropertyInput | PropertyImageUpdateManyWithWhereWithoutPropertyInput[]
-    deleteMany?: PropertyImageScalarWhereInput | PropertyImageScalarWhereInput[]
-  }
+    create?:
+      | XOR<
+          PropertyImageCreateWithoutPropertyInput,
+          PropertyImageUncheckedCreateWithoutPropertyInput
+        >
+      | PropertyImageCreateWithoutPropertyInput[]
+      | PropertyImageUncheckedCreateWithoutPropertyInput[];
+    connectOrCreate?:
+      | PropertyImageCreateOrConnectWithoutPropertyInput
+      | PropertyImageCreateOrConnectWithoutPropertyInput[];
+    upsert?:
+      | PropertyImageUpsertWithWhereUniqueWithoutPropertyInput
+      | PropertyImageUpsertWithWhereUniqueWithoutPropertyInput[];
+    createMany?: PropertyImageCreateManyPropertyInputEnvelope;
+    set?: PropertyImageWhereUniqueInput | PropertyImageWhereUniqueInput[];
+    disconnect?:
+      | PropertyImageWhereUniqueInput
+      | PropertyImageWhereUniqueInput[];
+    delete?: PropertyImageWhereUniqueInput | PropertyImageWhereUniqueInput[];
+    connect?: PropertyImageWhereUniqueInput | PropertyImageWhereUniqueInput[];
+    update?:
+      | PropertyImageUpdateWithWhereUniqueWithoutPropertyInput
+      | PropertyImageUpdateWithWhereUniqueWithoutPropertyInput[];
+    updateMany?:
+      | PropertyImageUpdateManyWithWhereWithoutPropertyInput
+      | PropertyImageUpdateManyWithWhereWithoutPropertyInput[];
+    deleteMany?:
+      | PropertyImageScalarWhereInput
+      | PropertyImageScalarWhereInput[];
+  };
 
   export type BookingUpdateManyWithoutPropertyNestedInput = {
-    create?: XOR<BookingCreateWithoutPropertyInput, BookingUncheckedCreateWithoutPropertyInput> | BookingCreateWithoutPropertyInput[] | BookingUncheckedCreateWithoutPropertyInput[]
-    connectOrCreate?: BookingCreateOrConnectWithoutPropertyInput | BookingCreateOrConnectWithoutPropertyInput[]
-    upsert?: BookingUpsertWithWhereUniqueWithoutPropertyInput | BookingUpsertWithWhereUniqueWithoutPropertyInput[]
-    createMany?: BookingCreateManyPropertyInputEnvelope
-    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    update?: BookingUpdateWithWhereUniqueWithoutPropertyInput | BookingUpdateWithWhereUniqueWithoutPropertyInput[]
-    updateMany?: BookingUpdateManyWithWhereWithoutPropertyInput | BookingUpdateManyWithWhereWithoutPropertyInput[]
-    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[]
-  }
+    create?:
+      | XOR<
+          BookingCreateWithoutPropertyInput,
+          BookingUncheckedCreateWithoutPropertyInput
+        >
+      | BookingCreateWithoutPropertyInput[]
+      | BookingUncheckedCreateWithoutPropertyInput[];
+    connectOrCreate?:
+      | BookingCreateOrConnectWithoutPropertyInput
+      | BookingCreateOrConnectWithoutPropertyInput[];
+    upsert?:
+      | BookingUpsertWithWhereUniqueWithoutPropertyInput
+      | BookingUpsertWithWhereUniqueWithoutPropertyInput[];
+    createMany?: BookingCreateManyPropertyInputEnvelope;
+    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+    update?:
+      | BookingUpdateWithWhereUniqueWithoutPropertyInput
+      | BookingUpdateWithWhereUniqueWithoutPropertyInput[];
+    updateMany?:
+      | BookingUpdateManyWithWhereWithoutPropertyInput
+      | BookingUpdateManyWithWhereWithoutPropertyInput[];
+    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[];
+  };
 
   export type PropertyImageUncheckedUpdateManyWithoutPropertyNestedInput = {
-    create?: XOR<PropertyImageCreateWithoutPropertyInput, PropertyImageUncheckedCreateWithoutPropertyInput> | PropertyImageCreateWithoutPropertyInput[] | PropertyImageUncheckedCreateWithoutPropertyInput[]
-    connectOrCreate?: PropertyImageCreateOrConnectWithoutPropertyInput | PropertyImageCreateOrConnectWithoutPropertyInput[]
-    upsert?: PropertyImageUpsertWithWhereUniqueWithoutPropertyInput | PropertyImageUpsertWithWhereUniqueWithoutPropertyInput[]
-    createMany?: PropertyImageCreateManyPropertyInputEnvelope
-    set?: PropertyImageWhereUniqueInput | PropertyImageWhereUniqueInput[]
-    disconnect?: PropertyImageWhereUniqueInput | PropertyImageWhereUniqueInput[]
-    delete?: PropertyImageWhereUniqueInput | PropertyImageWhereUniqueInput[]
-    connect?: PropertyImageWhereUniqueInput | PropertyImageWhereUniqueInput[]
-    update?: PropertyImageUpdateWithWhereUniqueWithoutPropertyInput | PropertyImageUpdateWithWhereUniqueWithoutPropertyInput[]
-    updateMany?: PropertyImageUpdateManyWithWhereWithoutPropertyInput | PropertyImageUpdateManyWithWhereWithoutPropertyInput[]
-    deleteMany?: PropertyImageScalarWhereInput | PropertyImageScalarWhereInput[]
-  }
+    create?:
+      | XOR<
+          PropertyImageCreateWithoutPropertyInput,
+          PropertyImageUncheckedCreateWithoutPropertyInput
+        >
+      | PropertyImageCreateWithoutPropertyInput[]
+      | PropertyImageUncheckedCreateWithoutPropertyInput[];
+    connectOrCreate?:
+      | PropertyImageCreateOrConnectWithoutPropertyInput
+      | PropertyImageCreateOrConnectWithoutPropertyInput[];
+    upsert?:
+      | PropertyImageUpsertWithWhereUniqueWithoutPropertyInput
+      | PropertyImageUpsertWithWhereUniqueWithoutPropertyInput[];
+    createMany?: PropertyImageCreateManyPropertyInputEnvelope;
+    set?: PropertyImageWhereUniqueInput | PropertyImageWhereUniqueInput[];
+    disconnect?:
+      | PropertyImageWhereUniqueInput
+      | PropertyImageWhereUniqueInput[];
+    delete?: PropertyImageWhereUniqueInput | PropertyImageWhereUniqueInput[];
+    connect?: PropertyImageWhereUniqueInput | PropertyImageWhereUniqueInput[];
+    update?:
+      | PropertyImageUpdateWithWhereUniqueWithoutPropertyInput
+      | PropertyImageUpdateWithWhereUniqueWithoutPropertyInput[];
+    updateMany?:
+      | PropertyImageUpdateManyWithWhereWithoutPropertyInput
+      | PropertyImageUpdateManyWithWhereWithoutPropertyInput[];
+    deleteMany?:
+      | PropertyImageScalarWhereInput
+      | PropertyImageScalarWhereInput[];
+  };
 
   export type BookingUncheckedUpdateManyWithoutPropertyNestedInput = {
-    create?: XOR<BookingCreateWithoutPropertyInput, BookingUncheckedCreateWithoutPropertyInput> | BookingCreateWithoutPropertyInput[] | BookingUncheckedCreateWithoutPropertyInput[]
-    connectOrCreate?: BookingCreateOrConnectWithoutPropertyInput | BookingCreateOrConnectWithoutPropertyInput[]
-    upsert?: BookingUpsertWithWhereUniqueWithoutPropertyInput | BookingUpsertWithWhereUniqueWithoutPropertyInput[]
-    createMany?: BookingCreateManyPropertyInputEnvelope
-    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    update?: BookingUpdateWithWhereUniqueWithoutPropertyInput | BookingUpdateWithWhereUniqueWithoutPropertyInput[]
-    updateMany?: BookingUpdateManyWithWhereWithoutPropertyInput | BookingUpdateManyWithWhereWithoutPropertyInput[]
-    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[]
-  }
+    create?:
+      | XOR<
+          BookingCreateWithoutPropertyInput,
+          BookingUncheckedCreateWithoutPropertyInput
+        >
+      | BookingCreateWithoutPropertyInput[]
+      | BookingUncheckedCreateWithoutPropertyInput[];
+    connectOrCreate?:
+      | BookingCreateOrConnectWithoutPropertyInput
+      | BookingCreateOrConnectWithoutPropertyInput[];
+    upsert?:
+      | BookingUpsertWithWhereUniqueWithoutPropertyInput
+      | BookingUpsertWithWhereUniqueWithoutPropertyInput[];
+    createMany?: BookingCreateManyPropertyInputEnvelope;
+    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[];
+    update?:
+      | BookingUpdateWithWhereUniqueWithoutPropertyInput
+      | BookingUpdateWithWhereUniqueWithoutPropertyInput[];
+    updateMany?:
+      | BookingUpdateManyWithWhereWithoutPropertyInput
+      | BookingUpdateManyWithWhereWithoutPropertyInput[];
+    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[];
+  };
 
   export type PropertyCreateNestedOneWithoutImagesInput = {
-    create?: XOR<PropertyCreateWithoutImagesInput, PropertyUncheckedCreateWithoutImagesInput>
-    connectOrCreate?: PropertyCreateOrConnectWithoutImagesInput
-    connect?: PropertyWhereUniqueInput
-  }
+    create?: XOR<
+      PropertyCreateWithoutImagesInput,
+      PropertyUncheckedCreateWithoutImagesInput
+    >;
+    connectOrCreate?: PropertyCreateOrConnectWithoutImagesInput;
+    connect?: PropertyWhereUniqueInput;
+  };
 
   export type PropertyUpdateOneRequiredWithoutImagesNestedInput = {
-    create?: XOR<PropertyCreateWithoutImagesInput, PropertyUncheckedCreateWithoutImagesInput>
-    connectOrCreate?: PropertyCreateOrConnectWithoutImagesInput
-    upsert?: PropertyUpsertWithoutImagesInput
-    connect?: PropertyWhereUniqueInput
-    update?: XOR<XOR<PropertyUpdateToOneWithWhereWithoutImagesInput, PropertyUpdateWithoutImagesInput>, PropertyUncheckedUpdateWithoutImagesInput>
-  }
+    create?: XOR<
+      PropertyCreateWithoutImagesInput,
+      PropertyUncheckedCreateWithoutImagesInput
+    >;
+    connectOrCreate?: PropertyCreateOrConnectWithoutImagesInput;
+    upsert?: PropertyUpsertWithoutImagesInput;
+    connect?: PropertyWhereUniqueInput;
+    update?: XOR<
+      XOR<
+        PropertyUpdateToOneWithWhereWithoutImagesInput,
+        PropertyUpdateWithoutImagesInput
+      >,
+      PropertyUncheckedUpdateWithoutImagesInput
+    >;
+  };
 
   export type PropertyCreateNestedOneWithoutBookingsInput = {
-    create?: XOR<PropertyCreateWithoutBookingsInput, PropertyUncheckedCreateWithoutBookingsInput>
-    connectOrCreate?: PropertyCreateOrConnectWithoutBookingsInput
-    connect?: PropertyWhereUniqueInput
-  }
+    create?: XOR<
+      PropertyCreateWithoutBookingsInput,
+      PropertyUncheckedCreateWithoutBookingsInput
+    >;
+    connectOrCreate?: PropertyCreateOrConnectWithoutBookingsInput;
+    connect?: PropertyWhereUniqueInput;
+  };
 
   export type UserCreateNestedOneWithoutBookingsInput = {
-    create?: XOR<UserCreateWithoutBookingsInput, UserUncheckedCreateWithoutBookingsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutBookingsInput
-    connect?: UserWhereUniqueInput
-  }
+    create?: XOR<
+      UserCreateWithoutBookingsInput,
+      UserUncheckedCreateWithoutBookingsInput
+    >;
+    connectOrCreate?: UserCreateOrConnectWithoutBookingsInput;
+    connect?: UserWhereUniqueInput;
+  };
 
   export type EnumBookingStatusFieldUpdateOperationsInput = {
-    set?: $Enums.BookingStatus
-  }
+    set?: $Enums.BookingStatus;
+  };
 
   export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
+    set?: string | null;
+  };
 
   export type PropertyUpdateOneRequiredWithoutBookingsNestedInput = {
-    create?: XOR<PropertyCreateWithoutBookingsInput, PropertyUncheckedCreateWithoutBookingsInput>
-    connectOrCreate?: PropertyCreateOrConnectWithoutBookingsInput
-    upsert?: PropertyUpsertWithoutBookingsInput
-    connect?: PropertyWhereUniqueInput
-    update?: XOR<XOR<PropertyUpdateToOneWithWhereWithoutBookingsInput, PropertyUpdateWithoutBookingsInput>, PropertyUncheckedUpdateWithoutBookingsInput>
-  }
+    create?: XOR<
+      PropertyCreateWithoutBookingsInput,
+      PropertyUncheckedCreateWithoutBookingsInput
+    >;
+    connectOrCreate?: PropertyCreateOrConnectWithoutBookingsInput;
+    upsert?: PropertyUpsertWithoutBookingsInput;
+    connect?: PropertyWhereUniqueInput;
+    update?: XOR<
+      XOR<
+        PropertyUpdateToOneWithWhereWithoutBookingsInput,
+        PropertyUpdateWithoutBookingsInput
+      >,
+      PropertyUncheckedUpdateWithoutBookingsInput
+    >;
+  };
 
   export type UserUpdateOneRequiredWithoutBookingsNestedInput = {
-    create?: XOR<UserCreateWithoutBookingsInput, UserUncheckedCreateWithoutBookingsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutBookingsInput
-    upsert?: UserUpsertWithoutBookingsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBookingsInput, UserUpdateWithoutBookingsInput>, UserUncheckedUpdateWithoutBookingsInput>
-  }
+    create?: XOR<
+      UserCreateWithoutBookingsInput,
+      UserUncheckedCreateWithoutBookingsInput
+    >;
+    connectOrCreate?: UserCreateOrConnectWithoutBookingsInput;
+    upsert?: UserUpsertWithoutBookingsInput;
+    connect?: UserWhereUniqueInput;
+    update?: XOR<
+      XOR<
+        UserUpdateToOneWithWhereWithoutBookingsInput,
+        UserUpdateWithoutBookingsInput
+      >,
+      UserUncheckedUpdateWithoutBookingsInput
+    >;
+  };
 
   export type NestedStringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringFilter<$PrismaModel> | string
-  }
+    equals?: string | StringFieldRefInput<$PrismaModel>;
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>;
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>;
+    lt?: string | StringFieldRefInput<$PrismaModel>;
+    lte?: string | StringFieldRefInput<$PrismaModel>;
+    gt?: string | StringFieldRefInput<$PrismaModel>;
+    gte?: string | StringFieldRefInput<$PrismaModel>;
+    contains?: string | StringFieldRefInput<$PrismaModel>;
+    startsWith?: string | StringFieldRefInput<$PrismaModel>;
+    endsWith?: string | StringFieldRefInput<$PrismaModel>;
+    not?: NestedStringFilter<$PrismaModel> | string;
+  };
 
   export type NestedEnumRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
-  }
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>;
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>;
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role;
+  };
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string;
+  };
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
+    equals?: string | StringFieldRefInput<$PrismaModel>;
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>;
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>;
+    lt?: string | StringFieldRefInput<$PrismaModel>;
+    lte?: string | StringFieldRefInput<$PrismaModel>;
+    gt?: string | StringFieldRefInput<$PrismaModel>;
+    gte?: string | StringFieldRefInput<$PrismaModel>;
+    contains?: string | StringFieldRefInput<$PrismaModel>;
+    startsWith?: string | StringFieldRefInput<$PrismaModel>;
+    endsWith?: string | StringFieldRefInput<$PrismaModel>;
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedStringFilter<$PrismaModel>;
+    _max?: NestedStringFilter<$PrismaModel>;
+  };
 
   export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
+    equals?: number | IntFieldRefInput<$PrismaModel>;
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>;
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>;
+    lt?: number | IntFieldRefInput<$PrismaModel>;
+    lte?: number | IntFieldRefInput<$PrismaModel>;
+    gt?: number | IntFieldRefInput<$PrismaModel>;
+    gte?: number | IntFieldRefInput<$PrismaModel>;
+    not?: NestedIntFilter<$PrismaModel> | number;
+  };
 
   export type NestedEnumRoleWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumRoleFilter<$PrismaModel>
-    _max?: NestedEnumRoleFilter<$PrismaModel>
-  }
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>;
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>;
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedEnumRoleFilter<$PrismaModel>;
+    _max?: NestedEnumRoleFilter<$PrismaModel>;
+  };
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedDateTimeFilter<$PrismaModel>;
+    _max?: NestedDateTimeFilter<$PrismaModel>;
+  };
 
   export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
+    equals?: number | FloatFieldRefInput<$PrismaModel>;
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>;
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>;
+    lt?: number | FloatFieldRefInput<$PrismaModel>;
+    lte?: number | FloatFieldRefInput<$PrismaModel>;
+    gt?: number | FloatFieldRefInput<$PrismaModel>;
+    gte?: number | FloatFieldRefInput<$PrismaModel>;
+    not?: NestedFloatFilter<$PrismaModel> | number;
+  };
 
   export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>;
+    not?: NestedBoolFilter<$PrismaModel> | boolean;
+  };
 
   export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null;
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null;
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null;
+    lt?: number | FloatFieldRefInput<$PrismaModel>;
+    lte?: number | FloatFieldRefInput<$PrismaModel>;
+    gt?: number | FloatFieldRefInput<$PrismaModel>;
+    gte?: number | FloatFieldRefInput<$PrismaModel>;
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null;
+  };
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
-  }
+    equals?: number | FloatFieldRefInput<$PrismaModel>;
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>;
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>;
+    lt?: number | FloatFieldRefInput<$PrismaModel>;
+    lte?: number | FloatFieldRefInput<$PrismaModel>;
+    gt?: number | FloatFieldRefInput<$PrismaModel>;
+    gte?: number | FloatFieldRefInput<$PrismaModel>;
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _avg?: NestedFloatFilter<$PrismaModel>;
+    _sum?: NestedFloatFilter<$PrismaModel>;
+    _min?: NestedFloatFilter<$PrismaModel>;
+    _max?: NestedFloatFilter<$PrismaModel>;
+  };
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
+    equals?: number | IntFieldRefInput<$PrismaModel>;
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>;
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>;
+    lt?: number | IntFieldRefInput<$PrismaModel>;
+    lte?: number | IntFieldRefInput<$PrismaModel>;
+    gt?: number | IntFieldRefInput<$PrismaModel>;
+    gte?: number | IntFieldRefInput<$PrismaModel>;
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _avg?: NestedFloatFilter<$PrismaModel>;
+    _sum?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedIntFilter<$PrismaModel>;
+    _max?: NestedIntFilter<$PrismaModel>;
+  };
 
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>;
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedBoolFilter<$PrismaModel>;
+    _max?: NestedBoolFilter<$PrismaModel>;
+  };
 
   export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedFloatNullableFilter<$PrismaModel>
-    _min?: NestedFloatNullableFilter<$PrismaModel>
-    _max?: NestedFloatNullableFilter<$PrismaModel>
-  }
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null;
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null;
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null;
+    lt?: number | FloatFieldRefInput<$PrismaModel>;
+    lte?: number | FloatFieldRefInput<$PrismaModel>;
+    gt?: number | FloatFieldRefInput<$PrismaModel>;
+    gte?: number | FloatFieldRefInput<$PrismaModel>;
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null;
+    _count?: NestedIntNullableFilter<$PrismaModel>;
+    _avg?: NestedFloatNullableFilter<$PrismaModel>;
+    _sum?: NestedFloatNullableFilter<$PrismaModel>;
+    _min?: NestedFloatNullableFilter<$PrismaModel>;
+    _max?: NestedFloatNullableFilter<$PrismaModel>;
+  };
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
+    equals?: number | IntFieldRefInput<$PrismaModel> | null;
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null;
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null;
+    lt?: number | IntFieldRefInput<$PrismaModel>;
+    lte?: number | IntFieldRefInput<$PrismaModel>;
+    gt?: number | IntFieldRefInput<$PrismaModel>;
+    gte?: number | IntFieldRefInput<$PrismaModel>;
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null;
+  };
 
   export type NestedEnumBookingStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.BookingStatus | EnumBookingStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.BookingStatus[] | ListEnumBookingStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.BookingStatus[] | ListEnumBookingStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumBookingStatusFilter<$PrismaModel> | $Enums.BookingStatus
-  }
+    equals?:
+      | $Enums.BookingStatus
+      | EnumBookingStatusFieldRefInput<$PrismaModel>;
+    in?:
+      | $Enums.BookingStatus[]
+      | ListEnumBookingStatusFieldRefInput<$PrismaModel>;
+    notIn?:
+      | $Enums.BookingStatus[]
+      | ListEnumBookingStatusFieldRefInput<$PrismaModel>;
+    not?: NestedEnumBookingStatusFilter<$PrismaModel> | $Enums.BookingStatus;
+  };
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
+    equals?: string | StringFieldRefInput<$PrismaModel> | null;
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null;
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null;
+    lt?: string | StringFieldRefInput<$PrismaModel>;
+    lte?: string | StringFieldRefInput<$PrismaModel>;
+    gt?: string | StringFieldRefInput<$PrismaModel>;
+    gte?: string | StringFieldRefInput<$PrismaModel>;
+    contains?: string | StringFieldRefInput<$PrismaModel>;
+    startsWith?: string | StringFieldRefInput<$PrismaModel>;
+    endsWith?: string | StringFieldRefInput<$PrismaModel>;
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null;
+  };
 
-  export type NestedEnumBookingStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.BookingStatus | EnumBookingStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.BookingStatus[] | ListEnumBookingStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.BookingStatus[] | ListEnumBookingStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumBookingStatusWithAggregatesFilter<$PrismaModel> | $Enums.BookingStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumBookingStatusFilter<$PrismaModel>
-    _max?: NestedEnumBookingStatusFilter<$PrismaModel>
-  }
+  export type NestedEnumBookingStatusWithAggregatesFilter<
+    $PrismaModel = never,
+  > = {
+    equals?:
+      | $Enums.BookingStatus
+      | EnumBookingStatusFieldRefInput<$PrismaModel>;
+    in?:
+      | $Enums.BookingStatus[]
+      | ListEnumBookingStatusFieldRefInput<$PrismaModel>;
+    notIn?:
+      | $Enums.BookingStatus[]
+      | ListEnumBookingStatusFieldRefInput<$PrismaModel>;
+    not?:
+      | NestedEnumBookingStatusWithAggregatesFilter<$PrismaModel>
+      | $Enums.BookingStatus;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedEnumBookingStatusFilter<$PrismaModel>;
+    _max?: NestedEnumBookingStatusFilter<$PrismaModel>;
+  };
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
+    equals?: string | StringFieldRefInput<$PrismaModel> | null;
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null;
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null;
+    lt?: string | StringFieldRefInput<$PrismaModel>;
+    lte?: string | StringFieldRefInput<$PrismaModel>;
+    gt?: string | StringFieldRefInput<$PrismaModel>;
+    gte?: string | StringFieldRefInput<$PrismaModel>;
+    contains?: string | StringFieldRefInput<$PrismaModel>;
+    startsWith?: string | StringFieldRefInput<$PrismaModel>;
+    endsWith?: string | StringFieldRefInput<$PrismaModel>;
+    not?:
+      | NestedStringNullableWithAggregatesFilter<$PrismaModel>
+      | string
+      | null;
+    _count?: NestedIntNullableFilter<$PrismaModel>;
+    _min?: NestedStringNullableFilter<$PrismaModel>;
+    _max?: NestedStringNullableFilter<$PrismaModel>;
+  };
 
   export type PropertyCreateWithoutOwnerInput = {
-    id?: string
-    title: string
-    description: string
-    price: number
-    location: string
-    bedrooms: number
-    bathrooms: number
-    parking?: boolean
-    area?: number | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    images?: PropertyImageCreateNestedManyWithoutPropertyInput
-    bookings?: BookingCreateNestedManyWithoutPropertyInput
-  }
+    id?: string;
+    title: string;
+    description: string;
+    price: number;
+    location: string;
+    bedrooms: number;
+    bathrooms: number;
+    parking?: boolean;
+    area?: number | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    images?: PropertyImageCreateNestedManyWithoutPropertyInput;
+    bookings?: BookingCreateNestedManyWithoutPropertyInput;
+  };
 
   export type PropertyUncheckedCreateWithoutOwnerInput = {
-    id?: string
-    title: string
-    description: string
-    price: number
-    location: string
-    bedrooms: number
-    bathrooms: number
-    parking?: boolean
-    area?: number | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    images?: PropertyImageUncheckedCreateNestedManyWithoutPropertyInput
-    bookings?: BookingUncheckedCreateNestedManyWithoutPropertyInput
-  }
+    id?: string;
+    title: string;
+    description: string;
+    price: number;
+    location: string;
+    bedrooms: number;
+    bathrooms: number;
+    parking?: boolean;
+    area?: number | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    images?: PropertyImageUncheckedCreateNestedManyWithoutPropertyInput;
+    bookings?: BookingUncheckedCreateNestedManyWithoutPropertyInput;
+  };
 
   export type PropertyCreateOrConnectWithoutOwnerInput = {
-    where: PropertyWhereUniqueInput
-    create: XOR<PropertyCreateWithoutOwnerInput, PropertyUncheckedCreateWithoutOwnerInput>
-  }
+    where: PropertyWhereUniqueInput;
+    create: XOR<
+      PropertyCreateWithoutOwnerInput,
+      PropertyUncheckedCreateWithoutOwnerInput
+    >;
+  };
 
   export type PropertyCreateManyOwnerInputEnvelope = {
-    data: PropertyCreateManyOwnerInput | PropertyCreateManyOwnerInput[]
-    skipDuplicates?: boolean
-  }
+    data: PropertyCreateManyOwnerInput | PropertyCreateManyOwnerInput[];
+    skipDuplicates?: boolean;
+  };
 
   export type BookingCreateWithoutUserInput = {
-    id?: string
-    visitDate: Date | string
-    status?: $Enums.BookingStatus
-    message?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    property: PropertyCreateNestedOneWithoutBookingsInput
-  }
+    id?: string;
+    visitDate: Date | string;
+    status?: $Enums.BookingStatus;
+    message?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    property: PropertyCreateNestedOneWithoutBookingsInput;
+  };
 
   export type BookingUncheckedCreateWithoutUserInput = {
-    id?: string
-    propertyId: string
-    visitDate: Date | string
-    status?: $Enums.BookingStatus
-    message?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
+    id?: string;
+    propertyId: string;
+    visitDate: Date | string;
+    status?: $Enums.BookingStatus;
+    message?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
 
   export type BookingCreateOrConnectWithoutUserInput = {
-    where: BookingWhereUniqueInput
-    create: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput>
-  }
+    where: BookingWhereUniqueInput;
+    create: XOR<
+      BookingCreateWithoutUserInput,
+      BookingUncheckedCreateWithoutUserInput
+    >;
+  };
 
   export type BookingCreateManyUserInputEnvelope = {
-    data: BookingCreateManyUserInput | BookingCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
+    data: BookingCreateManyUserInput | BookingCreateManyUserInput[];
+    skipDuplicates?: boolean;
+  };
 
   export type PropertyUpsertWithWhereUniqueWithoutOwnerInput = {
-    where: PropertyWhereUniqueInput
-    update: XOR<PropertyUpdateWithoutOwnerInput, PropertyUncheckedUpdateWithoutOwnerInput>
-    create: XOR<PropertyCreateWithoutOwnerInput, PropertyUncheckedCreateWithoutOwnerInput>
-  }
+    where: PropertyWhereUniqueInput;
+    update: XOR<
+      PropertyUpdateWithoutOwnerInput,
+      PropertyUncheckedUpdateWithoutOwnerInput
+    >;
+    create: XOR<
+      PropertyCreateWithoutOwnerInput,
+      PropertyUncheckedCreateWithoutOwnerInput
+    >;
+  };
 
   export type PropertyUpdateWithWhereUniqueWithoutOwnerInput = {
-    where: PropertyWhereUniqueInput
-    data: XOR<PropertyUpdateWithoutOwnerInput, PropertyUncheckedUpdateWithoutOwnerInput>
-  }
+    where: PropertyWhereUniqueInput;
+    data: XOR<
+      PropertyUpdateWithoutOwnerInput,
+      PropertyUncheckedUpdateWithoutOwnerInput
+    >;
+  };
 
   export type PropertyUpdateManyWithWhereWithoutOwnerInput = {
-    where: PropertyScalarWhereInput
-    data: XOR<PropertyUpdateManyMutationInput, PropertyUncheckedUpdateManyWithoutOwnerInput>
-  }
+    where: PropertyScalarWhereInput;
+    data: XOR<
+      PropertyUpdateManyMutationInput,
+      PropertyUncheckedUpdateManyWithoutOwnerInput
+    >;
+  };
 
   export type PropertyScalarWhereInput = {
-    AND?: PropertyScalarWhereInput | PropertyScalarWhereInput[]
-    OR?: PropertyScalarWhereInput[]
-    NOT?: PropertyScalarWhereInput | PropertyScalarWhereInput[]
-    id?: StringFilter<"Property"> | string
-    ownerId?: StringFilter<"Property"> | string
-    title?: StringFilter<"Property"> | string
-    description?: StringFilter<"Property"> | string
-    price?: FloatFilter<"Property"> | number
-    location?: StringFilter<"Property"> | string
-    bedrooms?: IntFilter<"Property"> | number
-    bathrooms?: IntFilter<"Property"> | number
-    parking?: BoolFilter<"Property"> | boolean
-    area?: FloatNullableFilter<"Property"> | number | null
-    createdAt?: DateTimeFilter<"Property"> | Date | string
-    updatedAt?: DateTimeFilter<"Property"> | Date | string
-  }
+    AND?: PropertyScalarWhereInput | PropertyScalarWhereInput[];
+    OR?: PropertyScalarWhereInput[];
+    NOT?: PropertyScalarWhereInput | PropertyScalarWhereInput[];
+    id?: StringFilter<'Property'> | string;
+    ownerId?: StringFilter<'Property'> | string;
+    title?: StringFilter<'Property'> | string;
+    description?: StringFilter<'Property'> | string;
+    price?: FloatFilter<'Property'> | number;
+    location?: StringFilter<'Property'> | string;
+    bedrooms?: IntFilter<'Property'> | number;
+    bathrooms?: IntFilter<'Property'> | number;
+    parking?: BoolFilter<'Property'> | boolean;
+    area?: FloatNullableFilter<'Property'> | number | null;
+    createdAt?: DateTimeFilter<'Property'> | Date | string;
+    updatedAt?: DateTimeFilter<'Property'> | Date | string;
+  };
 
   export type BookingUpsertWithWhereUniqueWithoutUserInput = {
-    where: BookingWhereUniqueInput
-    update: XOR<BookingUpdateWithoutUserInput, BookingUncheckedUpdateWithoutUserInput>
-    create: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput>
-  }
+    where: BookingWhereUniqueInput;
+    update: XOR<
+      BookingUpdateWithoutUserInput,
+      BookingUncheckedUpdateWithoutUserInput
+    >;
+    create: XOR<
+      BookingCreateWithoutUserInput,
+      BookingUncheckedCreateWithoutUserInput
+    >;
+  };
 
   export type BookingUpdateWithWhereUniqueWithoutUserInput = {
-    where: BookingWhereUniqueInput
-    data: XOR<BookingUpdateWithoutUserInput, BookingUncheckedUpdateWithoutUserInput>
-  }
+    where: BookingWhereUniqueInput;
+    data: XOR<
+      BookingUpdateWithoutUserInput,
+      BookingUncheckedUpdateWithoutUserInput
+    >;
+  };
 
   export type BookingUpdateManyWithWhereWithoutUserInput = {
-    where: BookingScalarWhereInput
-    data: XOR<BookingUpdateManyMutationInput, BookingUncheckedUpdateManyWithoutUserInput>
-  }
+    where: BookingScalarWhereInput;
+    data: XOR<
+      BookingUpdateManyMutationInput,
+      BookingUncheckedUpdateManyWithoutUserInput
+    >;
+  };
 
   export type BookingScalarWhereInput = {
-    AND?: BookingScalarWhereInput | BookingScalarWhereInput[]
-    OR?: BookingScalarWhereInput[]
-    NOT?: BookingScalarWhereInput | BookingScalarWhereInput[]
-    id?: StringFilter<"Booking"> | string
-    propertyId?: StringFilter<"Booking"> | string
-    userId?: StringFilter<"Booking"> | string
-    visitDate?: DateTimeFilter<"Booking"> | Date | string
-    status?: EnumBookingStatusFilter<"Booking"> | $Enums.BookingStatus
-    message?: StringNullableFilter<"Booking"> | string | null
-    createdAt?: DateTimeFilter<"Booking"> | Date | string
-    updatedAt?: DateTimeFilter<"Booking"> | Date | string
-  }
+    AND?: BookingScalarWhereInput | BookingScalarWhereInput[];
+    OR?: BookingScalarWhereInput[];
+    NOT?: BookingScalarWhereInput | BookingScalarWhereInput[];
+    id?: StringFilter<'Booking'> | string;
+    propertyId?: StringFilter<'Booking'> | string;
+    userId?: StringFilter<'Booking'> | string;
+    visitDate?: DateTimeFilter<'Booking'> | Date | string;
+    status?: EnumBookingStatusFilter<'Booking'> | $Enums.BookingStatus;
+    message?: StringNullableFilter<'Booking'> | string | null;
+    createdAt?: DateTimeFilter<'Booking'> | Date | string;
+    updatedAt?: DateTimeFilter<'Booking'> | Date | string;
+  };
 
   export type UserCreateWithoutPropertiesInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    name: string
-    role?: $Enums.Role
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    Bookings?: BookingCreateNestedManyWithoutUserInput
-  }
+    id?: string;
+    email: string;
+    passwordHash: string;
+    name: string;
+    role?: $Enums.Role;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    Bookings?: BookingCreateNestedManyWithoutUserInput;
+  };
 
   export type UserUncheckedCreateWithoutPropertiesInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    name: string
-    role?: $Enums.Role
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    Bookings?: BookingUncheckedCreateNestedManyWithoutUserInput
-  }
+    id?: string;
+    email: string;
+    passwordHash: string;
+    name: string;
+    role?: $Enums.Role;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    Bookings?: BookingUncheckedCreateNestedManyWithoutUserInput;
+  };
 
   export type UserCreateOrConnectWithoutPropertiesInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutPropertiesInput, UserUncheckedCreateWithoutPropertiesInput>
-  }
+    where: UserWhereUniqueInput;
+    create: XOR<
+      UserCreateWithoutPropertiesInput,
+      UserUncheckedCreateWithoutPropertiesInput
+    >;
+  };
 
   export type PropertyImageCreateWithoutPropertyInput = {
-    id?: string
-    url: string
-    publicId: string
-    createdAt?: Date | string
-  }
+    id?: string;
+    url: string;
+    publicId: string;
+    createdAt?: Date | string;
+  };
 
   export type PropertyImageUncheckedCreateWithoutPropertyInput = {
-    id?: string
-    url: string
-    publicId: string
-    createdAt?: Date | string
-  }
+    id?: string;
+    url: string;
+    publicId: string;
+    createdAt?: Date | string;
+  };
 
   export type PropertyImageCreateOrConnectWithoutPropertyInput = {
-    where: PropertyImageWhereUniqueInput
-    create: XOR<PropertyImageCreateWithoutPropertyInput, PropertyImageUncheckedCreateWithoutPropertyInput>
-  }
+    where: PropertyImageWhereUniqueInput;
+    create: XOR<
+      PropertyImageCreateWithoutPropertyInput,
+      PropertyImageUncheckedCreateWithoutPropertyInput
+    >;
+  };
 
   export type PropertyImageCreateManyPropertyInputEnvelope = {
-    data: PropertyImageCreateManyPropertyInput | PropertyImageCreateManyPropertyInput[]
-    skipDuplicates?: boolean
-  }
+    data:
+      | PropertyImageCreateManyPropertyInput
+      | PropertyImageCreateManyPropertyInput[];
+    skipDuplicates?: boolean;
+  };
 
   export type BookingCreateWithoutPropertyInput = {
-    id?: string
-    visitDate: Date | string
-    status?: $Enums.BookingStatus
-    message?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutBookingsInput
-  }
+    id?: string;
+    visitDate: Date | string;
+    status?: $Enums.BookingStatus;
+    message?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    user: UserCreateNestedOneWithoutBookingsInput;
+  };
 
   export type BookingUncheckedCreateWithoutPropertyInput = {
-    id?: string
-    userId: string
-    visitDate: Date | string
-    status?: $Enums.BookingStatus
-    message?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
+    id?: string;
+    userId: string;
+    visitDate: Date | string;
+    status?: $Enums.BookingStatus;
+    message?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
 
   export type BookingCreateOrConnectWithoutPropertyInput = {
-    where: BookingWhereUniqueInput
-    create: XOR<BookingCreateWithoutPropertyInput, BookingUncheckedCreateWithoutPropertyInput>
-  }
+    where: BookingWhereUniqueInput;
+    create: XOR<
+      BookingCreateWithoutPropertyInput,
+      BookingUncheckedCreateWithoutPropertyInput
+    >;
+  };
 
   export type BookingCreateManyPropertyInputEnvelope = {
-    data: BookingCreateManyPropertyInput | BookingCreateManyPropertyInput[]
-    skipDuplicates?: boolean
-  }
+    data: BookingCreateManyPropertyInput | BookingCreateManyPropertyInput[];
+    skipDuplicates?: boolean;
+  };
 
   export type UserUpsertWithoutPropertiesInput = {
-    update: XOR<UserUpdateWithoutPropertiesInput, UserUncheckedUpdateWithoutPropertiesInput>
-    create: XOR<UserCreateWithoutPropertiesInput, UserUncheckedCreateWithoutPropertiesInput>
-    where?: UserWhereInput
-  }
+    update: XOR<
+      UserUpdateWithoutPropertiesInput,
+      UserUncheckedUpdateWithoutPropertiesInput
+    >;
+    create: XOR<
+      UserCreateWithoutPropertiesInput,
+      UserUncheckedCreateWithoutPropertiesInput
+    >;
+    where?: UserWhereInput;
+  };
 
   export type UserUpdateToOneWithWhereWithoutPropertiesInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutPropertiesInput, UserUncheckedUpdateWithoutPropertiesInput>
-  }
+    where?: UserWhereInput;
+    data: XOR<
+      UserUpdateWithoutPropertiesInput,
+      UserUncheckedUpdateWithoutPropertiesInput
+    >;
+  };
 
   export type UserUpdateWithoutPropertiesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Bookings?: BookingUpdateManyWithoutUserNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    email?: StringFieldUpdateOperationsInput | string;
+    passwordHash?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    Bookings?: BookingUpdateManyWithoutUserNestedInput;
+  };
 
   export type UserUncheckedUpdateWithoutPropertiesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Bookings?: BookingUncheckedUpdateManyWithoutUserNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    email?: StringFieldUpdateOperationsInput | string;
+    passwordHash?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    Bookings?: BookingUncheckedUpdateManyWithoutUserNestedInput;
+  };
 
   export type PropertyImageUpsertWithWhereUniqueWithoutPropertyInput = {
-    where: PropertyImageWhereUniqueInput
-    update: XOR<PropertyImageUpdateWithoutPropertyInput, PropertyImageUncheckedUpdateWithoutPropertyInput>
-    create: XOR<PropertyImageCreateWithoutPropertyInput, PropertyImageUncheckedCreateWithoutPropertyInput>
-  }
+    where: PropertyImageWhereUniqueInput;
+    update: XOR<
+      PropertyImageUpdateWithoutPropertyInput,
+      PropertyImageUncheckedUpdateWithoutPropertyInput
+    >;
+    create: XOR<
+      PropertyImageCreateWithoutPropertyInput,
+      PropertyImageUncheckedCreateWithoutPropertyInput
+    >;
+  };
 
   export type PropertyImageUpdateWithWhereUniqueWithoutPropertyInput = {
-    where: PropertyImageWhereUniqueInput
-    data: XOR<PropertyImageUpdateWithoutPropertyInput, PropertyImageUncheckedUpdateWithoutPropertyInput>
-  }
+    where: PropertyImageWhereUniqueInput;
+    data: XOR<
+      PropertyImageUpdateWithoutPropertyInput,
+      PropertyImageUncheckedUpdateWithoutPropertyInput
+    >;
+  };
 
   export type PropertyImageUpdateManyWithWhereWithoutPropertyInput = {
-    where: PropertyImageScalarWhereInput
-    data: XOR<PropertyImageUpdateManyMutationInput, PropertyImageUncheckedUpdateManyWithoutPropertyInput>
-  }
+    where: PropertyImageScalarWhereInput;
+    data: XOR<
+      PropertyImageUpdateManyMutationInput,
+      PropertyImageUncheckedUpdateManyWithoutPropertyInput
+    >;
+  };
 
   export type PropertyImageScalarWhereInput = {
-    AND?: PropertyImageScalarWhereInput | PropertyImageScalarWhereInput[]
-    OR?: PropertyImageScalarWhereInput[]
-    NOT?: PropertyImageScalarWhereInput | PropertyImageScalarWhereInput[]
-    id?: StringFilter<"PropertyImage"> | string
-    propertyId?: StringFilter<"PropertyImage"> | string
-    url?: StringFilter<"PropertyImage"> | string
-    publicId?: StringFilter<"PropertyImage"> | string
-    createdAt?: DateTimeFilter<"PropertyImage"> | Date | string
-  }
+    AND?: PropertyImageScalarWhereInput | PropertyImageScalarWhereInput[];
+    OR?: PropertyImageScalarWhereInput[];
+    NOT?: PropertyImageScalarWhereInput | PropertyImageScalarWhereInput[];
+    id?: StringFilter<'PropertyImage'> | string;
+    propertyId?: StringFilter<'PropertyImage'> | string;
+    url?: StringFilter<'PropertyImage'> | string;
+    publicId?: StringFilter<'PropertyImage'> | string;
+    createdAt?: DateTimeFilter<'PropertyImage'> | Date | string;
+  };
 
   export type BookingUpsertWithWhereUniqueWithoutPropertyInput = {
-    where: BookingWhereUniqueInput
-    update: XOR<BookingUpdateWithoutPropertyInput, BookingUncheckedUpdateWithoutPropertyInput>
-    create: XOR<BookingCreateWithoutPropertyInput, BookingUncheckedCreateWithoutPropertyInput>
-  }
+    where: BookingWhereUniqueInput;
+    update: XOR<
+      BookingUpdateWithoutPropertyInput,
+      BookingUncheckedUpdateWithoutPropertyInput
+    >;
+    create: XOR<
+      BookingCreateWithoutPropertyInput,
+      BookingUncheckedCreateWithoutPropertyInput
+    >;
+  };
 
   export type BookingUpdateWithWhereUniqueWithoutPropertyInput = {
-    where: BookingWhereUniqueInput
-    data: XOR<BookingUpdateWithoutPropertyInput, BookingUncheckedUpdateWithoutPropertyInput>
-  }
+    where: BookingWhereUniqueInput;
+    data: XOR<
+      BookingUpdateWithoutPropertyInput,
+      BookingUncheckedUpdateWithoutPropertyInput
+    >;
+  };
 
   export type BookingUpdateManyWithWhereWithoutPropertyInput = {
-    where: BookingScalarWhereInput
-    data: XOR<BookingUpdateManyMutationInput, BookingUncheckedUpdateManyWithoutPropertyInput>
-  }
+    where: BookingScalarWhereInput;
+    data: XOR<
+      BookingUpdateManyMutationInput,
+      BookingUncheckedUpdateManyWithoutPropertyInput
+    >;
+  };
 
   export type PropertyCreateWithoutImagesInput = {
-    id?: string
-    title: string
-    description: string
-    price: number
-    location: string
-    bedrooms: number
-    bathrooms: number
-    parking?: boolean
-    area?: number | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    owner: UserCreateNestedOneWithoutPropertiesInput
-    bookings?: BookingCreateNestedManyWithoutPropertyInput
-  }
+    id?: string;
+    title: string;
+    description: string;
+    price: number;
+    location: string;
+    bedrooms: number;
+    bathrooms: number;
+    parking?: boolean;
+    area?: number | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    owner: UserCreateNestedOneWithoutPropertiesInput;
+    bookings?: BookingCreateNestedManyWithoutPropertyInput;
+  };
 
   export type PropertyUncheckedCreateWithoutImagesInput = {
-    id?: string
-    ownerId: string
-    title: string
-    description: string
-    price: number
-    location: string
-    bedrooms: number
-    bathrooms: number
-    parking?: boolean
-    area?: number | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    bookings?: BookingUncheckedCreateNestedManyWithoutPropertyInput
-  }
+    id?: string;
+    ownerId: string;
+    title: string;
+    description: string;
+    price: number;
+    location: string;
+    bedrooms: number;
+    bathrooms: number;
+    parking?: boolean;
+    area?: number | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    bookings?: BookingUncheckedCreateNestedManyWithoutPropertyInput;
+  };
 
   export type PropertyCreateOrConnectWithoutImagesInput = {
-    where: PropertyWhereUniqueInput
-    create: XOR<PropertyCreateWithoutImagesInput, PropertyUncheckedCreateWithoutImagesInput>
-  }
+    where: PropertyWhereUniqueInput;
+    create: XOR<
+      PropertyCreateWithoutImagesInput,
+      PropertyUncheckedCreateWithoutImagesInput
+    >;
+  };
 
   export type PropertyUpsertWithoutImagesInput = {
-    update: XOR<PropertyUpdateWithoutImagesInput, PropertyUncheckedUpdateWithoutImagesInput>
-    create: XOR<PropertyCreateWithoutImagesInput, PropertyUncheckedCreateWithoutImagesInput>
-    where?: PropertyWhereInput
-  }
+    update: XOR<
+      PropertyUpdateWithoutImagesInput,
+      PropertyUncheckedUpdateWithoutImagesInput
+    >;
+    create: XOR<
+      PropertyCreateWithoutImagesInput,
+      PropertyUncheckedCreateWithoutImagesInput
+    >;
+    where?: PropertyWhereInput;
+  };
 
   export type PropertyUpdateToOneWithWhereWithoutImagesInput = {
-    where?: PropertyWhereInput
-    data: XOR<PropertyUpdateWithoutImagesInput, PropertyUncheckedUpdateWithoutImagesInput>
-  }
+    where?: PropertyWhereInput;
+    data: XOR<
+      PropertyUpdateWithoutImagesInput,
+      PropertyUncheckedUpdateWithoutImagesInput
+    >;
+  };
 
   export type PropertyUpdateWithoutImagesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    location?: StringFieldUpdateOperationsInput | string
-    bedrooms?: IntFieldUpdateOperationsInput | number
-    bathrooms?: IntFieldUpdateOperationsInput | number
-    parking?: BoolFieldUpdateOperationsInput | boolean
-    area?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    owner?: UserUpdateOneRequiredWithoutPropertiesNestedInput
-    bookings?: BookingUpdateManyWithoutPropertyNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: FloatFieldUpdateOperationsInput | number;
+    location?: StringFieldUpdateOperationsInput | string;
+    bedrooms?: IntFieldUpdateOperationsInput | number;
+    bathrooms?: IntFieldUpdateOperationsInput | number;
+    parking?: BoolFieldUpdateOperationsInput | boolean;
+    area?: NullableFloatFieldUpdateOperationsInput | number | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    owner?: UserUpdateOneRequiredWithoutPropertiesNestedInput;
+    bookings?: BookingUpdateManyWithoutPropertyNestedInput;
+  };
 
   export type PropertyUncheckedUpdateWithoutImagesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    ownerId?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    location?: StringFieldUpdateOperationsInput | string
-    bedrooms?: IntFieldUpdateOperationsInput | number
-    bathrooms?: IntFieldUpdateOperationsInput | number
-    parking?: BoolFieldUpdateOperationsInput | boolean
-    area?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    bookings?: BookingUncheckedUpdateManyWithoutPropertyNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    ownerId?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: FloatFieldUpdateOperationsInput | number;
+    location?: StringFieldUpdateOperationsInput | string;
+    bedrooms?: IntFieldUpdateOperationsInput | number;
+    bathrooms?: IntFieldUpdateOperationsInput | number;
+    parking?: BoolFieldUpdateOperationsInput | boolean;
+    area?: NullableFloatFieldUpdateOperationsInput | number | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    bookings?: BookingUncheckedUpdateManyWithoutPropertyNestedInput;
+  };
 
   export type PropertyCreateWithoutBookingsInput = {
-    id?: string
-    title: string
-    description: string
-    price: number
-    location: string
-    bedrooms: number
-    bathrooms: number
-    parking?: boolean
-    area?: number | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    owner: UserCreateNestedOneWithoutPropertiesInput
-    images?: PropertyImageCreateNestedManyWithoutPropertyInput
-  }
+    id?: string;
+    title: string;
+    description: string;
+    price: number;
+    location: string;
+    bedrooms: number;
+    bathrooms: number;
+    parking?: boolean;
+    area?: number | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    owner: UserCreateNestedOneWithoutPropertiesInput;
+    images?: PropertyImageCreateNestedManyWithoutPropertyInput;
+  };
 
   export type PropertyUncheckedCreateWithoutBookingsInput = {
-    id?: string
-    ownerId: string
-    title: string
-    description: string
-    price: number
-    location: string
-    bedrooms: number
-    bathrooms: number
-    parking?: boolean
-    area?: number | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    images?: PropertyImageUncheckedCreateNestedManyWithoutPropertyInput
-  }
+    id?: string;
+    ownerId: string;
+    title: string;
+    description: string;
+    price: number;
+    location: string;
+    bedrooms: number;
+    bathrooms: number;
+    parking?: boolean;
+    area?: number | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    images?: PropertyImageUncheckedCreateNestedManyWithoutPropertyInput;
+  };
 
   export type PropertyCreateOrConnectWithoutBookingsInput = {
-    where: PropertyWhereUniqueInput
-    create: XOR<PropertyCreateWithoutBookingsInput, PropertyUncheckedCreateWithoutBookingsInput>
-  }
+    where: PropertyWhereUniqueInput;
+    create: XOR<
+      PropertyCreateWithoutBookingsInput,
+      PropertyUncheckedCreateWithoutBookingsInput
+    >;
+  };
 
   export type UserCreateWithoutBookingsInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    name: string
-    role?: $Enums.Role
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    properties?: PropertyCreateNestedManyWithoutOwnerInput
-  }
+    id?: string;
+    email: string;
+    passwordHash: string;
+    name: string;
+    role?: $Enums.Role;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    properties?: PropertyCreateNestedManyWithoutOwnerInput;
+  };
 
   export type UserUncheckedCreateWithoutBookingsInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    name: string
-    role?: $Enums.Role
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    properties?: PropertyUncheckedCreateNestedManyWithoutOwnerInput
-  }
+    id?: string;
+    email: string;
+    passwordHash: string;
+    name: string;
+    role?: $Enums.Role;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    properties?: PropertyUncheckedCreateNestedManyWithoutOwnerInput;
+  };
 
   export type UserCreateOrConnectWithoutBookingsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutBookingsInput, UserUncheckedCreateWithoutBookingsInput>
-  }
+    where: UserWhereUniqueInput;
+    create: XOR<
+      UserCreateWithoutBookingsInput,
+      UserUncheckedCreateWithoutBookingsInput
+    >;
+  };
 
   export type PropertyUpsertWithoutBookingsInput = {
-    update: XOR<PropertyUpdateWithoutBookingsInput, PropertyUncheckedUpdateWithoutBookingsInput>
-    create: XOR<PropertyCreateWithoutBookingsInput, PropertyUncheckedCreateWithoutBookingsInput>
-    where?: PropertyWhereInput
-  }
+    update: XOR<
+      PropertyUpdateWithoutBookingsInput,
+      PropertyUncheckedUpdateWithoutBookingsInput
+    >;
+    create: XOR<
+      PropertyCreateWithoutBookingsInput,
+      PropertyUncheckedCreateWithoutBookingsInput
+    >;
+    where?: PropertyWhereInput;
+  };
 
   export type PropertyUpdateToOneWithWhereWithoutBookingsInput = {
-    where?: PropertyWhereInput
-    data: XOR<PropertyUpdateWithoutBookingsInput, PropertyUncheckedUpdateWithoutBookingsInput>
-  }
+    where?: PropertyWhereInput;
+    data: XOR<
+      PropertyUpdateWithoutBookingsInput,
+      PropertyUncheckedUpdateWithoutBookingsInput
+    >;
+  };
 
   export type PropertyUpdateWithoutBookingsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    location?: StringFieldUpdateOperationsInput | string
-    bedrooms?: IntFieldUpdateOperationsInput | number
-    bathrooms?: IntFieldUpdateOperationsInput | number
-    parking?: BoolFieldUpdateOperationsInput | boolean
-    area?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    owner?: UserUpdateOneRequiredWithoutPropertiesNestedInput
-    images?: PropertyImageUpdateManyWithoutPropertyNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: FloatFieldUpdateOperationsInput | number;
+    location?: StringFieldUpdateOperationsInput | string;
+    bedrooms?: IntFieldUpdateOperationsInput | number;
+    bathrooms?: IntFieldUpdateOperationsInput | number;
+    parking?: BoolFieldUpdateOperationsInput | boolean;
+    area?: NullableFloatFieldUpdateOperationsInput | number | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    owner?: UserUpdateOneRequiredWithoutPropertiesNestedInput;
+    images?: PropertyImageUpdateManyWithoutPropertyNestedInput;
+  };
 
   export type PropertyUncheckedUpdateWithoutBookingsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    ownerId?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    location?: StringFieldUpdateOperationsInput | string
-    bedrooms?: IntFieldUpdateOperationsInput | number
-    bathrooms?: IntFieldUpdateOperationsInput | number
-    parking?: BoolFieldUpdateOperationsInput | boolean
-    area?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    images?: PropertyImageUncheckedUpdateManyWithoutPropertyNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    ownerId?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: FloatFieldUpdateOperationsInput | number;
+    location?: StringFieldUpdateOperationsInput | string;
+    bedrooms?: IntFieldUpdateOperationsInput | number;
+    bathrooms?: IntFieldUpdateOperationsInput | number;
+    parking?: BoolFieldUpdateOperationsInput | boolean;
+    area?: NullableFloatFieldUpdateOperationsInput | number | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    images?: PropertyImageUncheckedUpdateManyWithoutPropertyNestedInput;
+  };
 
   export type UserUpsertWithoutBookingsInput = {
-    update: XOR<UserUpdateWithoutBookingsInput, UserUncheckedUpdateWithoutBookingsInput>
-    create: XOR<UserCreateWithoutBookingsInput, UserUncheckedCreateWithoutBookingsInput>
-    where?: UserWhereInput
-  }
+    update: XOR<
+      UserUpdateWithoutBookingsInput,
+      UserUncheckedUpdateWithoutBookingsInput
+    >;
+    create: XOR<
+      UserCreateWithoutBookingsInput,
+      UserUncheckedCreateWithoutBookingsInput
+    >;
+    where?: UserWhereInput;
+  };
 
   export type UserUpdateToOneWithWhereWithoutBookingsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutBookingsInput, UserUncheckedUpdateWithoutBookingsInput>
-  }
+    where?: UserWhereInput;
+    data: XOR<
+      UserUpdateWithoutBookingsInput,
+      UserUncheckedUpdateWithoutBookingsInput
+    >;
+  };
 
   export type UserUpdateWithoutBookingsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    properties?: PropertyUpdateManyWithoutOwnerNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    email?: StringFieldUpdateOperationsInput | string;
+    passwordHash?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    properties?: PropertyUpdateManyWithoutOwnerNestedInput;
+  };
 
   export type UserUncheckedUpdateWithoutBookingsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    properties?: PropertyUncheckedUpdateManyWithoutOwnerNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    email?: StringFieldUpdateOperationsInput | string;
+    passwordHash?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    properties?: PropertyUncheckedUpdateManyWithoutOwnerNestedInput;
+  };
 
   export type PropertyCreateManyOwnerInput = {
-    id?: string
-    title: string
-    description: string
-    price: number
-    location: string
-    bedrooms: number
-    bathrooms: number
-    parking?: boolean
-    area?: number | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
+    id?: string;
+    title: string;
+    description: string;
+    price: number;
+    location: string;
+    bedrooms: number;
+    bathrooms: number;
+    parking?: boolean;
+    area?: number | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
 
   export type BookingCreateManyUserInput = {
-    id?: string
-    propertyId: string
-    visitDate: Date | string
-    status?: $Enums.BookingStatus
-    message?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
+    id?: string;
+    propertyId: string;
+    visitDate: Date | string;
+    status?: $Enums.BookingStatus;
+    message?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
 
   export type PropertyUpdateWithoutOwnerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    location?: StringFieldUpdateOperationsInput | string
-    bedrooms?: IntFieldUpdateOperationsInput | number
-    bathrooms?: IntFieldUpdateOperationsInput | number
-    parking?: BoolFieldUpdateOperationsInput | boolean
-    area?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    images?: PropertyImageUpdateManyWithoutPropertyNestedInput
-    bookings?: BookingUpdateManyWithoutPropertyNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: FloatFieldUpdateOperationsInput | number;
+    location?: StringFieldUpdateOperationsInput | string;
+    bedrooms?: IntFieldUpdateOperationsInput | number;
+    bathrooms?: IntFieldUpdateOperationsInput | number;
+    parking?: BoolFieldUpdateOperationsInput | boolean;
+    area?: NullableFloatFieldUpdateOperationsInput | number | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    images?: PropertyImageUpdateManyWithoutPropertyNestedInput;
+    bookings?: BookingUpdateManyWithoutPropertyNestedInput;
+  };
 
   export type PropertyUncheckedUpdateWithoutOwnerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    location?: StringFieldUpdateOperationsInput | string
-    bedrooms?: IntFieldUpdateOperationsInput | number
-    bathrooms?: IntFieldUpdateOperationsInput | number
-    parking?: BoolFieldUpdateOperationsInput | boolean
-    area?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    images?: PropertyImageUncheckedUpdateManyWithoutPropertyNestedInput
-    bookings?: BookingUncheckedUpdateManyWithoutPropertyNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: FloatFieldUpdateOperationsInput | number;
+    location?: StringFieldUpdateOperationsInput | string;
+    bedrooms?: IntFieldUpdateOperationsInput | number;
+    bathrooms?: IntFieldUpdateOperationsInput | number;
+    parking?: BoolFieldUpdateOperationsInput | boolean;
+    area?: NullableFloatFieldUpdateOperationsInput | number | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    images?: PropertyImageUncheckedUpdateManyWithoutPropertyNestedInput;
+    bookings?: BookingUncheckedUpdateManyWithoutPropertyNestedInput;
+  };
 
   export type PropertyUncheckedUpdateManyWithoutOwnerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    location?: StringFieldUpdateOperationsInput | string
-    bedrooms?: IntFieldUpdateOperationsInput | number
-    bathrooms?: IntFieldUpdateOperationsInput | number
-    parking?: BoolFieldUpdateOperationsInput | boolean
-    area?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: FloatFieldUpdateOperationsInput | number;
+    location?: StringFieldUpdateOperationsInput | string;
+    bedrooms?: IntFieldUpdateOperationsInput | number;
+    bathrooms?: IntFieldUpdateOperationsInput | number;
+    parking?: BoolFieldUpdateOperationsInput | boolean;
+    area?: NullableFloatFieldUpdateOperationsInput | number | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type BookingUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    message?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    property?: PropertyUpdateOneRequiredWithoutBookingsNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus;
+    message?: NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    property?: PropertyUpdateOneRequiredWithoutBookingsNestedInput;
+  };
 
   export type BookingUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    propertyId?: StringFieldUpdateOperationsInput | string
-    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    message?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    propertyId?: StringFieldUpdateOperationsInput | string;
+    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus;
+    message?: NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type BookingUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    propertyId?: StringFieldUpdateOperationsInput | string
-    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    message?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    propertyId?: StringFieldUpdateOperationsInput | string;
+    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus;
+    message?: NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type PropertyImageCreateManyPropertyInput = {
-    id?: string
-    url: string
-    publicId: string
-    createdAt?: Date | string
-  }
+    id?: string;
+    url: string;
+    publicId: string;
+    createdAt?: Date | string;
+  };
 
   export type BookingCreateManyPropertyInput = {
-    id?: string
-    userId: string
-    visitDate: Date | string
-    status?: $Enums.BookingStatus
-    message?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
+    id?: string;
+    userId: string;
+    visitDate: Date | string;
+    status?: $Enums.BookingStatus;
+    message?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
 
   export type PropertyImageUpdateWithoutPropertyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    publicId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    publicId?: StringFieldUpdateOperationsInput | string;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type PropertyImageUncheckedUpdateWithoutPropertyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    publicId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    publicId?: StringFieldUpdateOperationsInput | string;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type PropertyImageUncheckedUpdateManyWithoutPropertyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    publicId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    publicId?: StringFieldUpdateOperationsInput | string;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type BookingUpdateWithoutPropertyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    message?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutBookingsNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus;
+    message?: NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    user?: UserUpdateOneRequiredWithoutBookingsNestedInput;
+  };
 
   export type BookingUncheckedUpdateWithoutPropertyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    message?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    userId?: StringFieldUpdateOperationsInput | string;
+    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus;
+    message?: NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type BookingUncheckedUpdateManyWithoutPropertyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    message?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-
+    id?: StringFieldUpdateOperationsInput | string;
+    userId?: StringFieldUpdateOperationsInput | string;
+    visitDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus;
+    message?: NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany
    */
 
   export type BatchPayload = {
-    count: number
-  }
+    count: number;
+  };
 
   /**
    * DMMF
    */
-  export const dmmf: runtime.BaseDMMF
+  export const dmmf: runtime.BaseDMMF;
 }

@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({  // Importing the Geist Mono font from Google Fon
 });
 
 export const metadata: Metadata = {   // Metadata for the Next.js application, which can be used for SEO (Search Engine Optimization) and other purposes. It includes a title and description for the app
-  title: "Property Marketplace",
+  title: "Veranda",
   description: "Find your perfect property with AI-powered search",
 };
 
@@ -26,11 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen flex flex-col antialiased selection:bg-teal-200 selection:text-teal-900`}>
         <AuthProvider>
           <Navbar/>
-          <main className="min-h-screen bg-gray-50">{children}</main>
+          <main className="flex-1 min-h-0 bg-gray-50 flex flex-col">{children}</main>
         </AuthProvider>
       </body>
     </html>

@@ -6,10 +6,11 @@ export const propertyService = {
         const response = await api.get<PaginatedProperties>('/properties', { params });
         return response.data;
     },
-    // inputs - Optional query parameters for filtering, sorting, or pagination
-    // output - An object containing an array of properties, total count, current page, and total pages
-    // getAll: (params?: Record<string, unknown>) => { Promise <PaginatedProperties> ( endpoint, { params } ); return response.data }
 
+    getLocations: async () => {
+        const response = await api.get<string[]>('/properties/locations');
+        return response.data;
+    },
 
     getById: async (id: string) => {
         const response = await api.get<Property>(`/properties/${id}`);

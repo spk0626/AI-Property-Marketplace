@@ -6,7 +6,7 @@ import { propertyService } from '@/services/propertyService';
 import { bookingService } from '@/services/bookingService';
 import { Property, ApiError } from '@/types';
 import { useAuth } from '@/context/AuthContext';
-
+import { Car, CheckCircle, MapPin } from 'lucide-react';
 
 export default function PropertyDetailsPage() {
     const { id } = useParams<{ id: string }>(); // Get the property ID from the URL parameters using Next.js useParams hook
@@ -55,7 +55,7 @@ export default function PropertyDetailsPage() {
     if (loading) {
         return (
              <div className="flex justify-center py-20">
-        <div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin" />
+        <div className="w-6 h-6 border-2 border-teal-600 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -67,35 +67,36 @@ export default function PropertyDetailsPage() {
        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">    {/* For responsive UI: 1 column on mobile, 2 on tablet, 3 on desktop */}
         {/* Images */}
         <div>
-          <div className="h-72 bg-gray-100 rounded-2xl overflow-hidden">
+          <div className="relative h-[400px] sm:h-[500px] bg-gray-100 rounded-3xl overflow-hidden shadow-sm border border-gray-100/50 group">
             {property.images.length > 0 ? (
               <img
                 src={property.images[currentImage]?.url}
                 alt={property.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-gray-400">
                 No images available
               </div>
             )}
+            <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-3xl pointer-events-none" />
           </div>
           {property.images.length > 1 && (
-            <div className="flex gap-2 mt-3 overflow-x-auto">
+            <div className="flex gap-3 mt-4 overflow-x-auto pb-2 scrollbar-hide">
               {property.images.map((img, i) => (
                 <button
                   key={img.id}
                   onClick={() => setCurrentImage(i)}
-                  className="flex-shrink-0"
+                  className={`flex-shrink-0 relative rounded-xl overflow-hidden will-change-transform transition-all duration-300 ${
+                    i === currentImage
+                      ? 'ring-2 ring-teal-500 ring-offset-2 scale-100'
+                      : 'ring-1 ring-gray-200 hover:ring-teal-300 opacity-70 hover:opacity-100 scale-95 hover:scale-100'
+                  }`}
                 >
                      <img
                     src={img.url}
                     alt={`View ${i + 1}`}
-                    className={`w-16 h-16 rounded-lg object-cover border-2 transition-colors ${
-                      i === currentImage
-                        ? 'border-indigo-500'
-                        : 'border-transparent'
-                    }`}
+                    className="w-20 h-20 object-cover"
                   />
                 </button>
                               ))}
@@ -106,55 +107,58 @@ export default function PropertyDetailsPage() {
         {/* Details */}
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{property.title}</h1>
-          <p className="text-gray-500 mt-1">{property.location}</p>
-          <p className="text-3xl font-bold text-indigo-600 mt-3">
+          <p className="text-gray-700 mt-1 flex items-center gap-2">
+            <MapPin className="w-4 h-4 text-teal-600" />
+            {property.location}
+          </p>
+          <p className="text-3xl font-bold text-teal-600 mt-3">
             LKR {property.price.toLocaleString()}
           </p>
 
-<div className="flex gap-6 mt-4 text-gray-600 text-sm">
+<div className="flex gap-6 mt-6 text-gray-700 text-sm">
             <div className="text-center">
-              <div className="text-lg font-semibold text-gray-900">
+              <div className="text-xl font-bold text-gray-900">
                 {property.bedrooms}
               </div>
-              <div>Bedrooms</div>
+              <div className="font-medium mt-1">Bedrooms</div>
             </div>
             <div className="text-center">
-              <div className="text-lg font-semibold text-gray-900">
+              <div className="text-xl font-bold text-gray-900">
                 {property.bathrooms}
               </div>
-              <div>Bathrooms</div>
+              <div className="font-medium mt-1">Bathrooms</div>
             </div>
             {property.area && (
               <div className="text-center">
-                <div className="text-lg font-semibold text-gray-900">
+                <div className="text-xl font-bold text-gray-900">
                   {property.area}
                 </div>
-                <div>sq ft</div>
+                <div className="font-medium mt-1">sq ft</div>
               </div>
             )}
             {property.parking && (
-              <div className="text-center">
-                <div className="text-lg font-semibold text-gray-900">🅿</div>
-                <div>Parking</div>
+              <div className="text-center flex flex-col items-center">
+                <div className="text-xl font-bold text-gray-900 flex justify-center h-7 items-center"><Car className="w-6 h-6 text-gray-900" /></div>
+                <div className="font-medium mt-1">Parking</div>
               </div>
             )}
           </div>
 
-            <p className="text-gray-600 mt-4 leading-relaxed text-sm">
+            <p className="text-gray-800 mt-6 leading-relaxed">
             {property.description}
           </p>
 
-          <p className="text-sm text-gray-500 mt-3">
+          <p className="text-sm text-gray-700 mt-4 bg-gray-50 p-3 rounded-lg border border-gray-100 inline-block">
             Listed by{' '}
-            <span className="font-medium text-gray-700">
+            <span className="font-bold text-gray-900">
               {property.owner.name}
             </span>
           </p>
 
-           {/* Booking form */}
+          {/* Booking form */}
           {!booked ? (
-            <div className="mt-6 bg-gray-50 rounded-xl p-4">
-              <h3 className="font-semibold mb-3">Request a Visit</h3>
+            <div className="mt-6 bg-gray-50 border border-gray-200 rounded-xl p-4">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Request a Visit</h3>
               {error && (
                 <p className="text-red-500 text-sm mb-3 bg-red-50 p-2 rounded-lg">
                   {error}
@@ -165,26 +169,26 @@ export default function PropertyDetailsPage() {
                 value={visitDate}
                 onChange={(e) => setVisitDate(e.target.value)}
                 min={new Date().toISOString().slice(0, 16)}
-                className="w-full border rounded-lg px-3 py-2 text-sm mb-3 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                className="w-full bg-white text-gray-900 border border-gray-300 rounded-lg px-3 py-2 text-sm mb-3 focus:ring-2 focus:ring-teal-500 focus:outline-none"
               />
                <textarea
                 placeholder="Message to owner (optional)"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full border rounded-lg px-3 py-2 text-sm mb-3 resize-none h-20 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                className="w-full bg-white text-gray-900 border border-gray-300 rounded-lg px-3 py-2 text-sm mb-3 resize-none h-20 focus:ring-2 focus:ring-teal-500 focus:outline-none"
               />
                <button
                 onClick={handleBook}
                 disabled={booking}
-                className="w-full bg-indigo-600 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-indigo-700 disabled:opacity-50 transition-colors"
+                className="w-full bg-teal-600 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-teal-700 disabled:opacity-50 transition-colors"
               >
                   {booking ? 'Sending request...' : 'Request Visit'}
               </button>
             </div>
             ) : (
             <div className="mt-6 bg-green-50 border border-green-200 rounded-xl p-4 text-center">
-              <p className="text-green-700 font-medium">
-                ✓ Visit request sent!
+              <p className="text-green-700 font-medium flex items-center justify-center gap-2">
+                <CheckCircle className="w-5 h-5" /> Visit request sent!
               </p>
               <p className="text-green-600 text-sm mt-1">
                 The owner will review your request. Check your bookings for

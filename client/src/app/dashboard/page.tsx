@@ -5,9 +5,11 @@ import { useAuth } from '@/context/AuthContext';
 import { propertyService } from '@/services/propertyService';
 import { Property } from '@/types';
 import PropertyCard from '@/components/PropertyCard';
-import PropertiesPage from '../properties/page';
 import Link from 'next/link';
 import ProtectedPage from '@/components/ProtectedPage';
+
+const formatRole = (role?: string) =>
+  role ? role.charAt(0) + role.slice(1).toLowerCase() : '';
 
 
 function DashboardContent() {
@@ -17,13 +19,33 @@ function DashboardContent() {
     const [deleteError, setDeleteError] = useState('');
 
     useEffect(() => {
-        if (user?.role === 'OWNER') return;
-        setLoading(true);
+      if (user?.role !== 'OWNER') {
+        return;
+      }
+
+      let cancelled = false;
+
         propertyService
         .getMyProperties()
-        .then(setProperties)
-        .finally(() => setLoading(false));
-    }, [user]);
+        .then((data) => {
+          if (!cancelled) setProperties(data);
+        })
+        .catch((err) => {
+          if (!cancelled) {
+            const axiosError = err as AxiosError<{ message: string }>;
+            setDeleteError(
+              axiosError.response?.data?.message ?? 'Failed to load properties',
+            );
+          }
+        })
+        .finally(() => {
+          if (!cancelled) setLoading(false);
+        });
+
+      return () => {
+        cancelled = true;
+      };
+    }, [user?.role]);
 
     const handleDelete = async (id: string) => {
         if (!confirm('Are you sure you want to delete this property?')) return;
@@ -43,13 +65,13 @@ function DashboardContent() {
                 <div>
                     <h1 className="text-2xl font-bold">My Dashboard</h1>
                     <p className="text-gray-500 text-sm mt-1">
-                    {user?.name} · {user?.role}
+                  {user?.name} · {formatRole(user?.role)}
                     </p>
                 </div>
                 {user?.role === 'OWNER' && (
                     <Link 
                         href="/properties/create"
-                         className="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors"
+                         className="bg-teal-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-teal-700 transition-colors"
           >
             + New Listing
           </Link>
@@ -69,14 +91,14 @@ function DashboardContent() {
           </h2>
             {loading ? (
                  <div className="flex justify-center py-10">
-              <div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin" />
+              <div className="w-6 h-6 border-2 border-teal-600 border-t-transparent rounded-full animate-spin" />
             </div>
           ) : properties.length === 0 ? (
              <div className="text-center py-16 text-gray-400">
               <p className="mb-4">No listings yet.</p>
               <Link
                 href="/properties/create"
-                className="text-indigo-600 underline"
+                className="text-teal-600 underline"
               >
                 Create your first listing
                 </Link >
@@ -106,7 +128,7 @@ function DashboardContent() {
           </p>
           <Link
             href="/properties"
-              className="bg-indigo-600 text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors"
+              className="bg-teal-600 text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-teal-700 transition-colors"
           >
             Browse Properties
           </Link>
@@ -139,14 +161,14 @@ export default function DashboardPage() {
 // A protected dashboard page: shows personalized content based on user role. It allows property owners to manage their listings and buyers to easily navigate to browse properties.
 
 /* STYLES EXPLANATION: */
-// - bg-indigo-600: Sets the background color to a specific shade of indigo.
+// - bg-teal-600: Sets the background color to a specific shade of teal.
 // - text-white: Sets the text color to white.
 // - px-6: Applies horizontal padding of 1.5rem (24px) on both left and right sides.
 // - py-3: Applies vertical padding of 0.75rem (12px) on both top and bottom.
 // - rounded-lg: Applies a large border-radius to make the corners of the element rounded.
 // - text-sm: Sets the font size to small.
 // - font-medium: Sets the font weight to medium, making the text slightly bolder than normal.
-// - hover:bg-indigo-700: Changes the background color to a darker shade of indigo when the user hovers over the element.
+// - hover:bg-teal-700: Changes the background color to a darker shade of teal when the user hovers over the element.
 // - transition-colors: Adds a smooth transition effect when the background color changes on hover, making the color change appear more fluid and visually appealing.
 
 // - mb-6: Applies a margin-bottom of 1.5rem (24px) to create space below the element.

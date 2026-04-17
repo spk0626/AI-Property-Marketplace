@@ -1,10 +1,10 @@
 import { Global, Module } from '@nestjs/common';
 import { PrismaService } from './prisma.service';
 
-@Global()  // This decorator makes the PrismaService available globally across the entire application, so don't need to import PrismaModule in every module that needs to use PrismaService.
+@Global() // This decorator makes the PrismaService available globally across the entire application, so don't need to import PrismaModule in every module that needs to use PrismaService.
 @Module({
-    providers: [PrismaService],  // allows PrismaService to be injected into other parts of the application
-    exports: [PrismaService],  // makes PrismaService available for import in other modules
+  providers: [PrismaService], // allows PrismaService to be injected into other parts of the application
+  exports: [PrismaService], // makes PrismaService available for import in other modules
 })
 export class PrismaModule {}
 

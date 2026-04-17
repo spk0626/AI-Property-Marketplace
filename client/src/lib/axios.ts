@@ -6,7 +6,7 @@ const api = axios.create({
 // api is an instance of axios that has a base URL set to NEXT_PUBLIC_API_URL 
 
 
-api.interceptors.response.use((config) => {
+api.interceptors.request.use((config) => {
     if (typeof window !== 'undefined') {
         const token = localStorage.getItem('token');
         if (token) config.headers.Authorization = `Bearer ${token}`;
