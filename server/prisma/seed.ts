@@ -48,6 +48,7 @@ async function main() {
       parking: true,
       area: 950,
       ownerId: owner.id,
+      imageUrl: 'https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop',
     },
     {
       title: 'Luxury Beachfront Villa',
@@ -59,6 +60,7 @@ async function main() {
       parking: true,
       area: 3200,
       ownerId: owner.id,
+      imageUrl: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1200&auto=format&fit=crop',
     },
     {
       title: 'Cozy Suburb Home',
@@ -70,18 +72,21 @@ async function main() {
       parking: false,
       area: 1200,
       ownerId: owner.id,
+      imageUrl: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop',
     },
   ];
 
   for (const property of properties) {
+    const { imageUrl, ...propertyData } = property;
+
     await prisma.property.create({
       data: {
-        ...property,
+        ...propertyData,
         images: {
           create: [
             {
-              url: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=800&auto=format&fit=crop',
-              publicId: 'seeder_image_1'
+              url: imageUrl,
+              publicId: `seeder_image_${property.title.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`
             }
           ]
         }

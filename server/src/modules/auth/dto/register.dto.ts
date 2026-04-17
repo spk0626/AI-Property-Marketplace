@@ -1,25 +1,31 @@
-import { IsEmail, IsEnum, IsOptional, IsString, MinLength } from 'class-validator';
+import {
+  IsEmail,
+  IsEnum,
+  IsOptional,
+  IsString,
+  MinLength,
+} from 'class-validator';
 
 export enum UserRole {
-    BUYER = 'BUYER',
-    OWNER = 'OWNER',
+  BUYER = 'BUYER',
+  OWNER = 'OWNER',
 }
 
 export class RegisterDto {
-    @IsString()
-    @MinLength(2, { message: 'Name must be at least 2 characters' })
-    name: string;
+  @IsString()
+  @MinLength(2, { message: 'Name must be at least 2 characters' })
+  name: string;
 
-    @IsEmail({}, { message: 'Invalid email' })
-    email: string;
+  @IsEmail({}, { message: 'Invalid email' })
+  email: string;
 
-    @IsString()
-    @MinLength(6, { message: 'Password must be at least 6 characters' })
-    password: string;
+  @IsString()
+  @MinLength(6, { message: 'Password must be at least 6 characters' })
+  password: string;
 
-    @IsEnum(UserRole)
-    @IsOptional()
-    role?: UserRole = UserRole.BUYER;  // default to BUYER if not provided
+  @IsEnum(UserRole)
+  @IsOptional()
+  role?: UserRole = UserRole.BUYER; // default to BUYER if not provided
 }
 
 // DTO (Data Transfer Object) for user registration

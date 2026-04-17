@@ -119,7 +119,7 @@ export default function RegisterPage() {
                   onChange={(e) => setForm({ ...form, role: e.target.value })}
                   className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all text-gray-700"
                 >
-                  <option value="BUYER">I'm looking to buy / rent</option>
+                  <option value="BUYER">I&apos;m looking to buy / rent</option>
                   <option value="OWNER">I want to list a property</option>
                 </select>
               </div>

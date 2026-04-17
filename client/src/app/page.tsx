@@ -36,7 +36,7 @@ export default function HomePage() {
           </h1>
           
           <p className="text-lg sm:text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed shadow-sm">
-            Just describe what you're looking for in plain English. Our AI will instantly find the perfect match from thousands of premium listings.
+            Just describe what you&apos;re looking for in plain English. Our AI will instantly find the perfect match from thousands of premium listings.
           </p>
           
           <div className="flex justify-center w-full max-w-3xl mx-auto transform hover:scale-[1.01] transition-transform duration-300">

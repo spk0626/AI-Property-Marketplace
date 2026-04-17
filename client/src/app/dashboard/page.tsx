@@ -19,13 +19,33 @@ function DashboardContent() {
     const [deleteError, setDeleteError] = useState('');
 
     useEffect(() => {
-        if (user?.role === 'OWNER') return;
-        setLoading(true);
+      if (user?.role !== 'OWNER') {
+        return;
+      }
+
+      let cancelled = false;
+
         propertyService
         .getMyProperties()
-        .then(setProperties)
-        .finally(() => setLoading(false));
-    }, [user]);
+        .then((data) => {
+          if (!cancelled) setProperties(data);
+        })
+        .catch((err) => {
+          if (!cancelled) {
+            const axiosError = err as AxiosError<{ message: string }>;
+            setDeleteError(
+              axiosError.response?.data?.message ?? 'Failed to load properties',
+            );
+          }
+        })
+        .finally(() => {
+          if (!cancelled) setLoading(false);
+        });
+
+      return () => {
+        cancelled = true;
+      };
+    }, [user?.role]);
 
     const handleDelete = async (id: string) => {
         if (!confirm('Are you sure you want to delete this property?')) return;

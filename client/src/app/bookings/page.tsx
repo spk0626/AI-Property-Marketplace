@@ -14,6 +14,9 @@ const statusColors: Record<string, string> = {
     CANCELLED: 'bg-gray-100 text-gray-500',
 };
 
+type BookingStatus = Booking['status'];
+type IncomingBooking = Booking & { user?: { name?: string } };
+
 function BookingContent() {
     const { user } = useAuth();
     const [myBookings, setMyBookings] = useState<Booking[]>([]);
@@ -43,12 +46,12 @@ function BookingContent() {
         if (user) fetchData();
     }, [user]);
 
-    const handleStatusUpdate = async (id: string, status: string) => {
+    const handleStatusUpdate = async (id: string, status: BookingStatus) => {
         setActionError('');
         try {
             await bookingService.updateStatus(id, status);
             setIncoming((prev) =>
-                prev.map((b) => (b.id === id ? { ...b, status: status as any } : b)),
+                prev.map((b) => (b.id === id ? { ...b, status } : b)),
             );
         } catch (err) {
             const axiosError = err as AxiosError<{ message: string }>;
@@ -123,7 +126,7 @@ function BookingContent() {
                                         </p>
                                         {tab === 'incoming' && (
                                             <p className="text-sm text-gray-600 font-medium">
-                                                👤 From: {(b as any).user?.name}
+                                                👤 From: {(b as IncomingBooking).user?.name ?? 'Unknown user'}
                                             </p>
                                         )}
                                     </div>
