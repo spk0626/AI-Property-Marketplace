@@ -31,12 +31,26 @@ export const authService = {
     // login: (data: { email: string; password: string }) => { Promise <{ user: User; token: string }> ( endpoint, data ); return response.data }
 
     getMe: async () => {
-        const response = await api.get<User>('/auth/me');
+        const response = await api.get<User>('/auth/user');
         return response.data;
     },
     // inputs - None
     // output - The currently authenticated user's data
     // getMe: () => { Promise <User> ( endpoint ); return response.data }
+
+    deleteMe: async () => {
+        const response = await api.delete<{ message: string }>('/auth/user');
+        return response.data;
+    },
+    // inputs - None
+    // output - A message confirming the account deletion
+
+    updateMe: async (data: Partial<Pick<User, 'name' | 'email' | 'role'>>) => {
+        const response = await api.patch<User>('/auth/user', data);
+        return response.data;
+    },
+    // inputs - Optional name, email, and role fields
+    // output - The updated user profile
 };
 
 

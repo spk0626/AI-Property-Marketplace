@@ -32,6 +32,14 @@ export class PropertiesService {
 
 
     /* Queries */
+    async getLocations() {
+        const results = await this.prisma.property.findMany({
+            select: { location: true },
+            distinct: ['location']
+        });
+        return results.map(r => r.location).sort();
+    }
+
     async findAll(filters: FilterPropertiesDto) {
         const where = this.buildWhereClause(filters);  // builds a Prisma where clause based on the provided filters
         const page = filters.page ?? 1;

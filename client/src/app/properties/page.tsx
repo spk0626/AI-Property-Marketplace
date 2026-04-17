@@ -13,6 +13,7 @@ interface Filters {
 
 export default function PropertiesPage() {
   const [properties, setProperties] = useState<Property[]>([]);
+  const [locations, setLocations] = useState<string[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState<Filters>({
@@ -21,6 +22,15 @@ export default function PropertiesPage() {
     maxPrice: '',
     bedrooms: '',
   });
+
+    const fetchLocations = async () => {
+        try {
+            const locs = await propertyService.getLocations();
+            setLocations(locs);
+        } catch (error) {
+            console.error('Failed to fetch locations:', error);
+        }
+    };
 
     const fetchProperties = useCallback(async () => {
         setLoading(true);
@@ -38,6 +48,7 @@ export default function PropertiesPage() {
         } , [filters]);
         
         useEffect(() => {
+            fetchLocations();
             fetchProperties();
         }, []); // Fetch on mount only — user clicks Apply to filter
 
@@ -53,7 +64,7 @@ export default function PropertiesPage() {
     return (
         <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">
+        <h1 className="text-2xl font-bold text-gray-900">
           Property Listings
           {!loading && (
             <span className="text-base font-normal text-gray-500 ml-2">
@@ -70,14 +81,20 @@ export default function PropertiesPage() {
       >
 
          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <input
-            placeholder="Location"
+          <select
             value={filters.location}
             onChange={(e) =>
               setFilters({ ...filters, location: e.target.value })
             }
-            className="border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-          />
+            className="border border-gray-300 bg-white text-gray-900 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+          >
+            <option value="">All Locations</option>
+            {locations.map((loc) => (
+              <option key={loc} value={loc}>
+                {loc}
+              </option>
+            ))}
+          </select>
 
            <input
             placeholder="Min Price (LKR)"
@@ -86,7 +103,7 @@ export default function PropertiesPage() {
             onChange={(e) =>
               setFilters({ ...filters, minPrice: e.target.value })
             }
-            className="border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+            className="border border-gray-300 bg-white text-gray-900 placeholder-gray-400 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
           />
           <input
             placeholder="Max Price (LKR)"
@@ -95,7 +112,7 @@ export default function PropertiesPage() {
             onChange={(e) =>
               setFilters({ ...filters, maxPrice: e.target.value })
             }
-            className="border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+            className="border border-gray-300 bg-white text-gray-900 placeholder-gray-400 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
           />
           <input
             placeholder="Bedrooms"
@@ -104,13 +121,13 @@ export default function PropertiesPage() {
             onChange={(e) =>
               setFilters({ ...filters, bedrooms: e.target.value })
             }
-            className="border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+            className="border border-gray-300 bg-white text-gray-900 placeholder-gray-400 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
           />
         </div>
         <div className="flex gap-2 mt-3">
           <button
             type="submit"
-            className="flex-1 bg-indigo-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors"
+            className="flex-1 bg-teal-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-teal-700 transition-colors"
           >
             Apply Filters
           </button>
@@ -127,7 +144,7 @@ export default function PropertiesPage() {
 
 {loading ? (
         <div className="flex justify-center py-20">
-          <div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin" />
+          <div className="w-6 h-6 border-2 border-teal-600 border-t-transparent rounded-full animate-spin" />
         </div>
       ) : properties.length === 0 ? (
         <div className="text-center py-20 text-gray-400">

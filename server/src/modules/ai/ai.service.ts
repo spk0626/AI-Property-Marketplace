@@ -37,6 +37,7 @@ export class AiService {
 
 
     async search(query: string) {                               // Main method
+        this.logger.log(`AI search query: ${query}`);
         const filters = await this.extractFilters(query);
         this.logger.log(`AI extracted filters: ${JSON.stringify(filters)}`);
 
@@ -78,6 +79,7 @@ export class AiService {
 
 
     private async extractFilters(query: string): Promise<ExtractedFilters> {
+        const localFilters = await this.extractLocalFilters(query);
         const prompt = `
         You are a real estate search filter extractor.
         Return ONLY a valid JSON object. No markdown, no explanation. 
@@ -106,21 +108,69 @@ export class AiService {
                 GEMINI_TIMEOUT_MS,
             );
             
-            const text = result.response
-            .text()
-            .trim()
-            .replace(/```json\n?```/g, '')
-            .trim();
+            const text = result.response.text();
+            this.logger.debug(`AI raw response: ${text}`);
+            const jsonMatch = text.match(/\{[\s\S]*\}/);
+            const parsedText = jsonMatch ? jsonMatch[0] : "{}";
+            const parsed = JSON.parse(parsedText) as Record<string, unknown>;
 
-            const parsed = JSON.parse(text) as Record<string, unknown>;
-
-            return Object.fromEntries(
+            const geminiFilters = Object.fromEntries(
                 Object.entries(parsed).filter(([_, value]) => value !== null && value !== undefined)
             ) as ExtractedFilters;
+
+            return {
+                ...geminiFilters,
+                ...localFilters,
+            };
         } catch (error) {
-            this.logger.warn(`Filter extraction failed: ${error}. Using empty filters.`)
-            return {};
+            this.logger.warn(`Filter extraction failed: ${error}. Falling back to local parsing.`)
+            return localFilters;
         }
+    }
+
+    private async extractLocalFilters(query: string): Promise<ExtractedFilters> {
+        const normalized = query.toLowerCase();
+        const filters: ExtractedFilters = {};
+
+        const locations = await this.prisma.property.findMany({
+            select: { location: true },
+            distinct: ['location'],
+        });
+
+        const matchedLocation = locations
+            .map(({ location }) => location)
+            .sort((a, b) => b.length - a.length)
+            .find((location) => normalized.includes(location.toLowerCase()));
+
+        if (matchedLocation) {
+            filters.location = matchedLocation;
+        }
+
+        const bedroomMatch = normalized.match(/(\d+)\s*(bed|beds|bedroom|bedrooms)/);
+        if (bedroomMatch) {
+            filters.bedrooms = Number(bedroomMatch[1]);
+        }
+
+        const bathroomMatch = normalized.match(/(\d+)\s*(bath|baths|bathroom|bathrooms)/);
+        if (bathroomMatch) {
+            filters.bathrooms = Number(bathroomMatch[1]);
+        }
+
+        const underMatch = normalized.match(/under\s*(?:lkr\s*)?(\d+[\d,]*)/);
+        if (underMatch) {
+            filters.maxPrice = Number(underMatch[1].replace(/,/g, ''));
+        }
+
+        const overMatch = normalized.match(/(?:over|above|from)\s*(?:lkr\s*)?(\d+[\d,]*)/);
+        if (overMatch) {
+            filters.minPrice = Number(overMatch[1].replace(/,/g, ''));
+        }
+
+        if (/parking/.test(normalized)) {
+            filters.parking = !/no\s+parking|without\s+parking/.test(normalized);
+        }
+
+        return filters;
     }
     // inputs: user query string
     // process: constructs a prompt for the Gemini model to extract search filters from the user query, calls the model to generate a response, and attempts to parse the response as JSON to extract the filters

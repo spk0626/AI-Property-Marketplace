@@ -16,6 +16,7 @@ interface AuthContextValue {
     user: User | null;
     loading: boolean;
     setAuthData: (user: User, token: string) => void;
+    updateUser: (user: User) => void;
     logout: () => void;
 }
 
@@ -49,6 +50,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         localStorage.setItem('user', JSON.stringify(userData));
         setUser(userData);
     }, []);
+
+    const updateUser = useCallback((userData: User) => {
+        localStorage.setItem('user', JSON.stringify(userData));
+        setUser(userData);
+    }, []);
     // A function to set authentication data (user and token) in localStorage and update the user state. Wrapped in useCallback to prevent unnecessary re-creations.
     // useCallback means: Return a memoized version of the callback that only changes if one of the dependencies has changed. In this case, there are no dependencies, so the function will be created once and never change.
     // callBack function struncture: const memoizedCallback = useCallback(() => { /* function code */ }, [/* dependencies */]);
@@ -62,7 +68,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, loading, setAuthData, logout }}>
+        <AuthContext.Provider value={{ user, loading, setAuthData, updateUser, logout }}>
             {children}
         </AuthContext.Provider>
     );

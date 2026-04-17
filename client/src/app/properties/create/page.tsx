@@ -62,13 +62,13 @@ function CreatePropertyForm() {
           placeholder="Property title (min 5 characters)"
           value={form.title}
           onChange={(e) => setForm({ ...form, title: e.target.value })}
-          className="w-full border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+          className="w-full border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
         />
         <textarea
           placeholder="Description (min 10 characters)"
           value={form.description}
           onChange={(e) => setForm({ ...form, description: e.target.value })}
-          className="w-full border rounded-lg px-4 py-3 text-sm h-28 resize-none focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+          className="w-full border rounded-lg px-4 py-3 text-sm h-28 resize-none focus:ring-2 focus:ring-teal-500 focus:outline-none"
         />
         <div className="grid grid-cols-2 gap-4">
           <input
@@ -76,13 +76,13 @@ function CreatePropertyForm() {
             type="number"
             value={form.price}
             onChange={(e) => setForm({ ...form, price: e.target.value })}
-            className="border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+            className="border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
           />
           <input
             placeholder="Location"
             value={form.location}
             onChange={(e) => setForm({ ...form, location: e.target.value })}
-            className="border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+            className="border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
           />
           <input
             placeholder="Bedrooms"
@@ -90,7 +90,7 @@ function CreatePropertyForm() {
             min="0"
             value={form.bedrooms}
             onChange={(e) => setForm({ ...form, bedrooms: e.target.value })}
-            className="border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+            className="border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
           />
           <input
             placeholder="Bathrooms"
@@ -98,14 +98,14 @@ function CreatePropertyForm() {
             min="0"
             value={form.bathrooms}
             onChange={(e) => setForm({ ...form, bathrooms: e.target.value })}
-            className="border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+            className="border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
           />
           <input
             placeholder="Area (sq ft) — optional"
             type="number"
             value={form.area}
             onChange={(e) => setForm({ ...form, area: e.target.value })}
-            className="border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+            className="border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
           />
         </div>
         <label className="flex items-center gap-2 text-sm text-gray-600">
@@ -131,7 +131,7 @@ function CreatePropertyForm() {
         <button
           onClick={handleSubmit}
           disabled={loading}
-          className="w-full bg-indigo-600 text-white py-3 rounded-lg text-sm font-medium hover:bg-indigo-700 disabled:opacity-50 transition-colors"
+          className="w-full bg-teal-600 text-white py-3 rounded-lg text-sm font-medium hover:bg-teal-700 disabled:opacity-50 transition-colors"
         >
           {loading ? 'Creating listing...' : 'Create Listing'}
         </button>

@@ -21,7 +21,7 @@ export default function ProtectedPage({ children, requiredRole }: Props) {
     const router = useRouter();
 
     useEffect(() => {  // Effect to check authentication and role on component mount and when user/loading state changes
-        if (!loading) return; // Wait for auth state to load
+        if (loading) return; // Wait for auth state to load
         if (!user) {
             router.push('/login');
             return;
@@ -33,8 +33,8 @@ export default function ProtectedPage({ children, requiredRole }: Props) {
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center min-h-screen">
-                <div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin"/>
+            <div className="flex items-center justify-center min-h-[calc(100vh-4rem)]">
+                <div className="w-6 h-6 border-2 border-teal-600 border-t-transparent rounded-full animate-spin"/>
                     </div>
         );
     }

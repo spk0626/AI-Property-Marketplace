@@ -26,6 +26,11 @@ export class PropertiesController {
     // inputs: filters (FilterPropertiesDto)
     // outputs: result of propertiesService.findAll which returns a list of properties matching the filters along with pagination metadata
 
+    @Get('locations')
+    getLocations() {
+        return this.propertiesService.getLocations();
+    }
+
     @Get('owner/my')
     @UseGuards(JwtAuthGuard)
     getMyProperties(@CurrentUser() user: JwtUser) {
