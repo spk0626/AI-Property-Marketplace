@@ -4,6 +4,9 @@ import { ConfigService } from '@nestjs/config';
 import { Logger } from 'nestjs-pino';
 import { AppModule } from './app.module';
 
+const normalizeOrigin = (origin: string): string =>
+  origin.trim().replace(/\/$/, '');
+
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
 
@@ -26,8 +29,15 @@ async function bootstrap(): Promise<void> {
     }),
   );
 
+  const clientUrlConfig =
+    config.get<string>('CLIENT_URL') ?? 'http://localhost:3000';
+  const allowedOrigins = clientUrlConfig
+    .split(',')
+    .map(normalizeOrigin)
+    .filter(Boolean);
+
   app.enableCors({
-    origin: config.get<string>('CLIENT_URL') ?? 'http://localhost:3000',
+    origin: allowedOrigins,
     credentials: true,
   });
 
