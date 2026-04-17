@@ -7,6 +7,14 @@ import { AppModule } from './app.module';
 const normalizeOrigin = (origin: string): string =>
   origin.trim().replace(/\/$/, '');
 
+const normalizeConfiguredOrigin = (origin: string): string => {
+  const trimmed = normalizeOrigin(origin);
+  if (!trimmed) return trimmed;
+  if (trimmed === '*') return trimmed;
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return `https://${trimmed}`;
+};
+
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
 
@@ -33,11 +41,13 @@ async function bootstrap(): Promise<void> {
     config.get<string>('CLIENT_URL') ?? 'http://localhost:3000';
   const allowedOrigins = clientUrlConfig
     .split(',')
-    .map(normalizeOrigin)
+    .map(normalizeConfiguredOrigin)
     .filter(Boolean);
 
+  const allowAllOrigins = allowedOrigins.includes('*');
+
   app.enableCors({
-    origin: allowedOrigins,
+    origin: allowAllOrigins ? true : allowedOrigins,
     credentials: true,
   });
 
