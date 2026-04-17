@@ -34,6 +34,7 @@ jobs:
         working-directory: server
         run: |
           npm ci
+          npm run db:generate
           npm run build
 
       - name: Upload build artifacts
